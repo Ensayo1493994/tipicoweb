@@ -1,0 +1,25 @@
+{% if mensaje %}
+	<script>
+		alert('{{ mensaje}}');
+		alert('{{ dato }}');
+	</script>
+{% endif %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>reg admin</title>
+</head>
+<body>
+	<form action="/registrar/" method="post">
+		{% csrf_token %}
+		email:
+		<input type="email" name="email">
+		<br>
+		password:
+		<input type="password" name="password">
+		<br>
+		<button type="button" onclick="location.href='{% url 'registrar' %}'">registrar admin</button>
+	</form>
+</body>
+</html>

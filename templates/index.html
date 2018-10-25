@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inicio</title>
+</head>
+<body>
+	<button type="button" onclick="location.href='{% url 'logout' %}'">Salir</button>
+	{% csrf_token %}
+	<h1>HOLA</h1>
+	{{e}}
+	<br>
+	<button type="button" onclick="location.href='{% url 'registro' %}'">Registrar Administrador</button>
+
+</body>
+</html>
