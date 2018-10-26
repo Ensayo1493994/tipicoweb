@@ -54,16 +54,23 @@ def registrar(request):
 
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
-	print(email)
+	nombre = request.POST.get('nombre')
+	foto = request.POST.get('foto')
+	rol = request.POST.get('rol') 
+	print(email,passw,nombre,rol)
 	try:
 		user = authe.create_user_with_email_and_password(email,passw)
+		#print(user)
 		data={
-			"correo":email
+			"correo":email,
+			"contraseña":passw,
+			"nombre":nombre,
+			"foto":foto,
+			"rol":rol
 		}
 		database.child("Usuarios").push(data)
 	except:
 		mensaje="No se puede crear la cuenta"
-		print('oscar',passw)
 		return render(request,'registro.html',{'mensaje':mensaje},{'dato':email})
 		uid = user['localId']
 
