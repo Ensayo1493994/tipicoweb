@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import pyrebase
 from django.contrib import auth
+import traceback
 
 # Create your views here.
 
@@ -50,19 +51,21 @@ def registro(request):
 	return render(request,'registro.html')
 
 def registrar(request):
+
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
-	print(email,passw)
+	print(email)
 	try:
 		user = authe.create_user_with_email_and_password(email,passw)
+		data={
+			"correo":email
+		}
+		database.child("Usuarios").push(data)
 	except:
 		mensaje="No se puede crear la cuenta"
+		print('oscar',passw)
 		return render(request,'registro.html',{'mensaje':mensaje},{'dato':email})
 		uid = user['localId']
 
-	data={
-			"correo":email
-		}
-
-	database.child("Usuarios").set(data)
+	
 	return render(request,'registro.html')
