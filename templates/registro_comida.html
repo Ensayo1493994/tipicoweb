@@ -1,0 +1,41 @@
+{% if mensaje %}
+	<script>
+		alert('{{ mensaje}}');
+		alert('{{ db }}');
+	</script>
+{% endif %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>registro comida</title>
+</head>
+<body>
+	<form action="/registro_comida/" method="post">
+		{% csrf_token %}
+		nombre
+		<input type="text" name="nombre">
+		<br>
+		calorias
+		<input type="text" name="calorias">
+		<br>
+		carbohidratos
+		<input type="text" name="carbohidratos">
+		<br>
+		proteinas
+		<input type="text" name="proteinas">
+		<br>
+		Foto
+		<input type="file" name="foto">
+		<br>
+		receta
+		<input type="file" name="receta">
+		<br>
+		
+		<input type="submit" value="Agregar comida">
+
+	</form>
+	<button type="button" onclick="location.href='{% url 'vista_lista_comida' %}'">lista Comida</button>
+
+
+</body>
+</html>
