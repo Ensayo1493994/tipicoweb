@@ -1,0 +1,48 @@
+<! DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+   
+    <title>listar</title>
+   
+</head>
+<body>
+
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">index</th>
+                    <th scope="col">nombre</th>
+                    <th scope="col">calorias</th>
+                    <th scope="col">descripcion</th>
+                    <th scope="col">categoria</th>
+                    <th scope="col">duracion</th>
+                    <th scope="col">imagen</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+
+    {% for cal, nombre,des,cat,dur,ima in comb_lis %}
+
+    
+            
+              <tr>
+                
+                <td>1</td>
+                <td>{{nombre}}</td>
+                <td>{{cal}}</td>
+                <td>{{des}}</td>
+                <td>{{cat}}</td>
+                <td>{{dur}}</td>
+                <td>{{ima}}</td>
+             
+
+   
+
+    {% endfor %}
+</tr>
+</tbody>
+</table>
+    
+</body>
+</html>
