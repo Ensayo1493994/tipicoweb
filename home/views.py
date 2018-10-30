@@ -17,6 +17,8 @@ config = {
 '''INICIALIZACION DE LA APP'''
 firebase = pyrebase.initialize_app(config)
 database = firebase.database()
+storage = firebase.storage()
+storageRef = storage.ref();
 
 
 '''AUTENTICCION EN FIREBASE DEL USUARIO'''
@@ -55,9 +57,9 @@ def registrar(request):
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
 	nombre = request.POST.get('nombre')
-	foto = request.POST.get('foto')
+	file = request.POST.get('file')
 	rol = request.POST.get('rol') 
-	print(email,passw,nombre,rol)
+	print(email,passw,nombre,foto,rol)
 	try:
 		user = authe.create_user_with_email_and_password(email,passw)
 		#print(user)
@@ -65,10 +67,11 @@ def registrar(request):
 			"correo":email,
 			"contraseña":passw,
 			"nombre":nombre,
-			"foto":foto,
 			"rol":rol
 		}
 		database.child("Usuarios").push(data)
+		uploadTask = storageRef.child('usuarios/' + file).put(file)
+		uploadTask.on('state changed',function(snapshot))
 	except:
 		mensaje="No se puede crear la cuenta"
 		return render(request,'registro.html',{'mensaje':mensaje},{'dato':email})
