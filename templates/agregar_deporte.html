@@ -1,0 +1,50 @@
+{% if mensaje2 %}
+    <script>
+        alert('{{mensaje2}}');
+    </script>
+{% endif %}
+
+{% if mensaje %}
+	<script>
+		alert('{{ mensaje}}');
+		
+	</script>
+{% endif %}
+
+ <!DOCTYPE html>
+<html>
+<head>
+   
+    <title>Agregar deporte</title>
+
+</head>
+<body>
+
+
+
+    <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h2>nombre:<input type="text" name="nombre"></h2>
+        <h2>descripcion:<input type="text" name="descripcion"></h2>
+        <h2>calorias:<input type="number" name="calorias"></h2>
+        <h2>categoria:
+            <select name="categoria">
+                <option value="no">-- -- --</option>
+                <option value="ejercicio">Ejercicio</option>
+                <option value="actividad">Activida física</option>
+                <option value="deporte">Deporte</option>
+                
+            </select>
+        </h2>	
+        <h2>duracion:<input type="number" name="duracion" placeholder="minutos"></h2>
+        <h2 for="imagenn">Imágenes
+           <input name="imagen" type="file" id="imagen"></h2>
+
+        	
+		<input type="submit" value="Agregar Deporte">
+
+    </form>
+    
+</body>
+</html>

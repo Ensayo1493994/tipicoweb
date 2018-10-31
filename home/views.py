@@ -156,5 +156,121 @@ def vista_lista_comida(request):
 
 
 
+# logica de los deportes
+def vista_agregar_deporte(request):
+
+
+
+	nombre = request.POST.get('nombre')
+	descripcion = request.POST.get('descripcion')
+	calorias = request.POST.get('calorias')
+	categoria = request.POST.get('categoria')
+	duracion =request.POST.get('duracion')
+	imagen= request.POST.get('imagen')
+	# print(email)
+	try:
+		#user = authe.create_user_with_email_and_password(email,passw)
+		data={
+			"nombre":nombre ,
+			"descripcion":descripcion,
+			"calorias":calorias,
+			"categoria":categoria,
+			"duracion":duracion,
+			"imagen":imagen
+		}
+		database.child("Deporte").push(data)
+		mensaje2="Registro exitoso"
+		
+		return render(request,'agregar_deporte.html',{'mensaje2':mensaje2})
+	except:
+		mensaje="No se puede crear la cuenta"
+		#print('oscar',passw)
+		return render(request,'agregar_deporte.html',{'mensaje':mensaje})
+		#uid = user['localId']
+
+	
+	return render(request,'agregar_deporte.html')
+
+
+
+
+def vista_listar_deporte(request):
+	# idtoken= request.session['uid']
+	# a= authe.get_account_info(idtoken)
+	# a=a['users']
+	# a=a[0]
+	# a=a['localid']
+
+	timestamps= database.child("Deporte").shallow().get().val()
+	lis_time=[]
+	for i in timestamps:
+
+		lis_time.append(i)
+	
+	lis_time.sort(reverse=True)
+	print(lis_time)
+
+
+
+	nombre=[]
+
+	for i in lis_time:
+		wor = database.child("Deporte").child(i).child("nombre").get().val()
+		nombre.append(wor)
+	print(nombre)
+
+
+
+	cal=[]
+
+	for a in lis_time:
+		calorias=database.child("Deporte").child(a).child("calorias").get().val()
+		cal.append(calorias)
+	print(cal)
+
+
+
+	des=[]
+
+	for a in lis_time:
+		descripcion=database.child("Deporte").child(a).child("descripcion").get().val()
+		des.append(descripcion)
+	print(des)
+
+
+	cat=[]
+
+	for a in lis_time:
+		categoria=database.child("Deporte").child(a).child("categoria").get().val()
+		cat.append(categoria)
+	print(cat)
+
+
+	dur=[]
+
+	for a in lis_time:
+		duracion=database.child("Deporte").child(a).child("duracion").get().val()
+		dur.append(duracion)
+	print(dur)
+
+
+
+	ima=[]
+
+	for a in lis_time:
+		imagen=database.child("Deporte").child(a).child("imagen").get().val()
+		ima.append(imagen)
+	print(ima)
+
+
+
+
+	comb_lis= zip(cal,nombre,des,cat,dur,ima)
+
+
+
+	return render(request,'listar_deporte.html',locals())
+
+
 
 
