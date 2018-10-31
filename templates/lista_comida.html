@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lista comida</title>
+</head>
+<body>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">index</th>
+				<th scope="col">nombre</th>
+				<th scope="col">calorias</th>
+				<th scope="col">carbohidratos</th>
+				<th scope="col">proteinas</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for nom,calor,carbo,prot in paquete_list  %}
+	
+			<tr>
+				<td>1</td>
+				<td>{{nom}}</td>
+				<td>{{calor}}</td>
+				<td>{{carbo}}</td>
+				<td>{{prot}}</td>
+			</tr>
+
+			{% endfor %}
+		</tbody>
+		
+	</table>
+	
+</body>
+</html>
