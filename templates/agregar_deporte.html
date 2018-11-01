@@ -40,11 +40,49 @@
         <h2>duracion:<input type="number" name="duracion" placeholder="minutos"></h2>
         <h2 for="imagenn">Imágenes
            <input name="imagen" type="file" id="imagen"></h2>
+           <input type="hidden" name="url" id="url">
 
-        	
-		<input type="submit" value="Agregar Deporte">
+        <button type="button" onclick="uploadimage()">up load</button>
+		<input type="submit" value="Agregar Deporte" >
 
     </form>
     
 </body>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+
+<script>
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    var config = {
+    apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+    authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+    databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+    projectId: "tipico-saludable-50fb7",
+    storageBucket: "tipico-saludable-50fb7.appspot.com",
+    messagingSenderId: "159019297528"
+  };
+    firebase.initializeApp(config);
+
+ function uploadimage(){
+  var storage = firebase.storage();
+  var file = document.getElementById("imagen").files[0];
+  var storageRef = storage.ref();
+  var thisref = storageRef.child(file.name).put(file);
+  thisref.on('state_changed',function(snapshot){
+  console.log("file uplaoded succesfully");
+  },
+  function(error) {
+  },
+  function() {
+  // Upload completed successfully, now we can get the download URL
+  var downloadURL = thisref.snapshot.downloadURL;
+  console.log("got url");
+  document.getElementById("url").value = downloadURL;
+  alert("file uploaded successfully");
+});
+    }
+
+  </script>
 </html>
