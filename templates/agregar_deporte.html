@@ -19,28 +19,29 @@
 
 </head>
 <body>
+    
 
 
 
     <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
-        <h2>nombre:<input type="text" name="nombre"></h2>
-        <h2>descripcion:<input type="text" name="descripcion"></h2>
-        <h2>calorias:<input type="number" name="calorias"></h2>
+        <h2>nombre:<input type="text" name="nombre" required></h2>
+        <h2>descripcion:<input type="text" name="descripcion" required></h2>
+        <h2>calorias:<input type="number" name="calorias" required></h2>
         <h2>categoria:
             <select name="categoria">
-                <option value="no">-- -- --</option>
                 <option value="ejercicio">Ejercicio</option>
                 <option value="actividad">Activida física</option>
                 <option value="deporte">Deporte</option>
                 
             </select>
         </h2>	
-        <h2>duracion:<input type="number" name="duracion" placeholder="minutos"></h2>
-        <h2 for="imagenn">Imágenes
-           <input name="imagen" type="file" id="imagen"></h2>
-           <input type="hidden" name="url" id="url">
+        <h2>duracion:<input type="number" name="duracion" placeholder="minutos" required></h2>
+        <h2>Imágenes
+           <input name="files[]" type="file" id="imagen">
+           </h2>
+           <input name="url" type="hidden"  id="url">
 
         <button type="button" onclick="uploadimage()">up load</button>
 		<input type="submit" value="Agregar Deporte" >
@@ -80,6 +81,7 @@
   var downloadURL = thisref.snapshot.downloadURL;
   console.log("got url");
   document.getElementById("url").value = downloadURL;
+  console.log(document.getElementById("url")," tu amor con ella");
   alert("file uploaded successfully");
 });
     }

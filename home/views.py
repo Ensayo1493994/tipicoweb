@@ -2,6 +2,7 @@ from django.shortcuts import render
 import pyrebase
 from django.contrib import auth
 import traceback
+import pytz
 
 # Create your views here.
 
@@ -165,10 +166,11 @@ def vista_agregar_deporte(request):
 		print(lis_time)
 		valor=len(lis_time)
 		#obtienen el tamaño de la lista
-		print(valor)
+		print("valor: ",valor)
 
 	except:
 		print("Hay algo raro")
+
 	nombre = request.POST.get('nombre')
 	descripcion = request.POST.get('descripcion')
 	calorias = request.POST.get('calorias')
@@ -177,20 +179,35 @@ def vista_agregar_deporte(request):
 	imagen= request.POST.get('url')
 	# print(email)
 	try:
+
+		timestamps2= database.child("Deporte").shallow().get().val()
+		lis_time2=[]
+		for i in timestamps2:
+
+			lis_time2.append(i)
+		
+		lis_time.sort(reverse=True)
+		print(lis_time2)
+		valor2=len(lis_time2)
+		#obtienen el tamaño de la lista
+		print("valor 2: ",valor2)
 		#user = authe.create_user_with_email_and_password(email,passw)
-		data={
-			"nombre":nombre ,
-			"descripcion":descripcion,
-			"calorias":calorias,
-			"categoria":categoria,
-			"duracion":duracion,
-			"imagen":imagen
-		}
+
+		if(valor==valor2):
+			print("valor final: ",valor)
+			data={
+				"nombre":nombre ,
+				"descripcion":descripcion,
+				"calorias":calorias,
+				"categoria":categoria,
+				"duracion":duracion,
+				"imagen":imagen
+			}
 		#se pasa el valor del tamaño de la lista a un chlid y se hace un set a dicho child
 		database.child("Deporte").child(str(valor)).set(data)
-		mensaje2="Registro exitoso"
+		mensaje="Registro exitoso"
 		
-		return render(request,'agregar_deporte.html',{'mensaje2':mensaje2})
+		return render(request,'agregar_deporte.html',{'mensaje':mensaje})
 	except:
 		mensaje="No se puede crear la cuenta"
 		#print('oscar',passw)
