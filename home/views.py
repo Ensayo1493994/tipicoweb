@@ -2,9 +2,11 @@ from django.shortcuts import render
 import pyrebase
 from django.contrib import auth
 import traceback
+import pytz
 
 # Create your views here.
 
+valor=0
 '''CONFIGURACION DE FIREBASE EN LA WEB'''
 config = {
     'apiKey': "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
@@ -154,29 +156,61 @@ def vista_lista_comida(request):
 # logica de los deportes
 def vista_agregar_deporte(request):
 
+	#primero se lista los datos del nodo
+	try:
+		#el child en le cual se va a agregar es Deporte
+		timestamps= database.child("Deporte").shallow().get().val()
+		lis_time=[]
+		for i in timestamps:
 
+			lis_time.append(i)
+		
+		lis_time.sort(reverse=True)
+		print(lis_time)
+		valor=len(lis_time)
+		#obtienen el tamaño de la lista
+		print("valor: ",valor)
+
+	except:
+		print("Hay algo raro")
 
 	nombre = request.POST.get('nombre')
 	descripcion = request.POST.get('descripcion')
 	calorias = request.POST.get('calorias')
 	categoria = request.POST.get('categoria')
 	duracion =request.POST.get('duracion')
-	imagen= request.POST.get('imagen')
+	imagen= request.POST.get('url')
 	# print(email)
 	try:
-		#user = authe.create_user_with_email_and_password(email,passw)
-		data={
-			"nombre":nombre ,
-			"descripcion":descripcion,
-			"calorias":calorias,
-			"categoria":categoria,
-			"duracion":duracion,
-			"imagen":imagen
-		}
-		database.child("Deporte").push(data)
-		mensaje2="Registro exitoso"
+
+		timestamps2= database.child("Deporte").shallow().get().val()
+		lis_time2=[]
+		for i in timestamps2:
+
+			lis_time2.append(i)
 		
-		return render(request,'agregar_deporte.html',{'mensaje2':mensaje2})
+		lis_time.sort(reverse=True)
+		print(lis_time2)
+		valor2=len(lis_time2)
+		#obtienen el tamaño de la lista
+		print("valor 2: ",valor2)
+		#user = authe.create_user_with_email_and_password(email,passw)
+
+		if(valor==valor2):
+			print("valor final: ",valor)
+			data={
+				"nombre":nombre ,
+				"descripcion":descripcion,
+				"calorias":calorias,
+				"categoria":categoria,
+				"duracion":duracion,
+				"imagen":imagen
+			}
+		#se pasa el valor del tamaño de la lista a un chlid y se hace un set a dicho child
+		database.child("Deporte").child(str(valor)).set(data)
+		mensaje="Registro exitoso"
+		
+		return render(request,'agregar_deporte.html',{'mensaje':mensaje})
 	except:
 		mensaje="No se puede crear la cuenta"
 		#print('oscar',passw)
@@ -260,7 +294,7 @@ def vista_listar_deporte(request):
 
 
 
-	comb_lis= zip(cal,nombre,des,cat,dur,ima)
+	comb_lis= zip(lis_time,cal,nombre,des,cat,dur,ima)
 
 
 

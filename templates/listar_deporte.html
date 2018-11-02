@@ -22,19 +22,19 @@
                 <tbody>
 
 
-    {% for cal, nombre,des,cat,dur,ima in comb_lis %}
+    {% for lis_time,nombre,cal,des,cat,dur,ima in comb_lis %}
 
     
             
               <tr>
                 
-                <td>1</td>
+                <td>{{lis_time}}</td>
                 <td>{{nombre}}</td>
                 <td>{{cal}}</td>
                 <td>{{des}}</td>
                 <td>{{cat}}</td>
                 <td>{{dur}}</td>
-                <td>{{ima}}</td>
+                <td><a href="{{ima}}">ver imagen</a></td>
              
 
    
@@ -43,6 +43,8 @@
 </tr>
 </tbody>
 </table>
+
+<button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button>
     
 </body>
 </html>
