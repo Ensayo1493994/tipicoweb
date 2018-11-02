@@ -59,7 +59,7 @@ def registrar(request):
 	nombre = request.POST.get('nombre')
 	file = request.POST.get('file')
 	rol = request.POST.get('rol') 
-	print(email,passw,nombre,foto,rol)
+	print(email,passw,nombre,rol)
 
 	#sizeList =0
 	#all_users = database.get()
@@ -80,16 +80,11 @@ def registrar(request):
 			"rol":rol
 		}
 		database.child("Usuarios").push(data)
-		uploadTask = storageRef.child('usuarios/' + file).put(file)
-		uploadTask.on('state changed',function(snapshot))
-
-		database.child("Usuarios").child(""+sizeList).set(data)
 	except:
 		mensaje="No se puede crear la cuenta"
-		return render(request,'registro.html',{'mensaje':mensaje},{'dato':email})
+		return render(request,'registro.html',{'mensaje':mensaje})
 		uid = user['localId']
 
-	
 	return render(request,'registro.html')
 
 def vista_registro_comida(request):
