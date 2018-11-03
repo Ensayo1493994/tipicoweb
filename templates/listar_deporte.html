@@ -1,0 +1,50 @@
+<! DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+   
+    <title>listar</title>
+   
+</head>
+<body>
+
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">index</th>
+                    <th scope="col">nombre</th>
+                    <th scope="col">calorias</th>
+                    <th scope="col">descripcion</th>
+                    <th scope="col">categoria</th>
+                    <th scope="col">duracion</th>
+                    <th scope="col">imagen</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+
+    {% for lis_time,nombre,cal,des,cat,dur,ima in comb_lis %}
+
+    
+            
+              <tr>
+                
+                <td>{{lis_time}}</td>
+                <td>{{nombre}}</td>
+                <td>{{cal}}</td>
+                <td>{{des}}</td>
+                <td>{{cat}}</td>
+                <td>{{dur}}</td>
+                <td><a href="{{ima}}">ver imagen</a></td>
+             
+
+   
+
+    {% endfor %}
+</tr>
+</tbody>
+</table>
+
+<button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button>
+    
+</body>
+</html>
