@@ -4,6 +4,7 @@
 	<title>lista comida</title>
 </head>
 <body>
+	<button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar comida</button>
 	<table class="table">
 		<thead>
 			<tr>
@@ -15,7 +16,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			hola
+	
 		{% for nom,calor,carbo,prot in paquete_list  %}
 	
 			<tr>

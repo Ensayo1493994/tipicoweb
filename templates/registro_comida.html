@@ -14,28 +14,69 @@
 		{% csrf_token %}
 		nombre
 		<input type="text" name="nombre">
-		<br>
+		<br><br>
 		calorias
 		<input type="text" name="calorias">
-		<br>
+		<br><br>
 		carbohidratos
 		<input type="text" name="carbohidratos">
-		<br>
+		<br><br>
 		proteinas
 		<input type="text" name="proteinas">
-		<br>
+		<br><br>
 		Foto
-		<input type="file" name="foto">
-		<br>
+		<input type="file" name="file[]" id="files">
+		<input type="hidden" name="url" id="url">
+		<button type="button" onclick="uploadimage()">subir</button>
+		<br><br>
 		receta
 		<input type="file" name="receta">
-		<br>
-		
+		<br><br>
 		<input type="submit" value="Agregar comida">
+		
+		
 
 	</form>
-	<button type="button" onclick="location.href='{% url 'vista_lista_comida' %}'">lista Comida</button>
+	<button type="button" onclick="location.href='{% url 'vista_lista_comida' %}'">lista Comida</button><br><br>
+	<button type="button" onclick="location.href='{% url 'registro' %}'">registrar admin</button>
 
 
 </body>
+<script src = "https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+	var config = {
+    apiKey: 'AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc',
+    authDomain: 'tipico-saludable-50fb7.firebaseapp.com',
+    databaseURL: 'https://tipico-saludable-50fb7.firebaseio.com',
+    storageBucket: 'tipico-saludable-50fb7.appspot.com',
+    messagingSenderId: '1590192975280'
+  };
+  firebase.initializeApp(config);
+
+  // Get a reference to the storage service, which is used to create references in your storage bucket
+  function uploadimage(){
+   	var storage = firebase.storage();
+
+  	var file = document.getElementById("files").files[0];
+
+  	var storageRef = storage.ref();
+
+  	var thisref = storageRef.child(file.name).put(file);
+
+  	thisref.on('state_changed',function(snapshot){
+
+  	console.log("file uploaded succesfully");
+  	},
+
+  	function(error){
+
+  	}
+  	 function() {
+  	 	var downloadURL = thisref.snapshot.downloadURL;
+  		console.log("got url");
+  		document.getElementById("url").value = downloadURL;
+  		alert("file uploaded successfully");
+	});
+
+	}
+</script>
 </html>

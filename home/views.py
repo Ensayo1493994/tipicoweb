@@ -91,7 +91,7 @@ def vista_registro_comida(request):
 	proteinas = request.POST.get('proteinas')
 	imagen = request.POST.get('imagen')
 	receta = request.POST.get('receta')
-	print(nombre,calorias,proteinas)
+	print(nombre,calorias,proteinas,imagen)
 	try:
 		#user = authe.create_user_with_email_and_password(email,passw)
 		data= { 
@@ -100,7 +100,7 @@ def vista_registro_comida(request):
 				"carbohidratos":carbohidratos,
 				"proteinas":proteinas,
 				"imagen":imagen,
-				"receta":receta
+				"receta":receta,
 		}
 		database.child("Comida").push(data)	
 	except:
