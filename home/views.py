@@ -85,15 +85,16 @@ def registrar(request):
 
 	
 	return render(request,'registro.html')
+#Guardar comida en la bd	
 
 def vista_registro_comida(request):
 	nombre = request.POST.get('nombre')
 	calorias = request.POST.get('calorias')
 	carbohidratos = request.POST.get('carbohidratos')
 	proteinas = request.POST.get('proteinas')
-	imagen = request.POST.get('imagen')
-	receta = request.POST.get('receta')
-	print(nombre,calorias,proteinas,imagen)
+	imagencomida = request.POST.get('url')
+	receta = request.POST.get('url')
+	print(nombre,calorias,proteinas,imagencomida)
 	try:
 		#user = authe.create_user_with_email_and_password(email,passw)
 		data= { 
@@ -101,7 +102,7 @@ def vista_registro_comida(request):
 				"calorias":calorias,
 				"carbohidratos":carbohidratos,
 				"proteinas":proteinas,
-				"imagen":imagen,
+				"imagen":imagencomida,
 				"receta":receta,
 		}
 		database.child("Comida").push(data)	
@@ -216,9 +217,6 @@ def vista_agregar_deporte(request):
 
 	
 	return render(request,'agregar_deporte.html')
-
-
-
 
 def vista_listar_deporte(request):
 	# idtoken= request.session['uid']
