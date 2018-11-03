@@ -89,6 +89,38 @@ def registrar(request):
 
 	return render(request,'registro.html')
 
+def lista_perfil(request):
+	timestamps = database.child("Usuarios").shallow().get().val()
+	list_time=[]
+	for i in timestamps:
+		list_time.append(i)
+	list_time.sort(reverse=True)
+	print(list_time)
+
+	nom=[]
+	for i in list_time:
+		nombre = database.child("Usuarios").child(i).child("nombre").get().val()
+		nom.append(nombre)
+	print(nom)
+
+	rol=[]
+	for i in list_time:
+		calorias = database.child("Usuarios").child(i).child("rol").get().val()
+		rol.append(calorias)
+	print(rol)
+
+	correo=[]
+	for i in list_time:
+		carbohidratos = database.child("Usuarios").child(i).child("correo").get().val()
+		correo.append(carbohidratos)
+	print(correo)
+
+	paquete_list = zip(nom,rol,correo)
+
+	return render(request, 'perfiles.html', locals())
+
+# REGISTRO COMIDAS
+
 def vista_registro_comida(request):
 	nombre = request.POST.get('nombre')
 	calorias = request.POST.get('calorias')
