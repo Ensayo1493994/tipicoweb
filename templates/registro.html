@@ -1,7 +1,6 @@
 {% if mensaje %}
 	<script>
 		alert('{{ mensaje}}');
-		alert('{{ dato }}');
 	</script>
 {% endif %}
 
@@ -23,12 +22,16 @@
 		<input type="text" name="nombre">
 		<br>
 		Foto
-		<input type="file" name="foto">
+		<input type="file" name="file[]" id="file">
 		<br>
 		Rol:
 		<input type="text" name="rol">
 		<br>
 		<input type="submit" value="Agregar Admin">	</form>
+<<<<<<< HEAD
 		<button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar Comida</button><br><br>
+=======
+		<button type="button" onclick="location.href='{% url 'lista_perfil' %}'">perfiles</button>
+>>>>>>> 7668a9af8d112f3b189f5b028fd8305efbf8d522
 </body>
 </html>
