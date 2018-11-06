@@ -5,7 +5,7 @@ urlpatterns = [
 	path('login/',vista_login, name='vista_login'),
 	path('conexion/',postsign,name='postsign'),
 	path('login/',vista_login),
-	path('conexion/',postsign,name='inicio'),
+	path('conexion/',postsign,name='login'),
 	path('logout/',logout,name='logout'),
 	path('registro/',registro,name='registro'),
 	path('registrar/',registrar,name='registrar'),
@@ -14,5 +14,7 @@ urlpatterns = [
 	path('agregar_deporte/',vista_agregar_deporte,name='agregar_deporte'),
 	path('listar_deporte/',vista_listar_deporte,name='listar_deporte'),
 	path('lista_perfil/',lista_perfil, name='lista_perfil'),
+	path('inicio/',inicio, name='inicio'),
+
 
 ]
