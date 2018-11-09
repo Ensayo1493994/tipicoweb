@@ -7,15 +7,17 @@
 	<table class="table">
 		<thead>
 			<tr>
+				<th scope="col">Indices</th>
 				<th scope="col">Nombre</th>
 				<th scope="col">Rol</th>
 				<th scope="col">Correo</th>
 			</tr>
 		</thead>
 		<tbody>
-		{% for nom,rol,correo in paquete_list  %}
+		{% for list_time,nom,rol,correo in paquete_list  %}
 	
 			<tr>
+				<td>{{list_time}}</td>
 				<td>{{nom}}</td>
 				<td>{{rol}}</td>
 				<td>{{correo}}</td>
