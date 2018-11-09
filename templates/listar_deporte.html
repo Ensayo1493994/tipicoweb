@@ -26,6 +26,7 @@
             <tr>              
                 <td>{{lis_time}}</td>
                 <td>{{nombre}}</td>
+
                 <td>{{ima}}</a></td>
                 <td>
                     <a href="">Actualizar</a>
@@ -36,3 +37,25 @@
                     </tbody>
         </table>
 {% endblock tablas %}
+
+                <td>{{cal}}</td>
+                <td>{{des}}</td>
+                <td>{{cat}}</td>
+                <td>{{dur}}</td>
+                <td><a href="{{ima}}">ver imagen</a></td>
+             
+
+   
+
+    {% endfor %}
+</tr>
+</tbody>
+</table>
+
+<button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button>
+    <button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
+
+    
+</body>
+</html>
+

@@ -26,6 +26,9 @@ storage = firebase.storage()
 '''AUTENTICCION EN FIREBASE DEL USUARIO'''
 authe = firebase.auth()
 
+def inicio(request):
+ 	
+	return render(request,'index.html')
 
 '''VISTA INICIAR SESION'''
 def vista_login(request):

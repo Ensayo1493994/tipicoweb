@@ -55,7 +55,7 @@
 	<title>reg admin</title>
 </head>
 <body>
-	<form action="/registrar/" method="post">
+	<form action="/registrar/" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		email:
 		<input type="email" name="email">
@@ -74,10 +74,52 @@
 		<br>
 		<input type="submit" value="Agregar Admin">	</form>
 
+
 		<button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar Comida</button><br><br>
 
 		<button type="button" onclick="location.href='{% url 'lista_perfil' %}'">perfiles</button>
 
 </body>
+</html>
+
+
+		<button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar Comida</button><br>
+		<button type="button" onclick="location.href='{% url 'lista_perfil' %}'">perfiles</button><br>
+		<button type="button" onclick="uploadimage()">Cargar imagen</button><br>
+		<button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+<script>
+	var config = {
+    apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+    authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+    databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+    projectId: "tipico-saludable-50fb7",
+    storageBucket: "tipico-saludable-50fb7.appspot.com",
+    messagingSenderId: "159019297528"
+  };
+  firebase.initializeApp(config);
+
+function uploadimage(){
+  var storage = firebase.storage();
+  var file = document.getElementById("file").files[0];
+  var storageRef = storage.ref();
+  var thisref = storageRef.child(file.name).put(file);
+  thisref.on('state_changed',function(snapshot){
+  console.log("file uplaoded succesfully");
+  },
+  function(error) {
+  },
+  function() {
+  // Upload completed successfully, now we can get the download URL
+  var downloadURL = thisref.snapshot.downloadURL;
+  console.log("got url");
+  document.getElementById("url").value = downloadURL;
+  console.log(document.getElementById("url"));
+  alert("file uploaded successfully");
+});
+    }
+</script>
 </html>
 
