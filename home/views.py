@@ -7,6 +7,7 @@ import pytz
 # Create your views here.
 
 valor=0
+comida=0
 '''CONFIGURACION DE FIREBASE EN LA WEB'''
 config = {
     'apiKey': "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
@@ -123,14 +124,47 @@ def lista_perfil(request):
 # REGISTRO COMIDAS
 
 def vista_registro_comida(request):
+	#primero se lista los datos del nodo
+	try:
+		#el child en le cual se va a agregar es Deporte
+		timestamps= database.child("Comida").shallow().get().val()
+		list_time=[]
+		for i in timestamps:
+
+			list_time.append(i)
+		
+		list_time.sort(reverse=True)
+		print(list_time)
+		valor=len(list_time)
+		#obtienen el tamaño de la lista
+		print("comida: ",comida)
+
+	except:
+		print("Hay algo raro")
 	nombre = request.POST.get('nombre')
 	calorias = request.POST.get('calorias')
 	carbohidratos = request.POST.get('carbohidratos')
 	proteinas = request.POST.get('proteinas')
+	url = request.POST.get('url')
 	imagencomida = request.POST.get('url')
 	receta = request.POST.get('url')
 	print(nombre,calorias,proteinas,imagencomida)
 	try:
+		timestamps3= database.child("Comida").shallow().get().val()
+		list_time3=[]
+		for i in timestamps3:
+
+			list_time3.append(i)
+		
+		list_time.sort(reverse=True)
+		print(list_time3)
+		comida2=len(list_time3)
+		#obtienen el tamaño de la lista
+		print("comida 2: ",comida2)
+		#user = authe.create_user_with_email_and_password(email,passw)
+
+		if(comida==comida2):
+			print("valor final: ",comida)
 		#user = authe.create_user_with_email_and_password(email,passw)
 		data= { 
 				"nombre":nombre,
@@ -139,8 +173,9 @@ def vista_registro_comida(request):
 				"proteinas":proteinas,
 				"imagen":imagencomida,
 				"receta":receta,
+				"url":url,
 		}
-		database.child("Comida").push(data)	
+		database.child("Comida").child(str(valor)).set(data)	
 	except:
 		mensaje="No se puede guardar los datos"
 		return render(request, 'registro_comida.html',{'mensaje':mensaje},{'db': nombre})
