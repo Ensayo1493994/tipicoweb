@@ -1,0 +1,62 @@
+.Contenedor{	
+	margin: 5px;
+	padding: 20px;
+}
+
+.contenedorListaAdministrador{
+	margin: 5px;
+	padding: 20px;
+}
+
+.formAdmin{
+	margin: 15px;
+	padding: 20px;
+}
+
+.formComida{
+	margin: 15px;
+	padding: 20px;
+}
+
+.formComida{
+	margin: 15px;
+	padding: 20px;
+}
+
+.formDeporte{
+	margin: 15px;
+	padding: 20px;
+}
+
+.btnGuardar{
+	margin-top: 10px;
+	margin-left: 40px;
+	padding:2px ;
+	border:currentColor;
+}
+
+/* LOGIN */
+
+.login{
+	margin: 300px;
+	padding: 1000px;
+}
+
+
+
+
+
+/* CABECERA */
+header {
+	background: #ffffff;
+	border:transparent;
+}
+
+}
+/* Menu lateral */
+aside{
+	background: #E8B065;
+}
+.titulo{
+	color: #ffffff; 
+}

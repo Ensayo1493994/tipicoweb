@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-   
-    <title>listar</title>
-   
-</head>
-<body>
+{% extends 'plantillaBase.html' %}
+
+{% block titulo_tablas %}
+    <h1>Lista de Deportes</h1>
+{% endblock titulo_tablas %}
+
+
+{% block tablas %}
 
         <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">index</th>
-                    <th scope="col">nombre</th>
-                    <th scope="col">calorias</th>
-                    <th scope="col">descripcion</th>
-                    <th scope="col">categoria</th>
-                    <th scope="col">duracion</th>
-                    <th scope="col">imagen</th>
+                    <th scope="col">N°</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Calorias</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Duracion</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -24,17 +24,20 @@
 
     {% for lis_time,nombre,cal,des,cat,dur,ima in comb_lis %}
 
-    
-            
-              <tr>
                 
+            
+            <tr>              
                 <td>{{lis_time}}</td>
                 <td>{{nombre}}</td>
+                <td><a href="{{ima}}">ver imagen</a></td>
                 <td>{{cal}}</td>
                 <td>{{des}}</td>
                 <td>{{cat}}</td>
                 <td>{{dur}}</td>
-                <td><a href="{{ima}}">ver imagen</a></td>
+                <td>
+                    <a href="">Actualizar</a>
+                    <a href="">Ver detalles</a>
+                </td>  
              
 
    
@@ -45,6 +48,6 @@
 </table>
 
 <button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button>
-    
-</body>
-</html>
+    <button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
+
+    {% endblock tablas %}

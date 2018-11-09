@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% if mensaje2 %}
     <script>
         alert('{{mensaje2}}');
@@ -46,6 +47,54 @@
     </form>
     
 </body>
+=======
+{% extends 'plantillaBase.html' %}
+
+
+    {% block titulo %}
+    <h1>Agregar Deporte</h1>
+    {% endblock titulo %}
+
+    {% block contenido %}
+
+
+
+
+
+<div class="form row">
+
+  <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form col-md-9">
+      <label for="">Nombre</label>
+      <input type="text" class="form-control" name="nombre" required>
+      
+      <label for="">Descripcion</label>
+      <input type="text" class="form-control" name="descripcion" required>
+
+      <label for="">Calorias</label>     
+      <input type="number" class="form-control" name="calorias" required>
+
+      <label for="">Categoria</label>
+      <select name="categoria" class="form-control">
+        <option value="ejercicio">Ejercicio</option>
+        <option value="actividad">Activida física</option>
+        <option value="deporte">Deporte</option>                  
+      </select>
+
+      <label for="">Duración</label> 
+      <input type="number" class="form-control" name="duracion" placeholder="minutos" required>
+
+      <label for="">Imagenes</label>
+      <input name="file"  type="file" id="imagen">
+
+      <input name="url" type="hidden"  id="url">
+      <button type="button" onclick="uploadimage()">up load</button>
+      <input type="submit" value="Agregar Deporte">
+    </div>
+  </form>
+</div>   
+>>>>>>> f374237ad3d0fe01e850f42d1775800b78c8356e
 
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
@@ -84,4 +133,4 @@
     }
 
   </script>
-</html>
+    {% endblock contenido %}
