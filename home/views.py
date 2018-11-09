@@ -44,7 +44,7 @@ def postsign(request):
 	print(user['idToken'])
 	session_id = user['idToken']
 	request.session['uid']=str(session_id)
-	return render(request,'index.html',{'e':email})
+	return render(request,'plantillaBase.html',{'e':email})
 
 def logout(request):
 	auth.logout(request)

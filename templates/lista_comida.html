@@ -1,40 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>lista comida</title>
-</head>
-<body>
-	<button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar comida</button>
+{% extends 'plantillaBase.html' %}
+
+{% block titulo_tablas %}
+    <h1>Lista de Comida</h1>
+{% endblock titulo_tablas %}
+
+
+
+{% block tablas %}
 	<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">index</th>
-				<th scope="col">nombre</th>
-				<th scope="col">calorias</th>
-				<th scope="col">carbohidratos</th>
-				<th scope="col">proteinas</th>
+				<th scope="col">N°</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Imagen</th>
+				<th scope="col"></th>
+
+				
 			</tr>
 		</thead>
 		<tbody>
-<<<<<<< HEAD
-	
-=======
->>>>>>> 7668a9af8d112f3b189f5b028fd8305efbf8d522
+
 		{% for nom,calor,carbo,prot in paquete_list  %}
 	
 			<tr>
 				<td>1</td>
 				<td>{{nom}}</td>
-				<td>{{calor}}</td>
-				<td>{{carbo}}</td>
-				<td>{{prot}}</td>
+				<td>{{foto}}</td>
+				<td>
+					<a href="">Actualizar</a>
+					<a href="">Ver detalles</a>
+				</td>
+				{% endfor %}
 			</tr>
-
-			{% endfor %}
-		</tbody>
-		
 	</table>
-	<button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
-	
-</body>
-</html>
+	<!-- <button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar comida</button> -->
+
+
+{% endblock tablas %}
+
