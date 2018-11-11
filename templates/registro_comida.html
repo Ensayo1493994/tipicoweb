@@ -80,12 +80,12 @@
 		<input type="text" name="proteinas">
 		<br><br>
 		Foto
-		<input name="files[]" type="file" id="imagen">
+		<input name="files[]" type="file" id="comidaimagen">
 		<input name="url" type="hidden"  id="url">
 		<br><br>
 		receta
-		<input name="files[]" type="file" id="receta">
-		<input name="url" type="hidden"  id="url">
+		<input name="files[]" type="files" id="recetas">
+		<input name="tr" type="hidden"  id="er">
 		<br><br>
 		<input type="submit" value="Agregar comida">
 		<button type="button" onclick="uploadimage()">Cargar imagen</button>
@@ -102,7 +102,9 @@
 </body>
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
-	var config = {
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    var config = {
     apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
     authDomain: "tipico-saludable-50fb7.firebaseapp.com",
     databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
@@ -110,28 +112,38 @@
     storageBucket: "tipico-saludable-50fb7.appspot.com",
     messagingSenderId: "159019297528"
   };
-  firebase.initializeApp(config);
+    firebase.initializeApp(config);
 
-  // Get a reference to the storage service, which is used to create references in your storage bucket
-function uploadimage(){
+  function uploadimage(){
   var storage = firebase.storage();
-  var file = document.getElementById("imagen").files[0];
+  var file = document.getElementById("comidaimagen").files[0];
   var storageRef = storage.ref();
   var thisref = storageRef.child(file.name).put(file);
   thisref.on('state_changed',function(snapshot){
-  console.log("file uplaoded succesfully");
+  console.log("file uploaded succesfully");
   },
   function(error) {
   },
   function() {
-  // Upload completed successfully, now we can get the download URL
-  var downloadURL = thisref.snapshot.downloadURL;
-  console.log("got url");
+  thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+   console.log('got url', downloadURL);
   document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url"),(" mors");
-  alert("Imagen guardada");
+  console.log(document.getElementById("url")," imagen");
+  alert("file uploaded successfully");
+  });
 });
+<<<<<<< HEAD
+}
+
+
+ </script>
+</html>
+
+
+
+=======
     }
 </script>
 </html>
 
+>>>>>>> f374237ad3d0fe01e850f42d1775800b78c8356e
