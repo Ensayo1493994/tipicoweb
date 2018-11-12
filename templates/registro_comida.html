@@ -1,18 +1,7 @@
 {% extends 'plantillaBase.html' %}
 
 
-    {% block titulo %}
-    <h1>Agregar Plato</h1>
-    {% endblock titulo %}
-
-
-    {% block contenido %}
-
-
-
-
-
-{% if mensaje %}
+ {% if mensaje %}
 	<script>
 		alert('{{ mensaje}}');
 		alert('{{ db }}');
@@ -51,7 +40,7 @@
 	</div>
 	<!--<button type="button" onclick="location.href='{% url 'vista_lista_comida' %}'">lista Comida</button>-->
 
-    {% endblock contenido %}
+    
 
 {% if mensaje %}
 	<script>
@@ -65,39 +54,43 @@
 	<title>registro comida</title>
 </head>
 <body>
-	<form action="/registro_comida/" method="POST" enctype="multipart/form-data">
-		{% csrf_token %}
-		nombre
-		<input type="text" name="nombre">
-		<br><br>
-		calorias
-		<input type="text" name="calorias">
-		<br><br>
-		carbohidratos
-		<input type="text" name="carbohidratos">
-		<br><br>
-		proteinas
-		<input type="text" name="proteinas">
-		<br><br>
-		Foto
-		<input name="files[]" type="file" id="comidaimagen">
-		<input name="url" type="hidden"  id="url">
-		<br><br>
-		receta
-		<input name="files[]" type="files" id="recetas">
-		<input name="tr" type="hidden"  id="er">
-		<br><br>
-		<input type="submit" value="Agregar comida">
-		<button type="button" onclick="uploadimage()">Cargar imagen</button>
-		
-		
-
-	</form>
-	<button type="button" onclick="location.href='{% url 'vista_lista_comida' %}'">lista Comida</button><br><br>
-	<button type="button" onclick="location.href='{% url 'registro' %}'">registrar admin</button>		
-	<button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
+	{% block titulo %}
+    <h1>Agregar Plato</h1>
+    {% endblock titulo %}
 
 
+ {% block contenido %}
+
+ <div class="form row">
+
+  <form action="/registro_comida/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form col-md-9">
+      <label for="">Nombre</label>
+      <input type="text" class="form-control" name="nombre" required>
+      
+      <label for="">Calorias</label>
+      <input type="text" class="form-control" name="calorias" required>
+
+      <label for="">Carbohidratos</label>     
+      <input type="number" class="form-control" name="carbohidratos" required>
+
+      <label for="">Proteinas</label>     
+      <input type="number" class="form-control" name="proteinas" required>
+
+      <label for="">Imagen</label>
+      <input name="file[]"  type="file" id="comidaimagen">
+      <input name="url" type="hidden"  id="url">
+
+      <label for="">Receta</label>
+      <input name="file[]"  type="file" id="receta">
+      <input name="url1" type="hidden"  id="url1">
+
+      <button type="button" onclick="uploadimage()">guardar imagen</button>
+      <input type="submit" value="Agregar comida">
+    </div>
+  </form>
+</div>
 
 </body>
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
@@ -120,7 +113,7 @@
   var storageRef = storage.ref();
   var thisref = storageRef.child(file.name).put(file);
   thisref.on('state_changed',function(snapshot){
-  console.log("file uploaded succesfully");
+  console.log("Imagen guardada");
   },
   function(error) {
   },
@@ -129,10 +122,9 @@
    console.log('got url', downloadURL);
   document.getElementById("url").value = downloadURL;
   console.log(document.getElementById("url")," imagen");
-  alert("file uploaded successfully");
+  alert("Imagen guardada");
   });
 });
-<<<<<<< HEAD
 }
 
 
@@ -141,9 +133,8 @@
 
 
 
-=======
-    }
+
 </script>
 </html>
+{% endblock contenido %}
 
->>>>>>> f374237ad3d0fe01e850f42d1775800b78c8356e
