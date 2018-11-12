@@ -20,12 +20,11 @@
 		<tbody>
 
 		{% for lista_time,nom,calor,carbo,prot in paquete_list  %}
-	
 			<tr>
 				<td>{{lista_time}}</td>
 				<td>{{nom}}</td>
 				<td>{{foto}}</td>
-				<td>
+		<td>
 					<a href="">Actualizar</a>
 					<a href="">Ver detalles</a>
 				</td>
@@ -33,6 +32,11 @@
 			</tr>
 		</tbody>
 	</table>
+
+
+	<!-- <button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar comida</button> -->
+
+
 
 <button><a href="{% url 'vista_registro_comida' %}">agregar comida</a> </button>
 <button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>

@@ -48,12 +48,6 @@
     
 </body>
 
-
-
-    {% block titulo %}
-    <h1>Agregar Deporte</h1>
-    {% endblock titulo %}
-
     {% block contenido %}
 
 
@@ -94,7 +88,6 @@
   </form>
 </div>   
 
-
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 
 <script>
@@ -121,12 +114,14 @@
   function(error) {
   },
   function() {
+    thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
   // Upload completed successfully, now we can get the download URL
   var downloadURL = thisref.snapshot.downloadURL;
   console.log("got url");
   document.getElementById("url").value = downloadURL;
   console.log(document.getElementById("url")," tu amor con ella");
   alert("file uploaded successfully");
+});
 });
     }
 
