@@ -66,7 +66,7 @@ def registrar(request):
 
 			lis_time.append(i)
 		
-		#lis_time.sort(reverse=True)
+		lis_time.sort(reverse=False)
 		print(lis_time)
 		valor=len(lis_time)
 
@@ -95,7 +95,7 @@ def registrar(request):
 
 			lis_time2.append(i)
 		
-		lis_time.sort(reverse=True)
+		lis_time.sort(reverse=False)
 		print(lis_time2)
 		valor2=len(lis_time2)
 		#obtienen el tamaño de la lista
@@ -247,23 +247,18 @@ def vista_lista_comida(request):
 
 	return render(request, 'lista_comida.html', locals())
 
-
-
-
-
-
 # logica de los deportes
 def vista_agregar_deporte(request):
 
 	lista= database.child("Deporte").shallow().get().val()
-	lista_indices=[]
+	lista_indices1=[]
 	for i in lista:
 
-		lista_indices.append(i)
+		lista_indices1.append(i)
 		
-	lista_indices.sort(reverse=True)
-	print(lista_indices)
-	longitud=len(lista_indices)
+	lista_indices1.sort(reverse=False)
+	print(lista_indices1)
+	longitud=len(lista_indices1)
 	#obtienen el tamaño de la lista
 	print("longitud 1 : ",longitud)
 
@@ -276,8 +271,10 @@ def vista_agregar_deporte(request):
 
 			lista_indices.append(i)
 		
-		#lis_time.sort(reverse=True)
+		lista_indices.sort(reverse=False)
 		x = len(lista_indices)
+		print("x: ",x)
+		#print(x)
 		ultimo_elemento = lista_indices[x-1]
 		siguiente_elemento=(int(ultimo_elemento)+1)
 		print("XXXXXXXXXXXXXXXXXXXX")
@@ -307,7 +304,7 @@ def vista_agregar_deporte(request):
 
 			lista_indices2.append(i)
 		
-		lista_indices2.sort(reverse=True)
+		lista_indices2.sort(reverse=False)
 		print(lista_indices2)
 		longitud2=len(lista_indices2)
 		#obtienen el tamaño de la lista

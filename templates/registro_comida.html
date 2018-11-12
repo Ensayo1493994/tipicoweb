@@ -9,62 +9,6 @@
     {% block contenido %}
 
 
-
-
-
-{% if mensaje %}
-	<script>
-		alert('{{ mensaje}}');
-		alert('{{ db }}');
-	</script>
-{% endif %}
-
-	<div class="form row">
-		<form action="/registro_comida/" method="post">
-			{% csrf_token %}
-
-			<div class="form col-md-6">		
-				<label for="">Nombre</label>
-				<input type="text" class="form-control" name="nombre">
-
-				<label for="">Calorias</label>
-				<input type="number" class="form-control" name="calorias">	
-				
-				<label for="">Carbohidratos</label>
-				<input type="number" class="form-control" name="carbohidratos">
-				
-				<label for="">Proteinas</label>
-				<input type="number" class="form-control" name="proteinas">
-			</div>
-
-			<div class="form col-md-9">				
-				<label for="">Foto</label>
-				<input type="file" class="form-control-file" name="foto">
-				
-				<label for="">Receta</label>
-				<input type="file" class="form-control-file" name="receta">
-				<br>	
-
-				<input type="submit" value="Agregar comida">
-			</div>
-		</form>
-	</div>
-	<!--<button type="button" onclick="location.href='{% url 'vista_lista_comida' %}'">lista Comida</button>-->
-
-    {% endblock contenido %}
-
-{% if mensaje %}
-	<script>
-		alert('{{ mensaje2}}');
-		
-	</script>
-{% endif %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>registro comida</title>
-</head>
-<body>
 	<form action="/registro_comida/" method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		nombre
@@ -99,7 +43,7 @@
 
 
 
-</body>
+
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
     // Initialize Firebase
@@ -132,18 +76,10 @@
   alert("file uploaded successfully");
   });
 });
-<<<<<<< HEAD
+
 }
 
 
- </script>
-</html>
 
 
-
-=======
-    }
-</script>
-</html>
-
->>>>>>> f374237ad3d0fe01e850f42d1775800b78c8356e
+{% endblock contenido %}
