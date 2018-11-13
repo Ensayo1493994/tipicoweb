@@ -5,7 +5,6 @@
 {% endif %} -->
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <!----------------------------RESPONIVE DESING--------------------------------->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
@@ -13,59 +12,42 @@
     <link rel="icon" href="../static/paquetes/dist/img/logo2.ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>LOGIN</title>
+    <title>LOGIN</title>       
   </head>
-  <body >
+
+  <body>
     <!--Contenedor de la  pagina web -->
-    <div class="container">
-      <!----   TITULO DE LA PAGINA  ---->
-      <h1 class="titulo_login">Login </h1>
-      <!--FORMULARIO DE LOGIN -->
-      <div class=" form-row ">
+    <div class="container"  >
+
+        <div class="Login">  
+          <!--  TITULO DE LA PAGINA  -->
+          <!-- <h1 class="titulo_login">Login </h1> -->
+          <!--FORMULARIO DE LOGIN -->
+          <div class=" form-row ">
+              <form action="/conexion/" method="post" class="formulario_login">
+                {% csrf_token %}
+                <div class="form-group ">
+                  <label for="">Correo Electronico</label>
+                  <input type="email" class="form-control" name="email"  placeholder="📧 Correo Electronico">
+                  <small id="" class="form-text text-muted">Cuidaremos de tus datos ingresados en esta aplicacion web.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Contraseña</label>
+                  <input type="password" name="password" class="form-control" id="" placeholder="🔐 Contraseña">
+                </div>          
+                <button type="submit" value="Ingresar" class="btn btn-primary">Ingresar</button>
+              </form>   
+            </div>    
+        </div> 
 
 
-<link rel="stylesheet" href="css/estilos.css">
 
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-<head>
-	<meta charset="UTF-8">
-	<title>Login Super Admin</title>
-</head>
-<body>
 
 
-<!--Contenedor de la  pagina web -->
-<div class="container"  >
-
-  <div class="Login">  
-    <!--  TITULO DE LA PAGINA  -->
-    <h1 class="titulo_login">Login </h1>
-    <!--FORMULARIO DE LOGIN -->
-    <div class=" form-row ">
-        <form action="/conexion/" method="post" class="formulario_login">
-          {% csrf_token %}
-          <div class="form-group ">
-            <label for="">Correo Electronico</label>
-            <input type="email" class="form-control" name="email"  placeholder="📧 Correo Electronico">
-            <small id="" class="form-text text-muted">Cuidaremos de tus datos ingresados en esta aplicacion web.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" name="password" class="form-control" id="" placeholder="🔐 Contraseña">
-          </div>          
-          <button type="submit" value="Ingresar" class="btn btn-primary">Ingresar</button>
-        </form>   
-      </div>    
-    </div>    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
 
