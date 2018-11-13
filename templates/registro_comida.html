@@ -1,93 +1,32 @@
 {% extends 'plantillaBase.html' %}
 
- {% if mensaje %}
-	<script>
-		alert('{{ mensaje}}');
-		alert('{{ db }}');
-	</script>
+{% if mensaje %}
+  <script>
+    alert('{{ mensaje}}');
+    alert('{{ db }}');
+  </script>
 {% endif %}
-
-	<div class="form row">
-		<form action="/registro_comida/" method="post">
-			{% csrf_token %}
-
-			<div class="form col-md-6">		
-				<label for="">Nombre</label>
-				<input type="text" class="form-control" name="nombre">
-
-				<label for="">Calorias</label>
-				<input type="number" class="form-control" name="calorias">	
-				
-				<label for="">Carbohidratos</label>
-				<input type="number" class="form-control" name="carbohidratos">
-				
-				<label for="">Proteinas</label>
-				<input type="number" class="form-control" name="proteinas">
-			</div>
-
-			<div class="form col-md-9">				
-				<label for="">Foto</label>
-				<input type="file" class="form-control-file" name="foto">
-				
-				<label for="">Receta</label>
-				<input type="file" class="form-control-file" name="receta">
-				<br>	
-
-				<input type="submit" value="Agregar comida">
-			</div>
-		</form>
-	</div>
-	<!--<button type="button" onclick="location.href='{% url 'vista_lista_comida' %}'">lista Comida</button>-->
-
-    
 
 {% if mensaje %}
-	<script>
-		alert('{{ mensaje2}}');
-		
-	</script>
+  <script>
+    alert('{{ mensaje2}}');
+    
+  </script>
 {% endif %}
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>registro comida</title>
+  <title>registro comida</title>
 </head>
-<body>
+  
+
 	{% block titulo %}
     <h1>Agregar Plato</h1>
     {% endblock titulo %}
 
 
-    {% block contenido %}
-
-
-	<form action="/registro_comida/" method="POST" enctype="multipart/form-data">
-		{% csrf_token %}
-		nombre
-		<input type="text" name="nombre">
-		<br><br>
-		calorias
-		<input type="text" name="calorias">
-		<br><br>
-		carbohidratos
-		<input type="text" name="carbohidratos">
-		<br><br>
-		proteinas
-		<input type="text" name="proteinas">
-		<br><br>
-		Foto
-		<input name="files[]" type="file" id="comidaimagen">
-		<input name="url" type="hidden"  id="url">
-		<br><br>
-		receta
-		<input name="files[]" type="files" id="recetas">
-		<input name="tr" type="hidden"  id="er">
-		<br><br>
-		<input type="submit" value="Agregar comida">
-		<button type="button" onclick="uploadimage()">Cargar imagen</button>
-		
-		
-
+{% block contenido %}
 
  <div class="form row">
 
@@ -120,7 +59,7 @@
   </form>
 </div>
 
-
+	
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
     // Initialize Firebase
@@ -153,16 +92,11 @@
   alert("Imagen guardada");
   });
 });
-
 }
-
-
-
-
-
 
 </script>
 </html>
+
 {% endblock contenido %}
 
 

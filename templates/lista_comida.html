@@ -1,5 +1,6 @@
 {% extends 'plantillaBase.html' %}
 
+
 {% block titulo_tablas %}
     <h1>Lista de Comida</h1>
 {% endblock titulo_tablas %}
@@ -19,6 +20,21 @@
 		</thead>
 		<tbody>
 
+		{% for lista_time,fot,nom,calor,carbo,prot in paquete_list  %}
+	
+			<tr>
+				<td>{{lista_time}}</td>
+				<td>{{nom}}</td>
+				<td>{{fot}}</td>
+
+				<td>
+                    <a href="">Actualizar</a><br>
+                    <a href="">Ver detalles</a>
+                </td>  
+             
+				
+				{% endfor %}
+
 		{% for lista_time,nom,calor,carbo,prot in paquete_list  %}
 			<tr>
 				<td>{{lista_time}}</td>
@@ -33,12 +49,15 @@
 		</tbody>
 	</table>
 
+</body>
+</html>
 
+<button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button>
+<button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
 	<!-- <button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar comida</button> -->
-
-
 
 <button><a href="{% url 'vista_registro_comida' %}">agregar comida</a> </button>
 <button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
 
  {% endblock tablas %}
+

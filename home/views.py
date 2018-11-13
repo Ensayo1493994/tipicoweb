@@ -156,7 +156,7 @@ def lista_perfil(request):
 
 	return render(request, 'perfiles.html', locals())
 
-# REGISTRO COMIDAS
+#REGISTRO COMIDAS
 
 def vista_registro_comida(request):
 	#primero se lista los datos del nodo
@@ -166,7 +166,7 @@ def vista_registro_comida(request):
 		lista_time=[]
 		for i in timestamps:
 
-			list_time.append(i)
+			lista_time.append(i)
 		
 		lista_time.sort(reverse=True)
 		print(lista_time)
@@ -175,26 +175,29 @@ def vista_registro_comida(request):
 		print("comida: ",comida)
 
 	except:
+<<<<<<< HEAD
 		pass
 
+=======
+		print("problemas")
+>>>>>>> 5135c5499c33e66ab78dac4d1f4b8c7742268699
 	nombre = request.POST.get('nombre')
 	calorias = request.POST.get('calorias')
 	carbohidratos = request.POST.get('carbohidratos')
 	proteinas = request.POST.get('proteinas')
-	url = request.POST.get('url')
-	imagencomida = request.POST.get('url')
-	receta = request.POST.get('url1')
-	print(nombre,calorias,proteinas,imagencomida)
+	iddrawable= request.POST.get('url')
+	receta = request.POST.get('url')
+	print(nombre,calorias,proteinas,iddrawable)
 	try:
 		timestamps3= database.child("Comida").shallow().get().val()
-		list_time3=[]
+		lista_time3=[]
 		for i in timestamps3:
 
-			list_time3.append(i)
+			lista_time3.append(i)
 		
 		lista_time.sort(reverse=True)
-		print(list_time3)
-		comida2=len(list_time3)
+		print(lista_time3)
+		comida2=len(lista_time3)
 		#obtienen el tamaño de la lista
 		print("comida 2: ",comida2)
 		#user = authe.create_user_with_email_and_password(email,passw)
@@ -207,9 +210,8 @@ def vista_registro_comida(request):
 				"Calorias":calorias,
 				"Carbohidratos":carbohidratos,
 				"Proteinas":proteinas,
-				"Imagen":imagencomida,
 				"Receta":receta,
-				"Url":url,
+				"idDrawable":iddrawable,
 		}
 		database.child("Comida").child(str(valor)).set(data)	
 	except:
@@ -251,7 +253,14 @@ def vista_lista_comida(request):
 		prot.append(proteinas)
 	print(prot)
 
-	paquete_list = zip(lista_time,nom,calor,carbo,prot)
+	fot=[]
+	for i in lista_time:
+		imagencomida = database.child("Comida").child(i).child("idDrawable").get().val()
+		fot.append(imagencomida)
+	print(fot)
+
+
+	paquete_list = zip(lista_time,fot,nom,calor,carbo,prot)
 
 	return render(request, 'lista_comida.html', locals())
 
