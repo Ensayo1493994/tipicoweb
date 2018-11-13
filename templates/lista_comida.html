@@ -5,39 +5,40 @@
 {% endblock titulo_tablas %}
 
 
-
 {% block tablas %}
+
 	<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">N°</th>
+				<th scope="col">Indice</th>
 				<th scope="col">Nombre</th>
 				<th scope="col">Imagen</th>
 				<th scope="col"></th>
-
-				
+	
 			</tr>
 		</thead>
 		<tbody>
 
-		{% for nom,calor,carbo,prot in paquete_list  %}
-	
+		{% for lista_time,nom,calor,carbo,prot in paquete_list  %}
 			<tr>
-				<td>1</td>
+				<td>{{lista_time}}</td>
 				<td>{{nom}}</td>
 				<td>{{foto}}</td>
-				
-				{% endfor %}
+		<td>
+					<a href="">Actualizar</a>
+					<a href="">Ver detalles</a>
+				</td>
+		{% endfor %}
 			</tr>
+		</tbody>
 	</table>
+
 
 	<!-- <button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar comida</button> -->
 
 
-{% endblock tablas %}
 
+<button><a href="{% url 'vista_registro_comida' %}">agregar comida</a> </button>
+<button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
 
-	<button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
-</body>
-</html>
-
+ {% endblock tablas %}

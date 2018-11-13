@@ -117,7 +117,6 @@ def registrar(request):
 		#uid = user['localId']
 
 	return render(request,'registro.html')
-#Guardar comida en la bd	
 
 def lista_perfil(request):
 	timestamps = database.child("Usuarios").shallow().get().val()
@@ -156,14 +155,14 @@ def vista_registro_comida(request):
 	try:
 		#el child en le cual se va a agregar es Deporte
 		timestamps= database.child("Comida").shallow().get().val()
-		list_time=[]
+		lista_time=[]
 		for i in timestamps:
 
 			list_time.append(i)
 		
-		list_time.sort(reverse=True)
-		print(list_time)
-		valor=len(list_time)
+		lista_time.sort(reverse=True)
+		print(lista_time)
+		valor=len(lista_time)
 		#obtienen el tamaño de la lista
 		print("comida: ",comida)
 
@@ -175,7 +174,7 @@ def vista_registro_comida(request):
 	proteinas = request.POST.get('proteinas')
 	url = request.POST.get('url')
 	imagencomida = request.POST.get('url')
-	receta = request.POST.get('url')
+	receta = request.POST.get('url1')
 	print(nombre,calorias,proteinas,imagencomida)
 	try:
 		timestamps3= database.child("Comida").shallow().get().val()
@@ -184,7 +183,7 @@ def vista_registro_comida(request):
 
 			list_time3.append(i)
 		
-		list_time.sort(reverse=True)
+		lista_time.sort(reverse=True)
 		print(list_time3)
 		comida2=len(list_time3)
 		#obtienen el tamaño de la lista
@@ -195,13 +194,13 @@ def vista_registro_comida(request):
 			print("valor final: ",comida)
 		#user = authe.create_user_with_email_and_password(email,passw)
 		data= { 
-				"nombre":nombre,
-				"calorias":calorias,
-				"carbohidratos":carbohidratos,
-				"proteinas":proteinas,
-				"imagen":imagencomida,
-				"receta":receta,
-				"url":url,
+				"Nombre":nombre,
+				"Calorias":calorias,
+				"Carbohidratos":carbohidratos,
+				"Proteinas":proteinas,
+				"Imagen":imagencomida,
+				"Receta":receta,
+				"Url":url,
 		}
 		database.child("Comida").child(str(valor)).set(data)	
 	except:
@@ -213,37 +212,37 @@ def vista_registro_comida(request):
 
 def vista_lista_comida(request):
 	timestamps = database.child("Comida").shallow().get().val()
-	list_time=[]
+	lista_time=[]
 	for i in timestamps:
-		list_time.append(i)
-	list_time.sort(reverse=True)
-	print(list_time)
+		lista_time.append(i)
+	lista_time.sort(reverse=True)
+	print(lista_time)
 
 	nom=[]
-	for i in list_time:
+	for i in lista_time:
 		nombre = database.child("Comida").child(i).child("Nombre").get().val()
 		nom.append(nombre)
 	print(nom)
 
 	calor=[]
-	for i in list_time:
+	for i in lista_time:
 		calorias = database.child("Comida").child(i).child("Calorias").get().val()
 		calor.append(calorias)
 	print(calor)
 
 	carbo=[]
-	for i in list_time:
+	for i in lista_time:
 		carbohidratos = database.child("Comida").child(i).child("Carbohidratos").get().val()
 		carbo.append(carbohidratos)
 	print(carbo)
 
 	prot=[]
-	for i in list_time:
+	for i in lista_time:
 		proteinas = database.child("Comida").child(i).child("Proteinas").get().val()
 		prot.append(proteinas)
 	print(prot)
 
-	paquete_list = zip(nom,calor,carbo,prot)
+	paquete_list = zip(lista_time,nom,calor,carbo,prot)
 
 	return render(request, 'lista_comida.html', locals())
 
