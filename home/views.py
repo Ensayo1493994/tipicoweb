@@ -7,6 +7,7 @@ import pytz
 # Create your views here.
 
 valor=0
+comida=0
 '''CONFIGURACION DE FIREBASE EN LA WEB'''
 config = {
     'apiKey': "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
@@ -29,12 +30,10 @@ authe = firebase.auth()
 def inicio(request):
  	
 	return render(request,'index.html')
-
 '''VISTA INICIAR SESION'''
 def vista_login(request):
  	
 	return render(request,'login.html')
-	
 '''FUNCION DE AUTENTICACION EN FIREBASE'''
 def postsign(request):
 	email = request.POST.get('email')
@@ -47,17 +46,39 @@ def postsign(request):
 	print(user['idToken'])
 	session_id = user['idToken']
 	request.session['uid']=str(session_id)
+
 	return render(request,'plantillaBase.html',{'e':email})
 
 def logout(request):
 	auth.logout(request)
 	return render(request,'login.html')
-
 '''FUNCION DE REGISTRO DE PERFIL EN FIREBASE'''
 def registro(request):
 	return render(request,'registro.html')
 
 def registrar(request):
+
+	try:
+		#el child en le cual se va a agregar es Deporte
+		timestamps= database.child("Usuarios").shallow().get().val()
+		lis_time=[]
+		for i in timestamps:
+
+			lis_time.append(i)
+		
+		lis_time.sort(reverse=False)
+		print(lis_time)
+		valor=len(lis_time)
+
+		ultimo_elemento=lis_time[valor-1]
+		print("ultimo elemnto: ",ultimo_elemento)
+		siguiente_elemento=(int(ultimo_elemento)+1)
+		print("siguiente elemnto: ",siguiente_elemento)
+		#obtienen el tamaño de la lista
+		print("valor: ",valor)
+
+	except:
+		print("Hay algo raro")
 
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
@@ -66,32 +87,36 @@ def registrar(request):
 	rol = request.POST.get('rol') 
 	print(email,passw,nombre,rol)
 
-	#sizeList =0
-	#all_users = database.get()
-	#for Usuarios in 
-
-	#.each():
-		#sizeList=sizeList+1
-
-	print(email,passw,nombre,rol)
-
 	try:
+
+		timestamps2= database.child("Usuarios").shallow().get().val()
+		lis_time2=[]
+		for i in timestamps2:
+
+			lis_time2.append(i)
+		
+		lis_time.sort(reverse=False)
+		print(lis_time2)
+		valor2=len(lis_time2)
+		#obtienen el tamaño de la lista
+		print("valor 2: ",valor2)
 		#user = authe.create_user_with_email_and_password(email,passw)
-		#print(user)
-		data={
-			"correo":email,
-			"contraseña":passw,
-			"nombre":nombre,
-			"rol":rol
-		}
-		database.child("Usuarios").push(data)
+		if(valor==valor2):
+			print("valor final: ",valor)
+			data={
+				"correo":email,
+				"contraseña":passw,
+				"nombre":nombre,
+				"rol":rol
+			}
+		database.child("Usuarios").child(str(siguiente_elemento)).set(data)
+
 	except:
 		mensaje="No se puede crear la cuenta"
 		return render(request,'registro.html',{'mensaje':mensaje})
-		uid = user['localId']
+		#uid = user['localId']
 
 	return render(request,'registro.html')
-#Guardar comida en la bd	
 
 def lista_perfil(request):
 	timestamps = database.child("Usuarios").shallow().get().val()
@@ -119,31 +144,65 @@ def lista_perfil(request):
 		correo.append(carbohidratos)
 	print(correo)
 
-	paquete_list = zip(nom,rol,correo)
+	paquete_list = zip(list_time,nom,rol,correo)
 
 	return render(request, 'perfiles.html', locals())
 
 # REGISTRO COMIDAS
 
 def vista_registro_comida(request):
+	#primero se lista los datos del nodo
+	try:
+		#el child en le cual se va a agregar es Deporte
+		timestamps= database.child("Comida").shallow().get().val()
+		lista_time=[]
+		for i in timestamps:
+
+			list_time.append(i)
+		
+		lista_time.sort(reverse=True)
+		print(lista_time)
+		valor=len(lista_time)
+		#obtienen el tamaño de la lista
+		print("comida: ",comida)
+
+	except:
+		print("Hay algo raro")
 	nombre = request.POST.get('nombre')
 	calorias = request.POST.get('calorias')
 	carbohidratos = request.POST.get('carbohidratos')
 	proteinas = request.POST.get('proteinas')
+	url = request.POST.get('url')
 	imagencomida = request.POST.get('url')
-	receta = request.POST.get('url')
+	receta = request.POST.get('url1')
 	print(nombre,calorias,proteinas,imagencomida)
 	try:
+		timestamps3= database.child("Comida").shallow().get().val()
+		list_time3=[]
+		for i in timestamps3:
+
+			list_time3.append(i)
+		
+		lista_time.sort(reverse=True)
+		print(list_time3)
+		comida2=len(list_time3)
+		#obtienen el tamaño de la lista
+		print("comida 2: ",comida2)
+		#user = authe.create_user_with_email_and_password(email,passw)
+
+		if(comida==comida2):
+			print("valor final: ",comida)
 		#user = authe.create_user_with_email_and_password(email,passw)
 		data= { 
-				"nombre":nombre,
-				"calorias":calorias,
-				"carbohidratos":carbohidratos,
-				"proteinas":proteinas,
-				"imagen":imagencomida,
-				"receta":receta,
+				"Nombre":nombre,
+				"Calorias":calorias,
+				"Carbohidratos":carbohidratos,
+				"Proteinas":proteinas,
+				"Imagen":imagencomida,
+				"Receta":receta,
+				"Url":url,
 		}
-		database.child("Comida").push(data)	
+		database.child("Comida").child(str(valor)).set(data)	
 	except:
 		mensaje="No se puede guardar los datos"
 		return render(request, 'registro_comida.html',{'mensaje':mensaje},{'db': nombre})
@@ -153,62 +212,81 @@ def vista_registro_comida(request):
 
 def vista_lista_comida(request):
 	timestamps = database.child("Comida").shallow().get().val()
-	list_time=[]
+	lista_time=[]
 	for i in timestamps:
-		list_time.append(i)
-	list_time.sort(reverse=True)
-	print(list_time)
+		lista_time.append(i)
+	lista_time.sort(reverse=True)
+	print(lista_time)
 
 	nom=[]
-	for i in list_time:
+	for i in lista_time:
 		nombre = database.child("Comida").child(i).child("Nombre").get().val()
 		nom.append(nombre)
 	print(nom)
 
 	calor=[]
-	for i in list_time:
+	for i in lista_time:
 		calorias = database.child("Comida").child(i).child("Calorias").get().val()
 		calor.append(calorias)
 	print(calor)
 
 	carbo=[]
-	for i in list_time:
+	for i in lista_time:
 		carbohidratos = database.child("Comida").child(i).child("Carbohidratos").get().val()
 		carbo.append(carbohidratos)
 	print(carbo)
 
 	prot=[]
-	for i in list_time:
+	for i in lista_time:
 		proteinas = database.child("Comida").child(i).child("Proteinas").get().val()
 		prot.append(proteinas)
 	print(prot)
 
-	paquete_list = zip(nom,calor,carbo,prot)
+	paquete_list = zip(lista_time,nom,calor,carbo,prot)
 
 	return render(request, 'lista_comida.html', locals())
-
-
 
 # logica de los deportes
 def vista_agregar_deporte(request):
 
+	lista= database.child("Deporte").shallow().get().val()
+	lista_indices1=[]
+	for i in lista:
+
+		lista_indices1.append(i)
+		
+	lista_indices1.sort(reverse=False)
+	print(lista_indices1)
+	longitud=len(lista_indices1)
+	#obtienen el tamaño de la lista
+	print("longitud 1 : ",longitud)
+
 	#primero se lista los datos del nodo
 	try:
 		#el child en le cual se va a agregar es Deporte
-		timestamps= database.child("Deporte").shallow().get().val()
-		lis_time=[]
-		for i in timestamps:
+		lista= database.child("Deporte").shallow().get().val()
+		lista_indices=[]
+		for i in lista:
 
-			lis_time.append(i)
+			lista_indices.append(i)
 		
-		lis_time.sort(reverse=True)
-		print(lis_time)
-		valor=len(lis_time)
+		lista_indices.sort(reverse=False)
+		x = len(lista_indices)
+		print("x: ",x)
+		#print(x)
+		ultimo_elemento = lista_indices[x-1]
+		siguiente_elemento=(int(ultimo_elemento)+1)
+		print("XXXXXXXXXXXXXXXXXXXX")
+		print("ultimo elemento de la lista: ",int(ultimo_elemento))
+		print("siguiente elemto a crear: ",int(siguiente_elemento))
+		print("WWWWWWWWWWWWWWWWWWWW")
+		
 		#obtienen el tamaño de la lista
-		print("valor: ",valor)
+		# print("valor3: ",ultimo_elemento)
 
 	except:
 		print("Hay algo raro")
+
 
 	nombre = request.POST.get('nombre')
 	descripcion = request.POST.get('descripcion')
@@ -219,23 +297,23 @@ def vista_agregar_deporte(request):
 	# print(email)
 	try:
 
-		timestamps2= database.child("Deporte").shallow().get().val()
-		lis_time2=[]
-		for i in timestamps2:
+		lista2= database.child("Deporte").shallow().get().val()
+		lista_indices2=[]
+		for i in lista2:
 
-			lis_time2.append(i)
+			lista_indices2.append(i)
 		
-		lis_time.sort(reverse=True)
-		print(lis_time2)
-		valor2=len(lis_time2)
+		lista_indices2.sort(reverse=False)
+		print(lista_indices2)
+		longitud2=len(lista_indices2)
 		#obtienen el tamaño de la lista
-		print("valor 2: ",valor2)
+		print("longitud 2: ",longitud2)
 		#user = authe.create_user_with_email_and_password(email,passw)
 
-		if(valor==valor2):
-			print("valor final: ",valor)
+		if(longitud==longitud2):
+			print("longitud final: ",longitud2)
 			data={
-				"nombre":nombre ,
+				"nombre":nombre,
 				"descripcion":descripcion,
 				"calorias":calorias,
 				"categoria":categoria,
@@ -243,7 +321,7 @@ def vista_agregar_deporte(request):
 				"imagen":imagen
 			}
 		#se pasa el valor del tamaño de la lista a un chlid y se hace un set a dicho child
-		database.child("Deporte").child(str(valor)).set(data)
+		database.child("Deporte").child(str(siguiente_elemento)).set(data)
 		mensaje="Registro exitoso"
 		
 		return render(request,'agregar_deporte.html',{'mensaje':mensaje})
@@ -327,7 +405,7 @@ def vista_listar_deporte(request):
 
 
 
-	comb_lis= zip(lis_time,cal,nombre,des,cat,dur,ima)
+	comb_lis= zip(lis_time,nombre,cal,des,cat,dur,ima)
 
 
 
