@@ -175,12 +175,8 @@ def vista_registro_comida(request):
 		print("comida: ",comida)
 
 	except:
-<<<<<<< HEAD
 		pass
-
-=======
 		print("problemas")
->>>>>>> 5135c5499c33e66ab78dac4d1f4b8c7742268699
 	nombre = request.POST.get('nombre')
 	calorias = request.POST.get('calorias')
 	carbohidratos = request.POST.get('carbohidratos')
