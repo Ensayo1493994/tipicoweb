@@ -15,17 +15,18 @@
 				<th scope="col">Nombre</th>
 				<th scope="col">Imagen</th>
 				<th scope="col"></th>
+			
 	
 			</tr>
 		</thead>
 		<tbody>
 
-		{% for lista_time,fot,nom,calor,carbo,prot in paquete_list  %}
+		{% for lista_time,foto,nom,calor,carbo,prot in paquete_list  %}
 	
 			<tr>
 				<td>{{lista_time}}</td>
 				<td>{{nom}}</td>
-				<td>{{fot}}</td>
+				<td><img src="{{foto}}" width="50%" height="20%"></td>
 
 				<td>
                     <a href="">Actualizar</a><br>
@@ -35,25 +36,13 @@
 				
 				{% endfor %}
 
-		{% for lista_time,nom,calor,carbo,prot in paquete_list  %}
-			<tr>
-				<td>{{lista_time}}</td>
-				<td>{{nom}}</td>
-				<td>{{foto}}</td>
-		<td>
-					<a href="">Actualizar</a>
-					<a href="">Ver detalles</a>
-				</td>
-		{% endfor %}
-			</tr>
+				</tr>
 		</tbody>
 	</table>
 
 </body>
 </html>
 
-<button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button>
-<button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
 	<!-- <button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar comida</button> -->
 
 <button><a href="{% url 'vista_registro_comida' %}">agregar comida</a> </button>
