@@ -1,38 +1,42 @@
 .Contenedor{
-margin: 10px;
-padding: 20px;	
+margin: auto;
+margin-top: 50px;
+padding: 20px;
+box-sizing: border-box;
+
 
 }
-.ContenedorFormularios{	
-width:1200px;
-position:absolute;
-left:50%;
+.ContenedorFormularios{
+margin: auto;	
 margin-top: 1%;
+width:80%;
+box-sizing: border-box;
 }
 
 .contenedorListaAdministrador{
-	margin: 5px;
-	padding: 20px;
+margin: auto;
+margin-top: 10px;
+padding: 20px;
+box-sizing: border-box;
 }
 
 .formAdmin{
-	margin: 15px;
-	padding: 20px;
+margin: auto;
+margin-top: 10px;
+padding: 1000px;
+box-sizing: border-box;
 }
 
 .formComida{
 	margin: 15px;
 	padding: 20px;
-}
-
-.formComida{
-	margin: 15px;
-	padding: 20px;
+	box-sizing: border-box;
 }
 
 .formDeporte{
 	margin: 15px;
 	padding: 20px;
+	box-sizing: border-box;
 }
 
 .btnGuardar{
@@ -40,13 +44,37 @@ margin-top: 1%;
 	margin-left: 40px;
 	padding:2px ;
 	border:currentColor;
+
 }
 
 /* LOGIN */
+.contenedor_login{
+	width: 70%;
+	margin: auto;
+	margin-top: 250px;
+	box-sizing: border-box;
+	float:none;
+	
+}
+.titulo_login{
+	text-align: center;
+}
 
-.login{
-	margin: 300px;
-	padding: 1000px;
+.formulario_login{
+	margin: auto;
+	width: 50%;
+}
+
+.container{
+	width: 80%;
+	margin: auto;
+	box-sizing: border-box;
+	float: center;
+}
+.btn_login{
+	display:block;
+ 	margin-left: auto;
+  	margin-right: auto;
 }
 
 

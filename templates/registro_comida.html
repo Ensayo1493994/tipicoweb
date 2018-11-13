@@ -1,4 +1,5 @@
 {% extends 'plantillaBase.html' %}
+
 {% if mensaje %}
   <script>
     alert('{{ mensaje}}');
@@ -12,21 +13,22 @@
     
   </script>
 {% endif %}
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>registro comida</title>
 </head>
-<body>
+  
 
-    {% block titulo %}
+	{% block titulo %}
     <h1>Agregar Plato</h1>
     {% endblock titulo %}
 
 
 {% block contenido %}
 
-<div class="form row">
+ <div class="form row">
 
   <form action="/registro_comida/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -42,21 +44,20 @@
 
       <label for="">Proteinas</label>     
       <input type="number" class="form-control" name="proteinas" required>
-  
+
       <label for="">Imagen</label>
-      <input name="files[]" type="file" id="comidaimagen">
+      <input name="file[]"  type="file" id="comidaimagen">
       <input name="url" type="hidden"  id="url">
 
       <label for="">Receta</label>
-      <input name="receta" type="file" id="receta">
-      <input name="url1" type="hidden"  id="url1"><br>
+      <input name="file[]"  type="file" id="receta">
+      <input name="url1" type="hidden"  id="url1">
 
-      <button type="button" onclick="uploadimage()">Guardar imagen</button>
-      <input type="submit" value="Agregar Comida">
+      <button type="button" onclick="uploadimage()">guardar imagen</button>
+      <input type="submit" value="Agregar comida">
     </div>
   </form>
-</div>   
-
+</div>
 
 	
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
@@ -97,3 +98,8 @@
 </html>
 
 {% endblock contenido %}
+
+
+
+
+

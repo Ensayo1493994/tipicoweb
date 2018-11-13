@@ -117,7 +117,6 @@ def registrar(request):
 		#uid = user['localId']
 
 	return render(request,'registro.html')
-#Guardar comida en la bd	
 
 def lista_perfil(request):
 	timestamps = database.child("Usuarios").shallow().get().val()
@@ -241,6 +240,7 @@ def vista_lista_comida(request):
 		prot.append(proteinas)
 	print(prot)
 
+<<<<<<< HEAD
 	fot=[]
 	for i in lista_time:
 		imagencomida = database.child("Comida").child(i).child("idDrawable").get().val()
@@ -249,6 +249,9 @@ def vista_lista_comida(request):
 
 
 	paquete_list = zip(lista_time,fot,nom,calor,carbo,prot)
+=======
+	paquete_list = zip(lista_time,nom,calor,carbo,prot)
+>>>>>>> a65bbf857ce2b78f2c3b894b6cb79f735a79e673
 
 	return render(request, 'lista_comida.html', locals())
 
