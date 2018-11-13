@@ -113,11 +113,11 @@ function uploadimage(){
   },
   function() {
   // Upload completed successfully, now we can get the download URL
-  var downloadURL = thisref.snapshot.downloadURL;
-  console.log("got url");
+  thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+   console.log('got url', downloadURL);
   document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url"));
-  alert("file uploaded successfully");
+  console.log(document.getElementById("url")," foto");
+  alert("Imagen guardada");
 });
     }
 </script>

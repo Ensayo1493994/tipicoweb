@@ -59,7 +59,7 @@ def registro(request):
 def registrar(request):
 
 	try:
-		#el child en le cual se va a agregar es Deporte
+		#el child en le cual se va a agregar es Usuario
 		timestamps= database.child("Usuarios").shallow().get().val()
 		lis_time=[]
 		for i in timestamps:
@@ -83,9 +83,9 @@ def registrar(request):
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
 	nombre = request.POST.get('nombre')
-	file = request.POST.get('file')
+	file = request.POST.get('url')
 	rol = request.POST.get('rol') 
-	print(email,passw,nombre,rol)
+	print(email,passw,file,nombre,rol)
 
 	try:
 
@@ -107,6 +107,7 @@ def registrar(request):
 				"correo":email,
 				"contraseña":passw,
 				"nombre":nombre,
+				"foto":file,
 				"rol":rol
 			}
 		database.child("Usuarios").child(str(siguiente_elemento)).set(data)
@@ -138,6 +139,13 @@ def lista_perfil(request):
 		rol.append(calorias)
 	print(rol)
 
+	fot=[]
+
+	for i in lis_time:
+		foto=database.child("Usuarios").child(i).child("foto").get().val()
+		fot.append(foto)
+	print(fot)
+
 	correo=[]
 	for i in list_time:
 		carbohidratos = database.child("Usuarios").child(i).child("correo").get().val()
@@ -167,7 +175,8 @@ def vista_registro_comida(request):
 		print("comida: ",comida)
 
 	except:
-		print("Hay algo raro")
+		pass
+
 	nombre = request.POST.get('nombre')
 	calorias = request.POST.get('calorias')
 	carbohidratos = request.POST.get('carbohidratos')
@@ -275,11 +284,8 @@ def vista_agregar_deporte(request):
 		#print(x)
 		ultimo_elemento = lista_indices[x-1]
 		siguiente_elemento=(int(ultimo_elemento)+1)
-		print("XXXXXXXXXXXXXXXXXXXX")
 		print("ultimo elemento de la lista: ",int(ultimo_elemento))
 		print("siguiente elemto a crear: ",int(siguiente_elemento))
-		print("WWWWWWWWWWWWWWWWWWWW")
-		
 		#obtienen el tamaño de la lista
 		# print("valor3: ",ultimo_elemento)
 
