@@ -88,8 +88,8 @@
   </form>
 </div>   
 
-<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
@@ -103,27 +103,25 @@
   };
     firebase.initializeApp(config);
 
- function uploadimage(){
+  function uploadimage(){
   var storage = firebase.storage();
   var file = document.getElementById("imagen").files[0];
   var storageRef = storage.ref();
   var thisref = storageRef.child(file.name).put(file);
   thisref.on('state_changed',function(snapshot){
-  console.log("file uplaoded succesfully");
+  console.log("Imagen guardada");
   },
   function(error) {
   },
   function() {
-    thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-  // Upload completed successfully, now we can get the download URL
-  var downloadURL = thisref.snapshot.downloadURL;
-  console.log("got url");
+  thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+   console.log('got url', downloadURL);
   document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url")," tu amor con ella");
-  alert("file uploaded successfully");
+  console.log(document.getElementById("url")," imagen");
+  alert("Imagen guardada");
+  });
 });
-});
-    }
+}
 
-  </script>
-    {% endblock contenido %}
+</script>
+{% endblock contenido %}
