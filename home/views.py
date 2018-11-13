@@ -253,7 +253,6 @@ def vista_agregar_deporte(request):
 	lista= database.child("Deporte").shallow().get().val()
 	lista_indices1=[]
 	for i in lista:
-
 		lista_indices1.append(i)
 		
 	lista_indices1.sort(reverse=False)
