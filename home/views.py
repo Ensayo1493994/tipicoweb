@@ -141,7 +141,7 @@ def lista_perfil(request):
 
 	fot=[]
 
-	for i in lis_time:
+	for i in list_time:
 		foto=database.child("Usuarios").child(i).child("foto").get().val()
 		fot.append(foto)
 	print(fot)
