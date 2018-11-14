@@ -249,14 +249,13 @@ def vista_lista_comida(request):
 		prot.append(proteinas)
 	print(prot)
 
-	fot=[]
+	foto=[]
 	for i in lista_time:
 		imagencomida = database.child("Comida").child(i).child("idDrawable").get().val()
-		fot.append(imagencomida)
-	print(fot)
+		foto.append(imagencomida)
+	print(foto)
 
-
-	paquete_list = zip(lista_time,fot,nom,calor,carbo,prot)
+	paquete_list = zip(lista_time,foto,nom,calor,carbo,prot)
 
 	return render(request, 'lista_comida.html', locals())
 
