@@ -52,6 +52,8 @@ def postsign(request):
 def logout(request):
 	auth.logout(request)
 	return render(request,'login.html')
+
+	
 '''FUNCION DE REGISTRO DE PERFIL EN FIREBASE'''
 def registro(request):
 	return render(request,'registro.html')
@@ -59,7 +61,7 @@ def registro(request):
 def registrar(request):
 
 	try:
-		#el child en le cual se va a agregar es Usuario
+		#el child en el cual se va a agregar es Usuario
 		timestamps= database.child("Usuarios").shallow().get().val()
 		lis_time=[]
 		for i in timestamps:
@@ -121,38 +123,38 @@ def registrar(request):
 
 def lista_perfil(request):
 	timestamps = database.child("Usuarios").shallow().get().val()
-	list_time=[]
+	lista_time=[]
 	for i in timestamps:
-		list_time.append(i)
-	list_time.sort(reverse=True)
-	print(list_time)
+		lista_time.append(i)
+	lista_time.sort(reverse=True)
+	print(lista_time)
 
 	nom=[]
-	for i in list_time:
+	for i in lista_time:
 		nombre = database.child("Usuarios").child(i).child("nombre").get().val()
 		nom.append(nombre)
 	print(nom)
 
-	rol=[]
-	for i in list_time:
-		calorias = database.child("Usuarios").child(i).child("rol").get().val()
-		rol.append(calorias)
+	role=[]
+	for i in lista_time:
+		rol = database.child("Usuarios").child(i).child("rol").get().val()
+		role.append(rol)
 	print(rol)
 
 	fot=[]
 
-	for i in lis_time:
+	for i in lista_time:
 		foto=database.child("Usuarios").child(i).child("foto").get().val()
 		fot.append(foto)
 	print(fot)
 
-	correo=[]
-	for i in list_time:
-		carbohidratos = database.child("Usuarios").child(i).child("correo").get().val()
-		correo.append(carbohidratos)
+	correou=[]
+	for i in lista_time:
+		correo = database.child("Usuarios").child(i).child("correo").get().val()
+		correou.append(correo)
 	print(correo)
 
-	paquete_list = zip(list_time,nom,rol,correo)
+	paquete_list = zip(lista_time,nom,role,correou)
 
 	return render(request, 'perfiles.html', locals())
 
@@ -184,6 +186,8 @@ def vista_registro_comida(request):
 	iddrawable= request.POST.get('url')
 	receta = request.POST.get('url')
 	print(nombre,calorias,proteinas,iddrawable)
+
+	
 	try:
 		timestamps3= database.child("Comida").shallow().get().val()
 		lista_time3=[]
