@@ -1,0 +1,127 @@
+{% extends 'plantillaBase.html' %}
+{% if mensaje2 %}
+    <script>
+        alert('{{mensaje2}}');
+    </script>
+{% endif %}
+
+{% if mensaje %}
+	<script>
+		alert('{{ mensaje}}');
+		
+	</script>
+{% endif %}
+
+ <!DOCTYPE html>
+<html>
+<head>
+   
+    <title>Agregar deporte</title>
+
+</head>
+<body>
+    
+    <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h2>nombre:<input type="text" name="nombre" required></h2>
+        <h2>descripcion:<input type="text" name="descripcion" required></h2>
+        <h2>calorias:<input type="number" name="calorias" required></h2>
+        <h2>categoria:
+            <select name="categoria">
+                <option value="ejercicio">Ejercicio</option>
+                <option value="actividad">Activida física</option>
+                <option value="deporte">Deporte</option>
+                
+            </select>
+        </h2>	
+        <h2>duracion:<input type="number" name="duracion" placeholder="minutos" required></h2>
+        <h2>Imágenes
+           <input name="files[]" type="file" id="imagen">
+           </h2>
+           <input name="url" type="hidden"  id="url">
+
+        <button type="button" onclick="uploadimage()">up load</button>
+		<input type="submit" value="Agregar Deporte" >
+
+    </form>
+    
+</body>
+
+    {% block contenido %}
+
+
+
+
+
+<div class="form row">
+
+  <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form col-md-9">
+      <label for="">Nombre</label>
+      <input type="text" class="form-control" name="nombre" required>
+      
+      <label for="">Descripcion</label>
+      <input type="text" class="form-control" name="descripcion" required>
+
+      <label for="">Calorias</label>     
+      <input type="number" class="form-control" name="calorias" required>
+
+      <label for="">Categoria</label>
+      <select name="categoria" class="form-control">
+        <option value="ejercicio">Ejercicio</option>
+        <option value="actividad">Activida física</option>
+        <option value="deporte">Deporte</option>                  
+      </select>
+
+      <label for="">Duración</label> 
+      <input type="number" class="form-control" name="duracion" placeholder="minutos" required>
+
+      <label for="">Imagenes</label>
+      <input name="file"  type="file" id="imagen">
+      <input name="url" type="hidden"  id="url">
+      <button type="button" onclick="uploadimage()">up load</button>
+
+      <input type="submit" value="Agregar Deporte">
+    </div>
+  </form>
+</div>   
+
+
+<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    var config = {
+    apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+    authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+    databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+    projectId: "tipico-saludable-50fb7",
+    storageBucket: "tipico-saludable-50fb7.appspot.com",
+    messagingSenderId: "159019297528"
+  };
+    firebase.initializeApp(config);
+
+  function uploadimage(){
+  var storage = firebase.storage();
+  var file = document.getElementById("imagen").files[0];
+  var storageRef = storage.ref();
+  var thisref = storageRef.child(file.name).put(file);
+  thisref.on('state_changed',function(snapshot){
+  console.log("Imagen guardada");
+  },
+  function(error) {
+  },
+  function() {
+  thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+   console.log('got url', downloadURL);
+  document.getElementById("url").value = downloadURL;
+  console.log(document.getElementById("url")," imagen");
+  alert("Imagen guardada");
+  });
+});
+}
+
+</script>
+{% endblock contenido %}

@@ -120,39 +120,48 @@ def registrar(request):
 	return render(request,'registro.html')
 
 def lista_perfil(request):
-	timestamps = database.child("Usuarios").shallow().get().val()
 	list_time=[]
-	for i in timestamps:
-		list_time.append(i)
-	list_time.sort(reverse=True)
-	print(list_time)
+	try:
+		timestamps= database.child("Usuarios").shallow().get().val()
+		for i in timestamps:
+			print (database.child("Usuarios").get().val())
+			list_time.append(i)
+		
+		
+		lista = sorted (list_time)
+		print(lista, "con sorted")
+		print(list_time, "con sort")
 
-	nom=[]
-	for i in list_time:
-		nombre = database.child("Usuarios").child(i).child("nombre").get().val()
-		nom.append(nombre)
-	print(nom)
 
-	rol=[]
-	for i in list_time:
-		calorias = database.child("Usuarios").child(i).child("rol").get().val()
-		rol.append(calorias)
-	print(rol)
+		nom=[]
+		for i in list_time:
+			nombre = database.child("Usuarios").child(i).child("nombre").get().val()
+			nom.append(nombre)
+		print(nom)
 
-	fot=[]
+		rol=[]
+		for i in list_time:
+			calorias = database.child("Usuarios").child(i).child("rol").get().val()
+			rol.append(calorias)
+		print(rol)
 
-	for i in list_time:
-		foto=database.child("Usuarios").child(i).child("foto").get().val()
-		fot.append(foto)
-	print(fot)
+		fot=[]
 
-	correo=[]
-	for i in list_time:
-		carbohidratos = database.child("Usuarios").child(i).child("correo").get().val()
-		correo.append(carbohidratos)
-	print(correo)
+		for i in list_time:
+			foto=database.child("Usuarios").child(i).child("foto").get().val()
+			fot.append(foto)
+		print(fot)
 
-	paquete_list = zip(list_time,nom,rol,correo)
+		correo=[]
+		for i in list_time:
+			carbohidratos = database.child("Usuarios").child(i).child("correo").get().val()
+			correo.append(carbohidratos)
+		print(correo)
+
+		paquete_list = zip(list_time,nom,fot,rol,correo)
+	except:
+		pass
+	#list_time.sort(reverse=True)
 
 	return render(request, 'perfiles.html', locals())
 
@@ -350,69 +359,74 @@ def vista_listar_deporte(request):
 	# a=a[0]
 	# a=a['localid']
 
-	timestamps= database.child("Deporte").shallow().get().val()
 	lis_time=[]
-	for i in timestamps:
 
-		lis_time.append(i)
-	
-	lis_time.sort(reverse=True)
-	print(lis_time)
+	try:
+		
 
+		timestamps= database.child("Deporte").shallow().get().val()
+		for i in timestamps:
 
-
-	nombre=[]
-
-	for i in lis_time:
-		wor = database.child("Deporte").child(i).child("nombre").get().val()
-		nombre.append(wor)
-	print(nombre)
+			lis_time.append(i)
+		
+		lis_time.sort(reverse=True)
+		print(lis_time)
 
 
 
-	cal=[]
+		nombre=[]
 
-	for a in lis_time:
-		calorias=database.child("Deporte").child(a).child("calorias").get().val()
-		cal.append(calorias)
-	print(cal)
-
-
-
-	des=[]
-
-	for a in lis_time:
-		descripcion=database.child("Deporte").child(a).child("descripcion").get().val()
-		des.append(descripcion)
-	print(des)
-
-
-	cat=[]
-
-	for a in lis_time:
-		categoria=database.child("Deporte").child(a).child("categoria").get().val()
-		cat.append(categoria)
-	print(cat)
-
-
-	dur=[]
-
-	for a in lis_time:
-		duracion=database.child("Deporte").child(a).child("duracion").get().val()
-		dur.append(duracion)
-	print(dur)
+		for i in lis_time:
+			wor = database.child("Deporte").child(i).child("nombre").get().val()
+			nombre.append(wor)
+		print(nombre)
 
 
 
-	ima=[]
+		cal=[]
 
-	for a in lis_time:
-		imagen=database.child("Deporte").child(a).child("imagen").get().val()
-		ima.append(imagen)
-	print(ima)
+		for a in lis_time:
+			calorias=database.child("Deporte").child(a).child("calorias").get().val()
+			cal.append(calorias)
+		print(cal)
 
 
 
+		des=[]
+
+		for a in lis_time:
+			descripcion=database.child("Deporte").child(a).child("descripcion").get().val()
+			des.append(descripcion)
+		print(des)
+
+
+		cat=[]
+
+		for a in lis_time:
+			categoria=database.child("Deporte").child(a).child("categoria").get().val()
+			cat.append(categoria)
+		print(cat)
+
+
+		dur=[]
+
+		for a in lis_time:
+			duracion=database.child("Deporte").child(a).child("duracion").get().val()
+			dur.append(duracion)
+		print(dur)
+
+
+
+		ima=[]
+
+		for a in lis_time:
+			imagen=database.child("Deporte").child(a).child("imagen").get().val()
+			ima.append(imagen)
+		print(ima)
+
+
+	except:
+		pass
 
 	comb_lis= zip(lis_time,nombre,cal,des,cat,dur,ima)
 
@@ -420,6 +434,8 @@ def vista_listar_deporte(request):
 
 	return render(request,'listar_deporte.html',locals())
 
-
+def vista_editar_deporte(request):
+	
+	return render(request,'editar_deporte.html')
 
 
