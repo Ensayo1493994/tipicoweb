@@ -85,9 +85,9 @@ def registrar(request):
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
 	nombre = request.POST.get('nombre')
-	file = request.POST.get('url')
+	iddrawable= request.POST.get('url')
 	rol = request.POST.get('rol') 
-	print(email,passw,file,nombre,rol)
+	print(email,passw,nombre,iddrawable,rol)
 
 	try:
 
@@ -109,7 +109,7 @@ def registrar(request):
 				"correo":email,
 				"contraseña":passw,
 				"nombre":nombre,
-				"foto":file,
+				"idDrawable":iddrawable,
 				"rol":rol
 			}
 		database.child("Usuarios").child(str(siguiente_elemento)).set(data)
@@ -141,12 +141,11 @@ def lista_perfil(request):
 		role.append(rol)
 	print(rol)
 
-	fot=[]
-
+	foto=[]
 	for i in lista_time:
-		foto=database.child("Usuarios").child(i).child("foto").get().val()
-		fot.append(foto)
-	print(fot)
+		imagencomida = database.child("Usuarios").child(i).child("idDrawable").get().val()
+		foto.append(imagencomida)
+	print(foto)
 
 	correou=[]
 	for i in lista_time:
@@ -154,7 +153,7 @@ def lista_perfil(request):
 		correou.append(correo)
 	print(correo)
 
-	paquete_list = zip(lista_time,nom,role,correou)
+	paquete_list = zip(lista_time,nom,role,foto,correou)
 
 	return render(request, 'perfiles.html', locals())
 
