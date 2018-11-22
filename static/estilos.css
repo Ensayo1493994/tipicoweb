@@ -9,7 +9,7 @@ box-sizing: border-box;
 .ContenedorFormularios{
 margin: 0% auto;	
 width:30%;
-margin-top: 5%;
+margin-top: 8%;
 margin-left: 10%;
 box-sizing: border-box;
 }
@@ -97,8 +97,15 @@ header {
 
 
 /* Menu lateral */
+.sidebar-menu tree{
+	color: black;
+}
+
+
 .main-sidebar{
-	background: #E2A719;
+	background: #E2A71F;
+	box-sizing: border-box;
+	border:transparent;
 }
 
 
@@ -109,12 +116,15 @@ header {
 	color: #000000; 
 }
 .admin{
+	background-color:#E7A725;
 	color: #000000;
 }
 .comida{
+	background-color:#E7A725;
 	color: #000000;		
 }
 .deporte{
+	background-color:#E7A725;
 	color: #000000;		
 }
 /*LINK ETIQUETA <a> */
@@ -127,4 +137,8 @@ a:focus{
 	outline:none;
 	text-decoration:none;
 	color:#red;
+}
+.main-footer{
+	background-color: #E5A529;
+	border:transparent;
 }
