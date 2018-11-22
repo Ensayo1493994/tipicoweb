@@ -15,6 +15,7 @@ urlpatterns = [
 	path('listar_deporte/',vista_listar_deporte,name='listar_deporte'),
 	path('lista_perfil/',lista_perfil, name='lista_perfil'),
 	path('inicio/',inicio, name='inicio'),
+	
 
 
 ]
