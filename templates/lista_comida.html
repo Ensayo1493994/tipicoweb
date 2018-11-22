@@ -11,13 +11,11 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">Indice</th>
 				<th scope="col">Nombre</th>
 				<th scope="col">Calorias</th>
 				<th scope="col">Carbohidratos</th>
 				<th scope="col">proteinas</th>
 				<th scope="col">Imagen</th>
-				<th scope="col">Receta</th>
 				<th scope="col"></th>
 			
 	
@@ -28,13 +26,12 @@
 		{% for lista_time,foto,nom,calor,carbo,prot,receta in paquete_list  %}
 	
 			<tr>
-				<td>{{lista_time}}</td>
 				<td>{{nom}}</td>
 				<td>{{calor}}</td>
 				<td>{{carbo}}</td>
 				<td>{{prot}}</td>
 				<td><img src="{{foto}}" width="50%" height="20%"></td>
-				<td><img src="{{receta}}" width="50%" height="20%"></td>
+				<!--<td><img src="{{receta}}" width="50%" height="20%"></td>-->
 
 
 				<td>
