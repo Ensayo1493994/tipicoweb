@@ -47,6 +47,13 @@
 </table>
 
 <button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button>
-    <button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
+<ul class="pagination justify-content-center" style="margin:20px 0">
+  <li class="page-item"><li class="page-item"><a class="page-link" href="#">Previous</a></li>
+  <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <li class="page-item"><a class="page-link" href="#">2</a></li>
+  <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <li class="page-item"><a class="page-link" href="#">Next</a></li></li>
+</ul>
+    
 
     {% endblock tablas %}

@@ -20,6 +20,9 @@
 
 </head>
 <body>
+   {% block titulo %}
+    <h1 class="titulo">Registrar Deporte</h1>
+    {% endblock titulo %}
     
     <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
