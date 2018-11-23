@@ -6,7 +6,7 @@
     {% endblock titulo_tablas %}
 
 
-    {% block tablas %}
+{% block tablas %}
 
 	<table class="table">
 		<thead>
@@ -22,25 +22,24 @@
 			</tr>
 		</thead>
 		<tbody>
-		{% for list_time,nom,rol,correo,fot in paquete_list  %}
+		{% for list_time,nom,role,correou,fot in paquete_list  %}
 	
 			<tr>
 
 				<!--<td>{{list_time}}</td>-->
 				<td>{{nom}}</td>
-				<td>{{rol}}</td>
-				<td>{{correo}}</td>
+				<td>{{role}}</td>
+				<td>{{correou}}</td>
 				<td><img src="{{fot}}" width="50%" height="20%"></td>
 				
 				<td>
 					<a href="">Actualizar</a>
 
 				</td>
-			</tr>
 
 			{% endfor %}
+			</tr>
 		</tbody>
-		
 	</table>
 	<!-- <button type="button" onclick="location.href='{% url 'registrar' %}'">Registro</button> -->
 	<!-- <button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button> -->
@@ -53,4 +52,4 @@
   <li class="page-item"><a class="page-link" href="#">3</a></li>
   <li class="page-item"><a class="page-link" href="#">Siguiente</a></li></li>
 </ul>
-    {% endblock tablas %}
+{% endblock tablas %}

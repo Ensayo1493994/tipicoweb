@@ -64,23 +64,18 @@ def registrar(request):
 	try:
 		#el child en el cual se va a agregar es Usuario
 		timestamps= database.child("Usuario").shallow().get().val()
-		lis_time=[]
+		list_time=[]
 		for i in timestamps:
 
-			lis_time.append(i)
+			list_time.append(i)
 		
-		lis_time.sort(reverse=False)
-		print(lis_time)
-		valor=len(lis_time)
-
-		ultimo_elemento=lis_time[valor-1]
-		print("ultimo elemnto: ",ultimo_elemento)
-		siguiente_elemento=(int(ultimo_elemento)+1)
-		print("siguiente elemnto: ",siguiente_elemento)
-		#obtienen el tamaño de la lista
+		list_time.sort(reverse=False)
+		print(list_time)
+		valor=len(list_time)
 		print("valor: ",valor)
 
 	except:
+		pass
 		print("Hay algo raro")
 
 	email = request.POST.get('email')
@@ -88,17 +83,18 @@ def registrar(request):
 	nombre = request.POST.get('nombre')
 	file = request.POST.get('url3')
 	rol = request.POST.get('rol') 
-	print(email,passw,nombre,iddrawable,rol)
+
+	print(email,passw,nombre,file,rol)
 	try:
-		timestamps2= database.child("Usuario").shallow().get().val()
-		lis_time2=[]
+		timestamps4= database.child("Usuario").shallow().get().val()
+		list_time4=[]
 		for i in timestamps2:
 
-			lis_time2.append(i)
+			list_time4.append(i)
 		
-		lis_time.sort(reverse=False)
-		print(lis_time2)
-		valor2=len(lis_time2)
+		list_time.sort(reverse=False)
+		print(list_time4)
+		valor2=len(list_time2)
 		#obtienen el tamaño de la lista
 		print("valor 2: ",valor2)
 		#user = authe.create_user_with_email_and_password(email,passw)
@@ -122,37 +118,37 @@ def registrar(request):
 
 def lista_perfil(request):
 	timestamps = database.child("Usuario").shallow().get().val()
-	lista_time=[]
+	list_time=[]
 	for i in timestamps:
-		lista_time.append(i)
-	lista_time.sort(reverse=True)
-	print(lista_time)
+		list_time.append(i)
+	list_time.sort(reverse=True)
+	print(list_time)
 
 	nom=[]
-	for i in lista_time:
+	for i in list_time:
 		nombre = database.child("Usuario").child(i).child("Nombre").get().val()
 		nom.append(nombre)
 	print(nom)
 
 	role=[]
-	for i in lista_time:
+	for i in list_time:
 		rol = database.child("Usuario").child(i).child("rol").get().val()
 		role.append(rol)
-	print(rol)
+	print(role)
 
-	foto=[]
-	for i in lista_time:
+	fot=[]
+	for i in list_time:
 		foto=database.child("Usuario").child(i).child("imagen").get().val()
 		fot.append(foto)
-		print(foto)
+		print(fot)
 
 	correou=[]
-	for i in lista_time:
+	for i in list_time:
 		correo = database.child("Usuario").child(i).child("Correo").get().val()
 		correou.append(correo)
 	print(correo)
 
-	paquete_list = zip(lista_time,nom,role,foto,correou)
+	paquete_list = zip(list_time,nom,role,fot,correou)
 
 
 	return render(request, 'perfiles.html')
