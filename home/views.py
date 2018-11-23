@@ -30,7 +30,7 @@ authe = firebase.auth()
 
 def inicio(request):
  	
-	return render(request,'index.html')
+	return render(request,'inicio.html')
 '''VISTA INICIAR SESION'''
 def vista_login(request):
  	
@@ -88,10 +88,8 @@ def registrar(request):
 	nombre = request.POST.get('nombre')
 	file = request.POST.get('url3')
 	rol = request.POST.get('rol') 
-	print(email,passw,file,nombre,rol)
-
+	print(email,passw,nombre,iddrawable,rol)
 	try:
-
 		timestamps2= database.child("Usuario").shallow().get().val()
 		lis_time2=[]
 		for i in timestamps2:
@@ -142,12 +140,11 @@ def lista_perfil(request):
 		role.append(rol)
 	print(rol)
 
-	fot=[]
-
+	foto=[]
 	for i in lista_time:
 		foto=database.child("Usuario").child(i).child("imagen").get().val()
 		fot.append(foto)
-	print(fot)
+		print(foto)
 
 	correou=[]
 	for i in lista_time:
@@ -155,9 +152,10 @@ def lista_perfil(request):
 		correou.append(correo)
 	print(correo)
 
-	paquete_list = zip(lista_time,nom,role,correou,fot)
+	paquete_list = zip(lista_time,nom,role,foto,correou)
 
-	return render(request, 'perfiles.html', locals())
+
+	return render(request, 'perfiles.html')
 
 #REGISTRO COMIDAS
 
@@ -198,6 +196,7 @@ def vista_registro_comida(request):
 	iddrawable= request.POST.get('url')
 	receta = request.POST.get('url')
 	print(nombre,calorias,proteinas,iddrawable)
+
 
 	try:
 		timestamps3= database.child("Comida").shallow().get().val()

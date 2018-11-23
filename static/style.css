@@ -1,0 +1,26 @@
+.bg-warning {
+    background-color: #ffc107db!important;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid black;
+}
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+span{
+    
+    font-size: 12px;
+    color:#FED101;
+}
+
+p{
+    margin:  0px;
+    font-size: 12px;
+    font-family: monospace;
+}

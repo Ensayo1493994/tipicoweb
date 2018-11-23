@@ -1,5 +1,4 @@
 {% extends 'plantillaBase.html' %}
-
 	
 	{% if mensaje %}
 		<script>
@@ -50,7 +49,9 @@
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
-	var config = {
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    var config = {
     apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
     authDomain: "tipico-saludable-50fb7.firebaseapp.com",
     databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
@@ -58,11 +59,11 @@
     storageBucket: "tipico-saludable-50fb7.appspot.com",
     messagingSenderId: "159019297528"
   };
-  firebase.initializeApp(config);
+    firebase.initializeApp(config);
 
-function uploadimage(){
+  function uploadimage(){
   var storage = firebase.storage();
-  var file = document.getElementById("file").files[0];
+  var file = document.getElementById("comidaimagen").files[0];
   var storageRef = storage.ref();
   var thisref = storageRef.child(file.name).put(file);
   thisref.on('state_changed',function(snapshot){
@@ -71,13 +72,12 @@ function uploadimage(){
   function(error) {
   },
   function() {
-  // Upload completed successfully, now we can get the download URL
   thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
    console.log('got url3', downloadURL);
   document.getElementById("url3").value = downloadURL;
   console.log(document.getElementById("url3")," foto");
   alert("Imagen guardada");
-});
+  });
 });
 }
 </script>
