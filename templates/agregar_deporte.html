@@ -16,18 +16,25 @@
    {% block titulo %}
     <h1 class="titulo">Registrar Deporte</h1>
     {% endblock titulo %}
+<<<<<<< HEAD
     {% block contenido %}
 
+=======
+    
+    {% block contenido %}
+
+
+>>>>>>> c94d2a5b6a6655c7aa6694467871225c91d8ed3b
 <div class="form row">
 
   <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form col-md-9">
       <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" required>
+      <input type="text" class="form-control" name="nombre" required maxlength="30" minlength="2" pattern="[A-Z-a-z]+">
       
       <label for="">Descripcion</label>
-      <input type="text" class="form-control" name="descripcion" required>
+      <input type="text" class="form-control" name="descripcion" required maxlength="40" minlength="2" pattern="[A-Z-a-z]+" >
 
       <label for="">Calorias</label>     
       <input type="number" class="form-control" name="calorias" required>
@@ -44,50 +51,58 @@
 
       <label for="">Imágenes</label>
       <input name="files"  type="file" id="imagen">
+      <input name="url2" type="hidden"  id="url2">
 
+<<<<<<< HEAD
       <input name="url" type="hidden"  id="url">
       <button type="button" onclick="uploadimage()">up load</button>
       <input class="btn btn-outline-warning" type="submit" value="Agregar Deporte">
+=======
+      <button type="button" onclick="uploadimage()">Guardar Imagen</button>
+      <input type="submit" value="Agregar Deporte">
+>>>>>>> c94d2a5b6a6655c7aa6694467871225c91d8ed3b
     </div>
   </form>
 </div>   
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-
 <script>
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
     var config = {
-    apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
-    authDomain: "tipico-saludable-50fb7.firebaseapp.com",
-    databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
-    projectId: "tipico-saludable-50fb7",
-    storageBucket: "tipico-saludable-50fb7.appspot.com",
-    messagingSenderId: "159019297528"
-  };
+      apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+      authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+      databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+      projectId: "tipico-saludable-50fb7",
+      storageBucket: "tipico-saludable-50fb7.appspot.com",
+      messagingSenderId: "159019297528"
+    };
     firebase.initializeApp(config);
 
- function uploadimage(){
-  var storage = firebase.storage();
-  var file = document.getElementById("imagen").files[0];
-  var storageRef = storage.ref();
-  var thisref = storageRef.child(file.name).put(file);
-  thisref.on('state_changed',function(snapshot){
-  console.log("file uplaoded succesfully");
+  function uploadimage()
+  {
+    var storage = firebase.storage();
+    var file = document.getElementById("imagen").files[0];
+    var storageRef = storage.ref();
+    var thisref = storageRef.child(file.name).put(file);
+    thisref.on('state_changed',function(snapshot){
+      console.log("Imagen guardada correctamente");
+    },
+  function(error) 
+  {
   },
-  function(error) {
-  },
-  function() {
+  function() 
+  {
     thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-  // Upload completed successfully, now we can get the download URL
-  var downloadURL = thisref.snapshot.downloadURL;
-  console.log("got url");
-  document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url")," tu amor con ella");
-  alert("file uploaded successfully");
-});
-});
-    }
+    console.log('got url2', downloadURL);
+    document.getElementById("url2").value = downloadURL;
+    console.log(document.getElementById("url2")," imagen");
+    alert("Imagen  guardada correctamente");
 
-  </script>
-    {% endblock contenido %}
+  });
+});
+}
+
+</script>
+
+{% endblock contenido %}

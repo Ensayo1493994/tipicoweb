@@ -11,13 +11,14 @@
         <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">N°</th>
+                    <!--<th scope="col">N°</th>-->
                     <th scope="col">Nombre</th>
                     <th scope="col">Imagen</th>
                     <th scope="col">Calorias</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Duracion</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -27,16 +28,15 @@
 
                 
                 <tr>              
-                <td>{{lis_time}}</td>
+                <!--<td>{{lis_time}}</td>-->
                 <td>{{nombre}}</td>
-                <td><a href="{{ima}}">ver imagen</a></td>
+                <td><img src="{{ima}}" width="50%" height="50%"></td>
                 <td>{{cal}}</td>
                 <td>{{des}}</td>
                 <td>{{cat}}</td>
                 <td>{{dur}}</td>
                 <td>
                     <a href="">Actualizar</a>
-                    <a href="">Ver detalles</a>
                 </td>  
              
 
@@ -46,6 +46,7 @@
 </tr>
 </tbody>
 </table>
+<<<<<<< HEAD
 </div>
 
 <div class="center">
@@ -62,5 +63,15 @@
 
 
 <!-- <button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button> -->   
+=======
+<ul class="pagination justify-content-center" style="margin:20px 0">
+  <li class="page-item"><li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+  <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <li class="page-item"><a class="page-link" href="#">2</a></li>
+  <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <li class="page-item"><a class="page-link" href="#">Siguiente</a></li></li>
+</ul>
+    
+>>>>>>> c94d2a5b6a6655c7aa6694467871225c91d8ed3b
 
     {% endblock tablas %}

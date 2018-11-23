@@ -6,42 +6,51 @@
     {% endblock titulo_tablas %}
 
 
+<<<<<<< HEAD
     {% block tablas %}
     <div class="table-responsive">  
+=======
+{% block tablas %}
+>>>>>>> c94d2a5b6a6655c7aa6694467871225c91d8ed3b
 
 	<table class="table">
 		<thead>
 			<tr>
 
-				<th scope="col">Indices</th>
+				<!--<th scope="col">Indices</th>-->
 				<th scope="col">Nombre</th>
 				<th scope="col">Rol</th>
 				<th scope="col">Correo</th>
-				<th scope="col">Foto</th>
+				<th scope="col">Imagen</th>
+				<th scope="col"></th>
 
 			</tr>
 		</thead>
 		<tbody>
-		{% for list_time,nom,rol,correo in paquete_list  %}
+		{% for list_time,nom,role,correou,fot in paquete_list  %}
 	
 			<tr>
 
-				<td>{{list_time}}</td>
+				<!--<td>{{list_time}}</td>-->
 				<td>{{nom}}</td>
+<<<<<<< HEAD
 				<td>{{rol}}</td>
 				<td>{{correo}}</td>
 				<td><img class="img-responsive"src="{{fot}}" width="50%" height="20%"></td>
+=======
+				<td>{{role}}</td>
+				<td>{{correou}}</td>
+				<td><img src="{{fot}}" width="50%" height="20%"></td>
+>>>>>>> c94d2a5b6a6655c7aa6694467871225c91d8ed3b
 				
 				<td>
 					<a href="">Actualizar</a>
-					<a href="">Ver detalles</a>
 
 				</td>
-			</tr>
 
 			{% endfor %}
+			</tr>
 		</tbody>
-		
 	</table>
 </div>
 	<!-- <button type="button" onclick="location.href='{% url 'registrar' %}'">Registro</button> -->
@@ -60,4 +69,4 @@
   </ul>
 </div>
 </ul>
-    {% endblock tablas %}
+{% endblock tablas %}
