@@ -34,16 +34,16 @@
     {% csrf_token %}
     <div class="form col-md-9">
       <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" required="text">
+      <input type="text" class="form-control" name="nombre" maxlength="30" minlength="2" pattern="[A-Z-a-z]+">
       
       <label for="">Calorias</label>
-      <input type="number" class="form-control" name="calorias" required min="1" max="700">
+      <input type="number" class="form-control" name="calorias"  min="1" max="10000" required>
 
       <label for="">Carbohidratos</label>     
-      <input type="number" class="form-control" name="carbohidratos" required required min="1" max="600">
+      <input type="text" class="form-control" name="carbohidratos" required maxlength="50" minlength="2" pattern="[A-Za-z0-9]+">
 
       <label for="">Proteinas</label>     
-      <input type="number" class="form-control" name="proteinas" required required min="1" max="500">
+      <input type="text" class="form-control" name="proteinas" required maxlength="50" minlength="2" pattern="[A-Za-z0-9]+">
 
       <label for="">Imagen</label>
       <input name="files[]"  type="file" id="comidaimagen" required>
@@ -55,9 +55,9 @@
 
      
       
-      <button type="button" onclick="uploadimage()"> imagen </button>
-      <button type="button" onclick="uploadimages()"> receta </button><br><br>
-      <input type="submit" value="guardar comida">
+      <button type="button" onclick="uploadimage()"> Guardar Imagen </button>
+      <button type="button" onclick="uploadimages()"> Guardar Receta </button><br><br>
+      <input type="submit"  value="Guardar Plato">
     </div>
   </form>
 </div>
@@ -84,7 +84,7 @@
     var storageRef = storage.ref();
     var thisref = storageRef.child(file.name).put(file);
     thisref.on('state_changed',function(snapshot){
-      console.log("Imagen guardada");
+      console.log("Imagen guardada correctamente");
     },
   function(error) 
   {
@@ -95,7 +95,7 @@
     console.log('got url', downloadURL);
     document.getElementById("url").value = downloadURL;
     console.log(document.getElementById("url")," imagen");
-    alert("Imagen  guardada");
+    alert("Imagen  guardada correctamente");
 
   });
 });
@@ -123,7 +123,7 @@
     var storageRef = storage.ref();
     var thisref = storageRef.child(receta.name).put(receta);
     thisref.on('state_changed',function(snapshot){
-      console.log("receta guardada");
+      console.log("Receta guardada correctamente");
     },
   function(error) 
   {
@@ -134,7 +134,7 @@
     console.log('got url1', downloadURL);
     document.getElementById("url1").value = downloadURL;
     console.log(document.getElementById("url1")," imagen");
-    alert("receta  guardada");
+    alert("Receta  guardada correctamente");
 
   });
 });

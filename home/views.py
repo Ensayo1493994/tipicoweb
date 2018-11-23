@@ -8,6 +8,7 @@ import pytz
 
 valor=0
 comida=0
+conectkey=""
 '''CONFIGURACION DE FIREBASE EN LA WEB'''
 config = {
     'apiKey': "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
@@ -62,7 +63,7 @@ def registrar(request):
 
 	try:
 		#el child en el cual se va a agregar es Usuario
-		timestamps= database.child("Usuarios").shallow().get().val()
+		timestamps= database.child("Usuario").shallow().get().val()
 		lis_time=[]
 		for i in timestamps:
 
@@ -85,13 +86,13 @@ def registrar(request):
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
 	nombre = request.POST.get('nombre')
-	file = request.POST.get('url')
+	file = request.POST.get('url3')
 	rol = request.POST.get('rol') 
 	print(email,passw,file,nombre,rol)
 
 	try:
 
-		timestamps2= database.child("Usuarios").shallow().get().val()
+		timestamps2= database.child("Usuario").shallow().get().val()
 		lis_time2=[]
 		for i in timestamps2:
 
@@ -106,13 +107,13 @@ def registrar(request):
 		if(valor==valor2):
 			print("valor final: ",valor)
 			data={
-				"correo":email,
-				"contraseña":passw,
-				"nombre":nombre,
-				"foto":file,
+				"Correo":email,
+				"Contrasenia":passw,
+				"Nombre":nombre,
+				"imagen":file,
 				"rol":rol
 			}
-		database.child("Usuarios").child(str(siguiente_elemento)).set(data)
+		database.child("Usuario").child(str(siguiente_elemento)).set(data)
 
 	except:
 		mensaje="No se puede crear la cuenta"
@@ -122,7 +123,7 @@ def registrar(request):
 	return render(request,'registro.html')
 
 def lista_perfil(request):
-	timestamps = database.child("Usuarios").shallow().get().val()
+	timestamps = database.child("Usuario").shallow().get().val()
 	lista_time=[]
 	for i in timestamps:
 		lista_time.append(i)
@@ -131,30 +132,30 @@ def lista_perfil(request):
 
 	nom=[]
 	for i in lista_time:
-		nombre = database.child("Usuarios").child(i).child("nombre").get().val()
+		nombre = database.child("Usuario").child(i).child("Nombre").get().val()
 		nom.append(nombre)
 	print(nom)
 
 	role=[]
 	for i in lista_time:
-		rol = database.child("Usuarios").child(i).child("rol").get().val()
+		rol = database.child("Usuario").child(i).child("rol").get().val()
 		role.append(rol)
 	print(rol)
 
 	fot=[]
 
 	for i in lista_time:
-		foto=database.child("Usuarios").child(i).child("foto").get().val()
+		foto=database.child("Usuario").child(i).child("imagen").get().val()
 		fot.append(foto)
 	print(fot)
 
 	correou=[]
 	for i in lista_time:
-		correo = database.child("Usuarios").child(i).child("correo").get().val()
+		correo = database.child("Usuario").child(i).child("Correo").get().val()
 		correou.append(correo)
 	print(correo)
 
-	paquete_list = zip(lista_time,nom,role,correou)
+	paquete_list = zip(lista_time,nom,role,correou,fot)
 
 	return render(request, 'perfiles.html', locals())
 
@@ -280,7 +281,7 @@ def vista_lista_comida(request):
 
 	return render(request, 'lista_comida.html', locals())
 
-#Ver detalles comida
+#Ver eliminar
 
 # logica de los deportes
 def vista_agregar_deporte(request):
@@ -325,7 +326,7 @@ def vista_agregar_deporte(request):
 	calorias = request.POST.get('calorias')
 	categoria = request.POST.get('categoria')
 	duracion =request.POST.get('duracion')
-	imagen= request.POST.get('url')
+	imagen= request.POST.get('url2')
 	# print(email)
 	try:
 

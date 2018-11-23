@@ -24,37 +24,7 @@
     <h1 class="titulo">Registrar Deporte</h1>
     {% endblock titulo %}
     
-    <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        <h2>nombre:<input type="text" name="nombre" required></h2>
-        <h2>descripcion:<input type="text" name="descripcion" required></h2>
-        <h2>calorias:<input type="number" name="calorias" required></h2>
-        <h2>categoria:
-            <select name="categoria">
-                <option value="ejercicio">Ejercicio</option>
-                <option value="actividad">Activida física</option>
-                <option value="deporte">Deporte</option>
-                
-            </select>
-        </h2>	
-        <h2>duracion:<input type="number" name="duracion" placeholder="minutos" required></h2>
-        <h2>Imágenes
-           <input name="files[]" type="file" id="imagen">
-           </h2>
-           <input name="url" type="hidden"  id="url">
-
-        <button type="button" onclick="uploadimage()">up load</button>
-		<input type="submit" value="Agregar Deporte" >
-
-    </form>
-    
-</body>
-
     {% block contenido %}
-
-
-
 
 
 <div class="form row">
@@ -63,10 +33,10 @@
     {% csrf_token %}
     <div class="form col-md-9">
       <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" required>
+      <input type="text" class="form-control" name="nombre" required maxlength="30" minlength="2" pattern="[A-Z-a-z]+">
       
       <label for="">Descripcion</label>
-      <input type="text" class="form-control" name="descripcion" required>
+      <input type="text" class="form-control" name="descripcion" required maxlength="40" minlength="2" pattern="[A-Z-a-z]+" >
 
       <label for="">Calorias</label>     
       <input type="number" class="form-control" name="calorias" required>
@@ -83,50 +53,52 @@
 
       <label for="">Imagenes</label>
       <input name="files"  type="file" id="imagen">
+      <input name="url2" type="hidden"  id="url2">
 
-      <input name="url" type="hidden"  id="url">
-      <button type="button" onclick="uploadimage()">up load</button>
+      <button type="button" onclick="uploadimage()">Guardar Imagen</button>
       <input type="submit" value="Agregar Deporte">
     </div>
   </form>
 </div>   
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-
 <script>
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
     var config = {
-    apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
-    authDomain: "tipico-saludable-50fb7.firebaseapp.com",
-    databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
-    projectId: "tipico-saludable-50fb7",
-    storageBucket: "tipico-saludable-50fb7.appspot.com",
-    messagingSenderId: "159019297528"
-  };
+      apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+      authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+      databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+      projectId: "tipico-saludable-50fb7",
+      storageBucket: "tipico-saludable-50fb7.appspot.com",
+      messagingSenderId: "159019297528"
+    };
     firebase.initializeApp(config);
 
- function uploadimage(){
-  var storage = firebase.storage();
-  var file = document.getElementById("imagen").files[0];
-  var storageRef = storage.ref();
-  var thisref = storageRef.child(file.name).put(file);
-  thisref.on('state_changed',function(snapshot){
-  console.log("file uplaoded succesfully");
+  function uploadimage()
+  {
+    var storage = firebase.storage();
+    var file = document.getElementById("imagen").files[0];
+    var storageRef = storage.ref();
+    var thisref = storageRef.child(file.name).put(file);
+    thisref.on('state_changed',function(snapshot){
+      console.log("Imagen guardada correctamente");
+    },
+  function(error) 
+  {
   },
-  function(error) {
-  },
-  function() {
+  function() 
+  {
     thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-  // Upload completed successfully, now we can get the download URL
-  var downloadURL = thisref.snapshot.downloadURL;
-  console.log("got url");
-  document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url")," tu amor con ella");
-  alert("file uploaded successfully");
-});
-});
-    }
+    console.log('got url2', downloadURL);
+    document.getElementById("url2").value = downloadURL;
+    console.log(document.getElementById("url2")," imagen");
+    alert("Imagen  guardada correctamente");
 
-  </script>
-    {% endblock contenido %}
+  });
+});
+}
+
+</script>
+
+{% endblock contenido %}
