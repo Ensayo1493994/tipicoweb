@@ -13,7 +13,11 @@
 			<tr>
 				<th scope="col">Indice</th>
 				<th scope="col">Nombre</th>
+				<th scope="col">Calorias</th>
+				<th scope="col">Carbohidratos</th>
+				<th scope="col">proteinas</th>
 				<th scope="col">Imagen</th>
+				<th scope="col">Receta</th>
 				<th scope="col"></th>
 			
 	
@@ -21,16 +25,25 @@
 		</thead>
 		<tbody>
 
-		{% for lista_time,foto,nom,calor,carbo,prot in paquete_list  %}
+		{% for lista_time,foto,nom,calor,carbo,prot,receta in paquete_list  %}
 	
 			<tr>
 				<td>{{lista_time}}</td>
 				<td>{{nom}}</td>
+<<<<<<< HEAD
 				<td><img src="{{fotou}}" width="50%" height="20%"></td>
+=======
+				<td>{{calor}}</td>
+				<td>{{carbo}}</td>
+				<td>{{prot}}</td>
+				<td><img src="{{foto}}" width="50%" height="20%"></td>
+				<td><img src="{{receta}}" width="50%" height="20%"></td>
+
+>>>>>>> b1837f910306a0c8f830984ae0f18d6c31a41073
 
 				<td>
-                    <a href="">Actualizar</a><br>
-                    <a href="">Ver detalles</a>
+					<a href="{% url 'vista_registro_comida' %}">agregar comida</a>
+                  
                 </td>  
              
 				
@@ -39,6 +52,15 @@
 				</tr>
 		</tbody>
 	</table>
+
+	<ul class="pagination justify-content-center" style="margin:20px 0">
+  <li class="page-item"><li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+  <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <li class="page-item"><a class="page-link" href="#">2</a></li>
+  <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+</li>
+</ul>
 
 </body>
 </html>

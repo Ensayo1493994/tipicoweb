@@ -1,16 +1,22 @@
+
 .Contenedor{
-margin: auto;
+margin: 0 auto;
+width: 70%
 margin-top: 50px;
 padding: 20px;
 box-sizing: border-box;
-
-
 }
+
 .ContenedorFormularios{
-margin: auto;	
-margin-top: 1%;
-width:80%;
+margin: 0% auto;	
+width:30%;
+margin-top: 8%;
+margin-left: 10%;
 box-sizing: border-box;
+}
+h1.titulo{
+	position: absolute;
+	float: left;
 }
 
 .contenedorListaAdministrador{
@@ -21,7 +27,7 @@ box-sizing: border-box;
 }
 
 .formAdmin{
-margin: auto;
+margin: 0 auto;
 margin-top: 10px;
 padding: 1000px;
 box-sizing: border-box;
@@ -92,8 +98,15 @@ header {
 
 
 /* Menu lateral */
+.sidebar-menu tree{
+	color: black;
+}
+
+
 .main-sidebar{
-	background: #DEA045;
+	background: #E2A71F;
+	box-sizing: border-box;
+	border:transparent;
 }
 
 
@@ -104,11 +117,29 @@ header {
 	color: #000000; 
 }
 .admin{
+	background-color:#E7A725;
 	color: #000000;
 }
 .comida{
+	background-color:#E7A725;
 	color: #000000;		
 }
 .deporte{
+	background-color:#E7A725;
 	color: #000000;		
+}
+/*LINK ETIQUETA <a> */
+a{
+	color:green;
+}
+a:hover,
+a:active,
+a:focus{
+	outline:none;
+	text-decoration:none;
+	color:#red;
+}
+.main-footer{
+	background-color: #E5A529;
+	border:transparent;
 }

@@ -29,7 +29,7 @@ authe = firebase.auth()
 
 def inicio(request):
  	
-	return render(request,'index.html')
+	return render(request,'inicio.html')
 '''VISTA INICIAR SESION'''
 def vista_login(request):
  	
@@ -155,14 +155,14 @@ def lista_perfil(request):
 
 	paquete_list = zip(lista_time,nom,role,foto,correou)
 
-	return render(request, 'perfiles.html', locals())
+	return render(request, 'perfiles.html')
 
 #REGISTRO COMIDAS
 
 def vista_registro_comida(request):
 	#primero se lista los datos del nodo
 	try:
-		#el child en le cual se va a agregar es Deporte
+		#el child en le cual se va a agregar es Comida
 		timestamps= database.child("Comida").shallow().get().val()
 		lista_time=[]
 		for i in timestamps:
@@ -178,6 +178,16 @@ def vista_registro_comida(request):
 	except:
 		pass
 		print("problemas")
+	nombre 			= request.POST.get('nombre')
+	calorias 		= request.POST.get('calorias')
+	carbohidratos 	= request.POST.get('carbohidratos')
+	proteinas 		= request.POST.get('proteinas')
+	iddrawable 		= request.POST.get('url')
+	receta 			= request.POST.get('url1')
+	print("xxxxxxxxxxxxxxxx")
+	print(nombre,calorias,carbohidratos,proteinas,iddrawable,receta)
+	print("xxxxxxxxxxxxxxxx")
+
 	nombre = request.POST.get('nombre')
 	calorias = request.POST.get('calorias')
 	carbohidratos = request.POST.get('carbohidratos')
@@ -197,7 +207,6 @@ def vista_registro_comida(request):
 		lista_time.sort(reverse=True)
 		print(lista_time3)
 		comida2=len(lista_time3)
-		#obtienen el tamaño de la lista
 		print("comida 2: ",comida2)
 		#user = authe.create_user_with_email_and_password(email,passw)
 
@@ -213,6 +222,8 @@ def vista_registro_comida(request):
 				"idDrawable":iddrawable,
 		}
 		database.child("Comida").child(str(valor)).set(data)	
+
+
 	except:
 		mensaje="No se puede guardar los datos"
 		return render(request, 'registro_comida.html',{'mensaje':mensaje},{'db': nombre})
@@ -258,9 +269,17 @@ def vista_lista_comida(request):
 		foto.append(imagencomida)
 	print(foto)
 
-	paquete_list = zip(lista_time,foto,nom,calor,carbo,prot)
+	receta=[]
+	for i in lista_time:
+		rece = database.child("Comida").child(i).child("Receta").get().val()
+		receta.append(rece)
+	print(receta)
+
+	paquete_list = zip(lista_time,foto,nom,calor,carbo,prot,receta)
 
 	return render(request, 'lista_comida.html', locals())
+
+#Ver detalles comida
 
 # logica de los deportes
 def vista_agregar_deporte(request):

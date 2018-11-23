@@ -20,6 +20,9 @@
 
 </head>
 <body>
+   {% block titulo %}
+    <h1 class="titulo">Registrar Deporte</h1>
+    {% endblock titulo %}
     
     <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -79,7 +82,7 @@
       <input type="number" class="form-control" name="duracion" placeholder="minutos" required>
 
       <label for="">Imagenes</label>
-      <input name="file"  type="file" id="imagen">
+      <input name="files"  type="file" id="imagen">
 
       <input name="url" type="hidden"  id="url">
       <button type="button" onclick="uploadimage()">up load</button>
