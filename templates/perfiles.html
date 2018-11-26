@@ -5,7 +5,6 @@
     <h1>Lista de Usuarios</h1>
     {% endblock titulo_tablas %}
 
-
 {% block tablas %}
 
 	<table class="table">
@@ -30,8 +29,7 @@
 				<td>{{nom}}</td>
 				<td>{{role}}</td>
 				<td>{{correou}}</td>
-				<td><img src="{{fot}}" width="50%" height="20%"></td>
-				
+				<td><img class="img-responsive"src="{{fot}}" width="50%" height="20%"></td>				
 				<td>
 					<a href="">Actualizar</a>
 
@@ -41,15 +39,21 @@
 			</tr>
 		</tbody>
 	</table>
+</div>
 	<!-- <button type="button" onclick="location.href='{% url 'registrar' %}'">Registro</button> -->
 	<!-- <button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button> -->
 
 
-   <ul class="pagination justify-content-center" style="margin:20px 0">
-  <li class="page-item"><li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-  <li class="page-item"><a class="page-link" href="#">1</a></li>
-  <li class="page-item"><a class="page-link" href="#">2</a></li>
-  <li class="page-item"><a class="page-link" href="#">3</a></li>
-  <li class="page-item"><a class="page-link" href="#">Siguiente</a></li></li>
+ <div class="center">
+  <ul class="pagination">
+    <li><a href="#">«</a></li>
+    <li><a  href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">»</a></li>
+  </ul>
+</div>
 </ul>
 {% endblock tablas %}

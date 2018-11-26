@@ -185,15 +185,6 @@ def vista_registro_comida(request):
 	print(nombre,calorias,carbohidratos,proteinas,iddrawable,receta)
 	print("xxxxxxxxxxxxxxxx")
 
-	nombre = request.POST.get('nombre')
-	calorias = request.POST.get('calorias')
-	carbohidratos = request.POST.get('carbohidratos')
-	proteinas = request.POST.get('proteinas')
-	iddrawable= request.POST.get('url')
-	receta = request.POST.get('url')
-	print(nombre,calorias,proteinas,iddrawable)
-
-
 	try:
 		timestamps3= database.child("Comida").shallow().get().val()
 		lista_time3=[]

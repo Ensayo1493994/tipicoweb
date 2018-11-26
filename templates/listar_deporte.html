@@ -6,6 +6,7 @@
 
 
 {% block tablas %}
+<div class="table-responsive">  
 
         <table class="table">
                 <thead>
@@ -29,7 +30,7 @@
                 <tr>              
                 <!--<td>{{lis_time}}</td>-->
                 <td>{{nombre}}</td>
-                <td><img src="{{ima}}" width="50%" height="50%"></td>
+                <td><img class="img-responsive" src="{{ima}}" width="50%" height="50%"></td>
                 <td>{{cal}}</td>
                 <td>{{des}}</td>
                 <td>{{cat}}</td>
@@ -45,13 +46,21 @@
 </tr>
 </tbody>
 </table>
-<ul class="pagination justify-content-center" style="margin:20px 0">
-  <li class="page-item"><li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-  <li class="page-item"><a class="page-link" href="#">1</a></li>
-  <li class="page-item"><a class="page-link" href="#">2</a></li>
-  <li class="page-item"><a class="page-link" href="#">3</a></li>
-  <li class="page-item"><a class="page-link" href="#">Siguiente</a></li></li>
-</ul>
-    
+</div>
+
+<div class="center">
+  <ul class="pagination">
+    <li><a href="#">«</a></li>
+    <li><a  href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">»</a></li>
+  </ul>
+</div>
+
+
+<!-- <button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button> -->   
 
     {% endblock tablas %}
