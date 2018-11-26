@@ -26,16 +26,16 @@
     {% csrf_token %}
     <div class="form col-md-9">
       <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" maxlength="30" minlength="2" pattern="[A-Z-a-z]+">
+      <input type="text" class="form-control" name="nombre" maxlength="40" minlength="2" pattern="[A-Z-a-z]+">
       
       <label for="">Calorias</label>
       <input type="number" class="form-control" name="calorias"  min="1" max="10000" required>
 
       <label for="">Carbohidratos</label>     
-      <input type="text" class="form-control" name="carbohidratos" required maxlength="50" minlength="2" pattern="[A-Za-z0-9]+">
+      <input type="text" class="form-control" name="carbohidratos" required maxlength="100" minlength="2" pattern="[A-Za-z0-9]+">
 
       <label for="">Proteinas</label>     
-      <input type="text" class="form-control" name="proteinas" required maxlength="50" minlength="2" pattern="[A-Za-z0-9]+">
+      <input type="text" class="form-control" name="proteinas" required maxlength="100" minlength="2" pattern="[A-Za-z0-9]+">
 
       <label for="">Imagen</label>
       <input name="files[]"  type="file" id="comidaimagen" required>
