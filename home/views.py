@@ -51,7 +51,7 @@ def postsign(request):
 
 def logout(request):
 	auth.logout(request)
-	return render(request,'login.html')
+	return render(request,'inicio.html')
 
 	
 '''FUNCION DE REGISTRO DE PERFIL EN FIREBASE'''

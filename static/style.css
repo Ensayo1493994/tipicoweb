@@ -1,17 +1,21 @@
 .bg-warning {
     background-color: #ffc107db!important;
 }
+img{
+    width: 5%;
+    height: 5px;
+}
 
 hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
-    border-top: 1px solid black;
+    border-top: 1px solid rgb(211, 172, 0);
 }
-hr {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
+a {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 800;
+    text-align: center;
 }
 span{
     
@@ -22,5 +26,33 @@ span{
 p{
     margin:  0px;
     font-size: 12px;
-    font-family: monospace;
+    font-family: 'Comfortaa';
+}
+i {
+    color: rgb(252, 252, 252);
+}
+
+.jumbotron {
+    font-family: 'Comfortaa';
+    margin-bottom: 0px;
+    background-color: #000000;
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(253, 242, 137) 0.3em 0.3em 0.3em;
+}
+
+.btn-dark {
+    color: #ffca2a;
+    background-color: #343a40ab;
+    border-color: #343a40;
+}
+.rounded {
+
+    width: 400px;
+    height: 300px;
+}
+.contenido{
+    background-color: #000000;
 }
