@@ -2,10 +2,18 @@
 
 {% block titulo_tablas %}
     <h1>Lista de Deportes</h1>
+    <style type="text/css">
+        .imagen{
+            width: 50px;
+            height: 50px;
+        }
+        </style>
 {% endblock titulo_tablas %}
 
 
 {% block tablas %}
+
+
 
         <table class="table">
                 <thead>
@@ -14,7 +22,6 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Imagen</th>
                     <th scope="col">Calorias</th>
-                    <th scope="col">Descripcion</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Duracion</th>
                   </tr>
@@ -22,19 +29,18 @@
                 <tbody>
 
 
-    {% for lis_time,nombre,cal,des,cat,dur,ima in comb_lis %}
+    {% for lis_times,nombre,cal,cat,dur,ima in comb_lis %}
 
                 
                 <tr>              
-                <td>{{lis_time}}</td>
+                <td>{{lis_times}}</td>
                 <td>{{nombre}}</td>
-                <td><a href="{{ima}}">ver imagen</a></td>
+                <td><div class="imagen"><img src="{{ ima }}"></div></td>
                 <td>{{cal}}</td>
-                <td>{{des}}</td>
                 <td>{{cat}}</td>
                 <td>{{dur}}</td>
                 <td>
-                    <a href="{% url 'editar_deporte' %}">Actualizar</a>
+                    <a href="{% url 'editar_deporte' iden=lis_times %}">Actualizar</a>
                     <a href="">Ver detalles</a>
                 </td>  
              

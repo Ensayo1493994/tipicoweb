@@ -60,7 +60,7 @@ def registrar(request):
 
 	try:
 		#el child en le cual se va a agregar es Usuario
-		timestamps= database.child("Usuarios").shallow().get().val()
+		timestamps= database.child("Usuario").shallow().get().val()
 		lis_time=[]
 		for i in timestamps:
 
@@ -89,7 +89,7 @@ def registrar(request):
 
 	try:
 
-		timestamps2= database.child("Usuarios").shallow().get().val()
+		timestamps2= database.child("Usuario").shallow().get().val()
 		lis_time2=[]
 		for i in timestamps2:
 
@@ -110,7 +110,7 @@ def registrar(request):
 				"foto":file,
 				"rol":rol
 			}
-		database.child("Usuarios").child(str(siguiente_elemento)).set(data)
+		database.child("Usuario").child(str(siguiente_elemento)).set(data)
 
 	except:
 		mensaje="No se puede crear la cuenta"
@@ -119,12 +119,60 @@ def registrar(request):
 
 	return render(request,'registro.html')
 
+def vista_editar_perfil(request, idenu):
+
+	print(idenu)
+
+	getnombre = database.child("Usuario").child(str(idenu)).child("nombre").shallow().get().val()
+	getemail = database.child("Usuario").child(str(idenu)).child("email").shallow().get().val()
+	getpassw  = database.child("Usuario").child(str(idenu)).child("passw").shallow().get().val()
+	getrol = database.child("Usuario").child(str(idenu)).child("rol").shallow().get().val()
+	
+	print(getnombre,getemail,getpassw,getrol)
+	
+
+
+	email = request.POST.get('email')
+	passw = request.POST.get('password')
+	nombre = request.POST.get('nombre')
+	file = request.POST.get('url')
+	rol = request.POST.get('rol') 
+	print(email,passw,file,nombre,rol)
+
+	try:
+
+		timestamps2= database.child("Usuarios").shallow().get().val()
+		
+		#obtienen el tamaño de la lista
+		
+		data={
+			"correo":email,
+			"contraseña":passw,
+			"nombre":nombre,
+			"foto":file,
+			"rol":rol
+		}
+		database.child("Usuarios").child().set(data)
+		return render(request, 'editar_perfil.html', locals())
+
+	except:
+		mensaje="No se puede crear la cuenta"
+		return render(request,'editar_perfil.html',{'mensaje':mensaje})
+		#uid = user['localId']
+
+
+
+	return render(request, 'editar_perfil.html', locals())
+
+
+
+
 def lista_perfil(request):
 	list_time=[]
 	try:
-		timestamps= database.child("Usuarios").shallow().get().val()
+		timestamps= database.child("Usuario").shallow().get().val()
 		for i in timestamps:
-			print (database.child("Usuarios").get().val())
+			print (database.child("Usuario").get().val())
 			list_time.append(i)
 		
 		
@@ -135,26 +183,26 @@ def lista_perfil(request):
 
 		nom=[]
 		for i in list_time:
-			nombre = database.child("Usuarios").child(i).child("nombre").get().val()
+			nombre = database.child("Usuario").child(i).child("nombre").get().val()
 			nom.append(nombre)
 		print(nom)
 
 		rol=[]
 		for i in list_time:
-			calorias = database.child("Usuarios").child(i).child("rol").get().val()
+			calorias = database.child("Usuario").child(i).child("rol").get().val()
 			rol.append(calorias)
 		print(rol)
 
 		fot=[]
 
 		for i in list_time:
-			foto=database.child("Usuarios").child(i).child("foto").get().val()
+			foto=database.child("Usuario").child(i).child("foto").get().val()
 			fot.append(foto)
 		print(fot)
 
 		correo=[]
 		for i in list_time:
-			carbohidratos = database.child("Usuarios").child(i).child("correo").get().val()
+			carbohidratos = database.child("Usuario").child(i).child("correo").get().val()
 			correo.append(carbohidratos)
 		print(correo)
 
@@ -271,86 +319,88 @@ def vista_lista_comida(request):
 # logica de los deportes
 def vista_agregar_deporte(request):
 
-	lista= database.child("Deporte").shallow().get().val()
-	lista_indices1=[]
-	for i in lista:
-		lista_indices1.append(i)
-		
-	lista_indices1.sort(reverse=False)
-	print(lista_indices1)
-	longitud=len(lista_indices1)
-	#obtienen el tamaño de la lista
-	print("longitud 1 : ",longitud)
 
-	#primero se lista los datos del nodo
-	try:
-		#el child en le cual se va a agregar es Deporte
-		lista= database.child("Deporte").shallow().get().val()
+	if request.method== "POST":	
+
+		# 1-lista deportes
+
+		lista = database.child("Deportes").shallow().get().val()
 		lista_indices=[]
 		for i in lista:
-
 			lista_indices.append(i)
-		
+			
 		lista_indices.sort(reverse=False)
+		print(lista_indices)
+
+		# 2-longitud de la lista
+
+
+		longitud=len(lista_indices)
+		print("longitud 1 : ",longitud)
+
+		# 3-verificar si la lista esta vacia
+
+
+		# 4-obtener el ultimo el de la lista
+
 		x = len(lista_indices)
 		print("x: ",x)
-		#print(x)
 		ultimo_elemento = lista_indices[x-1]
 		siguiente_elemento=(int(ultimo_elemento)+1)
 		print("ultimo elemento de la lista: ",int(ultimo_elemento))
 		print("siguiente elemto a crear: ",int(siguiente_elemento))
-		#obtienen el tamaño de la lista
-		# print("valor3: ",ultimo_elemento)
-
-	except:
-		print("Hay algo raro")
 
 
-	nombre = request.POST.get('nombre')
-	descripcion = request.POST.get('descripcion')
-	calorias = request.POST.get('calorias')
-	categoria = request.POST.get('categoria')
-	duracion =request.POST.get('duracion')
-	imagen= request.POST.get('url')
-	# print(email)
-	try:
+		# 5-iniciar a crear desde cero solo si lista esta vacia
+		
 
-		lista2= database.child("Deporte").shallow().get().val()
+
+
+
+		# 6- obtenemos los datos del formulario
+
+
+
+		nombre = request.POST.get('nombre')
+		calorias = request.POST.get('calorias')
+		categoria = request.POST.get('categoria')
+		duracion =request.POST.get('duracion')
+		imagen= request.POST.get('url')
+		
+		
+
+		# 7- creamos logica para que los registros no se remplazen 
+
+
+		lista2= database.child("Deportes").shallow().get().val()
 		lista_indices2=[]
 		for i in lista2:
-
 			lista_indices2.append(i)
 		
 		lista_indices2.sort(reverse=False)
 		print(lista_indices2)
 		longitud2=len(lista_indices2)
-		#obtienen el tamaño de la lista
 		print("longitud 2: ",longitud2)
-		#user = authe.create_user_with_email_and_password(email,passw)
-
 		if(longitud==longitud2):
 			print("longitud final: ",longitud2)
 			data={
 				"nombre":nombre,
-				"descripcion":descripcion,
 				"calorias":calorias,
 				"categoria":categoria,
 				"duracion":duracion,
 				"imagen":imagen
 			}
-		#se pasa el valor del tamaño de la lista a un chlid y se hace un set a dicho child
-		database.child("Deporte").child(str(siguiente_elemento)).set(data)
-		mensaje="Registro exitoso"
-		
-		return render(request,'agregar_deporte.html',{'mensaje':mensaje})
-	except:
-		mensaje="No se puede crear la cuenta"
-		#print('oscar',passw)
-		return render(request,'agregar_deporte.html',{'mensaje':mensaje})
-		#uid = user['localId']
 
-	
+		# 8- agregamos data a la base de datos
+
+
+		database.child("Deportes").child(str(siguiente_elemento)).set(data)
+		mensaje="Registro exitoso"
+			
+		
 	return render(request,'agregar_deporte.html')
+
+
 
 def vista_listar_deporte(request):
 	# idtoken= request.session['uid']
@@ -364,7 +414,7 @@ def vista_listar_deporte(request):
 	try:
 		
 
-		timestamps= database.child("Deporte").shallow().get().val()
+		timestamps= database.child("Deportes").shallow().get().val()
 		for i in timestamps:
 
 			lis_time.append(i)
@@ -377,7 +427,7 @@ def vista_listar_deporte(request):
 		nombre=[]
 
 		for i in lis_time:
-			wor = database.child("Deporte").child(i).child("nombre").get().val()
+			wor = database.child("Deportes").child(i).child("nombre").get().val()
 			nombre.append(wor)
 		print(nombre)
 
@@ -386,24 +436,16 @@ def vista_listar_deporte(request):
 		cal=[]
 
 		for a in lis_time:
-			calorias=database.child("Deporte").child(a).child("calorias").get().val()
+			calorias=database.child("Deportes").child(a).child("calorias").get().val()
 			cal.append(calorias)
 		print(cal)
 
 
 
-		des=[]
-
-		for a in lis_time:
-			descripcion=database.child("Deporte").child(a).child("descripcion").get().val()
-			des.append(descripcion)
-		print(des)
-
-
 		cat=[]
 
 		for a in lis_time:
-			categoria=database.child("Deporte").child(a).child("categoria").get().val()
+			categoria=database.child("Deportes").child(a).child("categoria").get().val()
 			cat.append(categoria)
 		print(cat)
 
@@ -411,7 +453,7 @@ def vista_listar_deporte(request):
 		dur=[]
 
 		for a in lis_time:
-			duracion=database.child("Deporte").child(a).child("duracion").get().val()
+			duracion=database.child("Deportes").child(a).child("duracion").get().val()
 			dur.append(duracion)
 		print(dur)
 
@@ -420,22 +462,61 @@ def vista_listar_deporte(request):
 		ima=[]
 
 		for a in lis_time:
-			imagen=database.child("Deporte").child(a).child("imagen").get().val()
+			imagen=database.child("Deportes").child(a).child("imagen").get().val()
 			ima.append(imagen)
 		print(ima)
 
+		comb_lis= zip(lis_time,nombre,cal,cat,dur,ima)
 
 	except:
 		pass
 
-	comb_lis= zip(lis_time,nombre,cal,des,cat,dur,ima)
-
-
+	
 
 	return render(request,'listar_deporte.html',locals())
 
-def vista_editar_deporte(request):
+def vista_editar_deporte(request, iden):
+
+	print (iden)
+
+	getnombre = database.child("Deportes").child(str(iden)).child("nombre").shallow().get().val()
+	getcalorias = database.child("Deportes").child(str(iden)).child("calorias").shallow().get().val()
+	getduracion = database.child("Deportes").child(str(iden)).child("duracion").shallow().get().val()
+	getcategoria = database.child("Deportes").child(str(iden)).child("categoria").shallow().get().val()
+	print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+	print (getnombre,getcalorias,getduracion,getcategoria)
+	print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+	if request.method== "POST":	
+		index = request.POST.get('index')
+		nombre = request.POST.get('nombre')
+		calorias = request.POST.get('calorias')
+		categoria = request.POST.get('categoria')
+		duracion =request.POST.get('duracion')
+		imagen= request.POST.get('url')
+		# print(email)
+		try:
+			#user = authe.create_user_with_email_and_password(email,passw)
+			data={
+				"nombre":nombre,
+				"calorias":calorias,
+				"categoria":categoria,
+				"duracion":duracion,
+				"imagen":imagen
+			}
+			#se pasa el valor del tamaño de la lista a un chlid y se hace un set a dicho child
+			database.child("Deportes").child(iden).update(data)
+			mensaje="Cambio exitoso"
+			
+			return render(request,'editar_deporte.html',locals())
+		except:
+			mensaje="No se puede editar el deporte"
+			#print('oscar',passw)
+			return render(request,'editar_deporte.html',locals())
+			#uid = user['localId']
 	
-	return render(request,'editar_deporte.html')
+
+	
+	return render(request,'editar_deporte.html',locals())
 
 

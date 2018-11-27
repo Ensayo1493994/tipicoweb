@@ -26,12 +26,12 @@
 
 				<td>{{list_time}}</td>
 				<td>{{nom}}</td>
-				<td>{{fot}}</td>
+				<td><div class="imagen"><img src="{{ fot }}"></div></td>
 				<td>{{rol}}</td>
 				<td>{{correo}}</td>
 				
 				<td>
-					<a href="">Actualizar</a>
+					<a href="{% url 'editar_perfil' idenu=list_time %}">Actualizar</a>
 					<a href="">Ver detalles</a>
 
 				</td>

@@ -1,52 +1,9 @@
 {% extends 'plantillaBase.html' %}
-{% if mensaje2 %}
-    <script>
-        alert('{{mensaje2}}');
-    </script>
-{% endif %}
 
-{% if mensaje %}
-	<script>
-		alert('{{ mensaje}}');
-		
-	</script>
-{% endif %}
 
- <!DOCTYPE html>
-<html>
-<head>
-   
-    <title>Agregar deporte</title>
 
-</head>
-<body>
-    
-    <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
 
-        <h2>nombre:<input type="text" name="nombre" required></h2>
-        <h2>descripcion:<input type="text" name="descripcion" required></h2>
-        <h2>calorias:<input type="number" name="calorias" required></h2>
-        <h2>categoria:
-            <select name="categoria">
-                <option value="ejercicio">Ejercicio</option>
-                <option value="actividad">Activida física</option>
-                <option value="deporte">Deporte</option>
-                
-            </select>
-        </h2>	
-        <h2>duracion:<input type="number" name="duracion" placeholder="minutos" required></h2>
-        <h2>Imágenes
-           <input name="files[]" type="file" id="imagen">
-           </h2>
-           <input name="url" type="hidden"  id="url">
 
-        <button type="button" onclick="uploadimage()">up load</button>
-		<input type="submit" value="Agregar Deporte" >
-
-    </form>
-    
-</body>
 
     {% block contenido %}
 
@@ -56,17 +13,18 @@
 
 <div class="form row">
 
-  <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
+  <form action="/editar_deporte/{{ iden }}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form col-md-9">
-      <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" required>
-      
+     
+      <label for="">Nombres </label>
+      <input type="text" class="form-control" name="nombre" value="{{ getnombre }}" required>
+<!-- 
       <label for="">Descripcion</label>
-      <input type="text" class="form-control" name="descripcion" required>
+      <input type="text" class="form-control" name="descripcion" value="{{ getdescripcion }}" required> -->
 
       <label for="">Calorias</label>     
-      <input type="number" class="form-control" name="calorias" required>
+      <input type="number" class="form-control" name="calorias" value="{{ getcalorias }}" required>
 
       <label for="">Categoria</label>
       <select name="categoria" class="form-control">
@@ -76,7 +34,7 @@
       </select>
 
       <label for="">Duración</label> 
-      <input type="number" class="form-control" name="duracion" placeholder="minutos" required>
+      <input type="number" class="form-control" name="duracion" value="{{ getduracion }}" required>
 
       <label for="">Imagenes</label>
       <input name="file"  type="file" id="imagen">
