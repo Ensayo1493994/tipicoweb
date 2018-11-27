@@ -16,15 +16,14 @@
    {% block titulo %}
     <h1 class="titulo">Registrar Deporte</h1>
     {% endblock titulo %}
-<<<<<<< HEAD
+ 
     {% block contenido %}
 
-=======
+
     
-    {% block contenido %}
+  
 
 
->>>>>>> c94d2a5b6a6655c7aa6694467871225c91d8ed3b
 <div class="form row">
 
   <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
@@ -52,15 +51,10 @@
       <label for="">Imágenes</label>
       <input name="files"  type="file" id="imagen">
       <input name="url2" type="hidden"  id="url2">
+      <button class="btn btn-outline-warning" type="button" onclick="uploadimage()">Guardar Imagen</button>
 
-<<<<<<< HEAD
-      <input name="url" type="hidden"  id="url">
-      <button type="button" onclick="uploadimage()">up load</button>
-      <input class="btn btn-outline-warning" type="submit" value="Agregar Deporte">
-=======
-      <button type="button" onclick="uploadimage()">Guardar Imagen</button>
-      <input type="submit" value="Agregar Deporte">
->>>>>>> c94d2a5b6a6655c7aa6694467871225c91d8ed3b
+      <input class="btn btn-warning" style="color: black" type="submit" value="Agregar Deporte">
+ 
     </div>
   </form>
 </div>   
@@ -104,5 +98,5 @@
 }
 
 </script>
-
 {% endblock contenido %}
+

@@ -7,7 +7,7 @@ padding: 20px;
 box-sizing: border-box;
 }
 
-.ContenedorFormularios{
+/*.ContenedorFormularios{
 margin: 0% auto;	
 width:30%;
 margin-top: 8%;
@@ -18,7 +18,7 @@ h1.titulo{
 	position: absolute;
 	float: left;
 }
-
+*/
 .contenedorListaAdministrador{
 margin: auto;
 margin-top: 10px;
@@ -26,12 +26,12 @@ padding: 20px;
 box-sizing: border-box;
 }
 
-.formAdmin{
+/*.formAdmin{
 margin: 0 auto;
 margin-top: 10px;
 padding: 1000px;
 box-sizing: border-box;
-}
+}*/
 
 .formComida{
 	margin: 15px;
@@ -45,14 +45,14 @@ box-sizing: border-box;
 	box-sizing: border-box;
 }
 
-.btnGuardar{
+/*.btnGuardar{
 	margin-top: 10px;
 	margin-left: 40px;
 	padding:2px ;
 	border:currentColor;
 
 }
-
+*/
 /* LOGIN */
 .contenedor_login{
 	width: 70%;
@@ -64,6 +64,12 @@ box-sizing: border-box;
 }
 .titulo_login{
 	text-align: center;
+	font-weight: 900;
+	color: #F09816;
+}
+.form-text{
+	font-weight: 600;
+	color: black;
 }
 
 .formulario_login{
@@ -77,10 +83,11 @@ box-sizing: border-box;
 	box-sizing: border-box;
 	float: center;
 }
-.btn_login{
+.btn.btn-warning{
 	display:block;
  	margin-left: auto;
   	margin-right: auto;
+  	border-color: black;
 }
 
 
@@ -129,16 +136,6 @@ header {
 	color: #000000;		
 }
 /*LINK ETIQUETA <a> */
-a{
-	color:green;
-}
-a:hover,
-a:active,
-a:focus{
-	outline:none;
-	text-decoration:none;
-	color:#red;
-}
 .main-footer{
 	background-color: #E5A529;
 	border:transparent;
@@ -169,4 +166,196 @@ ul.pagination li a.active {
 }
 
 ul.pagination li a:hover:not(.active) {background-color: #E2A71F;}
+
+/*BOTONES*/
+.btn.btn-outline-warning{
+	border-color: #E5A529;
+	color: black;
+	justify-content: space-around;
+	margin: 4px 0;
+}
+.btn.btn-warning{
+	margin: 4px 0;
+	color: #E5A529;
+}
+
+/* ESTILOS ENLASES*/
+
+	/*LINK ADMINISTRADOR*/
+		
+		a.admin:visited{
+			color: black;
+
+		}
+
+		a.admin:hover{
+			background-color: #DEA523;
+			color: white;			
+		}
+
+		a.admin:active{
+			color: white;
+		}
+	/*LINK COMIDAS*/
+		
+		a.comida:visited{
+			color: black;
+
+		}
+
+		a.comida:hover{
+			background-color: #DEA523;
+			color: white;
+			
+		}
+	/*LINK DEPORTES*/
+		
+
+		a.deporte:visited{
+			color: black;
+		}
+
+		a.deporte:hover{
+			background-color: #DEA523;
+			color: white;			
+		}
+
+
+
+
+
+
+
+
+
+/*BOTONES*/
+
+/*BOTON CERRAR SESION*/
+.btn.cerrar_sesion{
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #E5A529	;
+  border-color: #CF9525;
+  /*border: none;*/
+  color: #B58220;
+  text-align: center;
+  font-size: 18px;
+  /*padding: 20px;*/
+  /*width: 200px;*/
+  transition: all 0.5s;
+  cursor: none;
+  margin: 6px 6px;
+}
+
+.btn.cerrar_sesion span {
+  cursor: progress;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  transition-delay: 1s;
+
+}
+.btn.cerrar_sesion span:after {
+  /*content: '\2612';*/
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn:hover span {
+  padding-right: 25px;
+}
+
+.btn.:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/*ESTILOS PARA EL TEMPLATE REGISTRAR USUARIO*/
+	
+	/*TITULO PRINCIPAL*/
+		h1.titulo_principal{
+			margin:0 100px;
+		}
+
+	/*ESTILOS FORMULARIO*/	
+		input[type=text], select {
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 15px;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+
+		input[type=email], select {
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 15px;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+
+		input[type=password], select {
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 15px;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+
+		input[type=file], select {
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 15px;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    box-sizing: border-box;
+		}
+
+		input.btn[type=submit] {
+		   /* width: 100%;*/
+		    background-color: #E5A529;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+
+		input.btn[type=submit]:hover {
+		    background-color: #E5B934;
+		}
+
+		input[type=submit] {
+		   /* width: 100%;*/
+		    background-color: #E5A529;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+
+		input[type=submit]:hover {
+		    background-color: #E5B934;
+		}
+
+
+		div.formulario {
+		    border-radius: 5px;
+		    background-color: #f2f2f2;
+		    padding: 20px;
+
+
 

@@ -14,7 +14,7 @@
 	{% endif %}
 
 	{% block titulo %}
-    <h1>Registrar  Usuario</h1>
+    <h1 class="titulo_principal">Registrar  Usuario</h1>
     {% endblock titulo %}
 
 {% block contenido %}
@@ -22,62 +22,49 @@
 	<!DOCTYPE html>
 <html>
 <body>
-	<form action="/registrar/" method="post" enctype="multipart/form-data">
+
+	<div class="formulario">
+	  <form action="/action_page.php">
 		{% csrf_token %}
-		<div class="form col-md-9">
-		<label for="">Email</label>
-      	<input type="email" class="form-control" name="email" required>
 
-      	<label for="">Password</label>
-      	<input type="password" class="form-control" name="password" required>
+		<label for="">E-mail:</label>
+			<div class="row">
+			    <input type="email" class="col-sm-6" name="email">
+			</div>
 
-		<label for="">Nombre</label>
-      	<input type="text" class="form-control" name="nombre" required maxlength="30" minlength="2" pattern="[A-Z-a-z]+" > 
+	    <label for="">Contraseña:</label>
+			<div class="row">
+				<input type="password" class="col-sm-6" name="password">
+			</div>
 
-		<label for="">Imagen</label>
-        <input name="files[]"  type="file" id="file" required>
-        <input name="url3" type="hidden"  id="url3">
+		<label for="">Nombre: </label>
+			<div class="row">		
+				<input type="text" class="col-sm-6" name="nombre">
+			</div>
 
-        <label for="">Rol</label>
-      	<input type="text" class="form-control" name="rol" required> 
-		
-		<button type="button" onclick="uploadimage()"> Guardar Imagen </button><br>
-        <input type="submit"  value="Guardar Usuario">
-    </div>
-  </form>
+	    <label for="">Imagen</label>
+			<div class="row">
+				<input  name="file[]" class="col-sm-4"  type="file" id="comidaimagen" required>
+				<input name="url" type="hidden"  id="url">
+			</div>
+
+		<label for="">Rol: </label>
+			<div class="row">
+				<input type="text" class="col-sm-6" name="rol">
+			</div>
+		<input type="submit" class="btn" onclick="uploadimage()" value="Cargar imagen">
+		<input type="submit" value="Agregar Usuario">
+
+	  </form>
+	</div>
+
+
+
+
+
+
 </body>
-
-<<<<<<< HEAD
-					<label for="">E-mail: </label>
-					<input type="email" class="form-control" name="email">
-					
-					<label for="">Contraseña: </label>
-					<input type="password" class="form-control" name="password">
-					
-					<label for="">Nombre: </label>
-					<input type="text" class="form-control" name="nombre">
-					
-					
-					<label for="">Imagen</label>
-      				<input  name="file[]"  type="file" id="comidaimagen" required>
-      				<input name="url" type="hidden"  id="url">
-					
-					<label for="">Rol: </label>
-					<input type="text" class="form-control" name="rol">
-					<br>
-		<button class="btn btn-warning" style="color: black"
-
-		 type="button" onclick="uploadimage()">Cargar imagen</button><br>
-					<input class="btn btn-outline-warning" type="submit" value="Agregar Usuario">
-					<!-- <button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar Comida</button><br> -->
-		
-		<!-- <button class="btn btn-outline-warning" type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>	 -->
-				</div>	
-			</form>
-	</div>		
-	{% endblock contenido %}
-=======
->>>>>>> c94d2a5b6a6655c7aa6694467871225c91d8ed3b
+ 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
     // Initialize Firebase
@@ -113,5 +100,4 @@
 }
 </script>
 </html>
-{% endblock contenido %}
-
+	{% endblock contenido %}
