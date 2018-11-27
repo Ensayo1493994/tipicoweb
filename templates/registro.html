@@ -1,52 +1,54 @@
 {% extends 'plantillaBase.html' %}
+	
+	{% if mensaje %}
+		<script>
+			alert('{{ mensaje}}');
+			alert('{{ dato }}');
+		</script>
+	{% endif %}
 
+	{% if mensaje %}
+	<script>
+		alert('{{ mensaje}}');
+	</script>
+	{% endif %}
 
-    {% block titulo %}
-    <h1 class="titulo">Registrar  Usuario</h1>
+	{% block titulo %}
+    <h1>Registrar  Usuario</h1>
     {% endblock titulo %}
 
+{% block contenido %}
 
+	<!DOCTYPE html>
+<html>
+<body>
+	<form action="/registrar/" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="form col-md-9">
+		<label for="">Email</label>
+      	<input type="email" class="form-control" name="email" required>
 
-		{% if mensaje %}
-			<script>
-				alert('{{ mensaje}}');
-				alert('{{ dato }}');
-			</script>
-		{% endif %}
+      	<label for="">Password</label>
+      	<input type="password" class="form-control" name="password" required>
 
+		<label for="">Nombre</label>
+      	<input type="text" class="form-control" name="nombre" required maxlength="30" minlength="2" pattern="[A-Z-a-z]+" > 
 
-	{% block contenido %}
-	<div class="form row">
-			<form action="/registrar/" method="post">
-				{% csrf_token %}
-				<div class="form col-md-9">	
+		<label for="">Imagen</label>
+        <input name="files[]"  type="file" id="file" required>
+        <input name="url3" type="hidden"  id="url3">
 
-					<label for="">E-mail: </label>
-					<input type="email" class="form-control" name="email">
-					
-					<label for="">Contraseña: </label>
-					<input type="password" class="form-control" name="password">
-					
-					<label for="">Nombre: </label>
-					<input type="text" class="form-control" name="nombre">
-					
-					
-					<label for="">Imagen</label>
-      				<input name="file[]"  type="file" id="comidaimagen" required>
-      				<input name="url" type="hidden"  id="url">
-					
-					<label for="">Rol: </label>
-					<input type="text" class="form-control" name="rol">
-					<br>
-					<input type="submit" value="Agregar Usuario">
-					<button type="button" onclick="location.href='{% url 'vista_registro_comida' %}'">Registrar Comida</button><br>
-		<button type="button" onclick="location.href='{% url 'lista_perfil' %}'">perfiles</button><br>
-		<button type="button" onclick="uploadimage()">Cargar imagen</button><br>
-		<button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>	
-				</div>	
-			</form>
-	</div>		
+        <label for="">Rol</label>
+      	<input type="text" class="form-control" name="rol" required> 
+		
+		<button type="button" onclick="uploadimage()"> Guardar Imagen </button><br>
+        <input type="submit"  value="Guardar Usuario">
+    </div>
+  </form>
+</body>
+
 	{% endblock contenido %}
+
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
     // Initialize Firebase
@@ -63,7 +65,7 @@
 
   function uploadimage(){
   var storage = firebase.storage();
-  var file = document.getElementById("comidaimagen").files[0];
+  var file = document.getElementById("file").files[0];
   var storageRef = storage.ref();
   var thisref = storageRef.child(file.name).put(file);
   thisref.on('state_changed',function(snapshot){
@@ -73,14 +75,14 @@
   },
   function() {
   thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-   console.log('got url', downloadURL);
-  document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url")," imagen");
+   console.log('got url3', downloadURL);
+  document.getElementById("url3").value = downloadURL;
+  console.log(document.getElementById("url3")," foto");
   alert("Imagen guardada");
   });
 });
 }
-
 </script>
-
+</html>
+{% endblock contenido %}
 

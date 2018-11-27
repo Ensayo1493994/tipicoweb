@@ -8,6 +8,7 @@ import pytz
 
 valor=0
 comida=0
+conectkey=""
 '''CONFIGURACION DE FIREBASE EN LA WEB'''
 config = {
     'apiKey': "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
@@ -62,57 +63,51 @@ def registrar(request):
 
 	try:
 		#el child en el cual se va a agregar es Usuario
-		timestamps= database.child("Usuarios").shallow().get().val()
-		lis_time=[]
+		timestamps= database.child("Usuario").shallow().get().val()
+		list_time=[]
 		for i in timestamps:
 
-			lis_time.append(i)
+			list_time.append(i)
 		
-		lis_time.sort(reverse=False)
-		print(lis_time)
-		valor=len(lis_time)
-
-		ultimo_elemento=lis_time[valor-1]
-		print("ultimo elemnto: ",ultimo_elemento)
-		siguiente_elemento=(int(ultimo_elemento)+1)
-		print("siguiente elemnto: ",siguiente_elemento)
-		#obtienen el tamaño de la lista
+		list_time.sort(reverse=False)
+		print(list_time)
+		valor=len(list_time)
 		print("valor: ",valor)
 
 	except:
+		pass
 		print("Hay algo raro")
 
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
 	nombre = request.POST.get('nombre')
-	iddrawable= request.POST.get('url')
+	file = request.POST.get('url3')
 	rol = request.POST.get('rol') 
-	print(email,passw,nombre,iddrawable,rol)
 
+	print(email,passw,nombre,file,rol)
 	try:
-
-		timestamps2= database.child("Usuarios").shallow().get().val()
-		lis_time2=[]
+		timestamps4= database.child("Usuario").shallow().get().val()
+		list_time4=[]
 		for i in timestamps2:
 
-			lis_time2.append(i)
+			list_time4.append(i)
 		
-		lis_time.sort(reverse=False)
-		print(lis_time2)
-		valor2=len(lis_time2)
+		list_time.sort(reverse=False)
+		print(list_time4)
+		valor2=len(list_time2)
 		#obtienen el tamaño de la lista
 		print("valor 2: ",valor2)
 		#user = authe.create_user_with_email_and_password(email,passw)
 		if(valor==valor2):
 			print("valor final: ",valor)
 			data={
-				"correo":email,
-				"contraseña":passw,
-				"nombre":nombre,
-				"idDrawable":iddrawable,
+				"Correo":email,
+				"Contrasenia":passw,
+				"Nombre":nombre,
+				"imagen":file,
 				"rol":rol
 			}
-		database.child("Usuarios").child(str(siguiente_elemento)).set(data)
+		database.child("Usuario").child(str(siguiente_elemento)).set(data)
 
 	except:
 		mensaje="No se puede crear la cuenta"
@@ -122,38 +117,39 @@ def registrar(request):
 	return render(request,'registro.html')
 
 def lista_perfil(request):
-	timestamps = database.child("Usuarios").shallow().get().val()
-	lista_time=[]
+	timestamps = database.child("Usuario").shallow().get().val()
+	list_time=[]
 	for i in timestamps:
-		lista_time.append(i)
-	lista_time.sort(reverse=True)
-	print(lista_time)
+		list_time.append(i)
+	list_time.sort(reverse=True)
+	print(list_time)
 
 	nom=[]
-	for i in lista_time:
-		nombre = database.child("Usuarios").child(i).child("nombre").get().val()
+	for i in list_time:
+		nombre = database.child("Usuario").child(i).child("Nombre").get().val()
 		nom.append(nombre)
 	print(nom)
 
 	role=[]
-	for i in lista_time:
-		rol = database.child("Usuarios").child(i).child("rol").get().val()
+	for i in list_time:
+		rol = database.child("Usuario").child(i).child("rol").get().val()
 		role.append(rol)
-	print(rol)
+	print(role)
 
-	foto=[]
-	for i in lista_time:
-		imagencomida = database.child("Usuarios").child(i).child("idDrawable").get().val()
-		foto.append(imagencomida)
-	print(foto)
+	fot=[]
+	for i in list_time:
+		foto=database.child("Usuario").child(i).child("imagen").get().val()
+		fot.append(foto)
+		print(fot)
 
 	correou=[]
-	for i in lista_time:
-		correo = database.child("Usuarios").child(i).child("correo").get().val()
+	for i in list_time:
+		correo = database.child("Usuario").child(i).child("Correo").get().val()
 		correou.append(correo)
 	print(correo)
 
-	paquete_list = zip(lista_time,nom,role,foto,correou)
+	paquete_list = zip(list_time,nom,role,fot,correou)
+
 
 	return render(request, 'perfiles.html')
 
@@ -188,15 +184,6 @@ def vista_registro_comida(request):
 	print("xxxxxxxxxxxxxxxx")
 	print(nombre,calorias,carbohidratos,proteinas,iddrawable,receta)
 	print("xxxxxxxxxxxxxxxx")
-
-	nombre = request.POST.get('nombre')
-	calorias = request.POST.get('calorias')
-	carbohidratos = request.POST.get('carbohidratos')
-	proteinas = request.POST.get('proteinas')
-	iddrawable= request.POST.get('url')
-	receta = request.POST.get('url')
-	print(nombre,calorias,proteinas,iddrawable)
-
 
 	try:
 		timestamps3= database.child("Comida").shallow().get().val()
@@ -280,7 +267,7 @@ def vista_lista_comida(request):
 
 	return render(request, 'lista_comida.html', locals())
 
-#Ver detalles comida
+#Ver eliminar
 
 # logica de los deportes
 def vista_agregar_deporte(request):
@@ -325,7 +312,7 @@ def vista_agregar_deporte(request):
 	calorias = request.POST.get('calorias')
 	categoria = request.POST.get('categoria')
 	duracion =request.POST.get('duracion')
-	imagen= request.POST.get('url')
+	imagen= request.POST.get('url2')
 	# print(email)
 	try:
 
