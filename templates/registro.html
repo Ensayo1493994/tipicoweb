@@ -14,7 +14,7 @@
 	{% endif %}
 
 	{% block titulo %}
-    <h1>Registrar  Usuario</h1>
+    <h1 class="titulo_principal">Registrar  Usuario</h1>
     {% endblock titulo %}
 
 {% block contenido %}
@@ -22,8 +22,12 @@
 	<!DOCTYPE html>
 <html>
 <body>
-	<form action="/registrar/" method="post" enctype="multipart/form-data">
+
+	<div class="form row">
+
+  <form action="/registro/" method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
+
 		<div class="form col-md-9">
     		<label for="">Email</label>
           <input type="email" class="form-control" name="email" required>
@@ -86,25 +90,5 @@
 }
 </script>
 
-<!--validaciones-->
-<script type="text/javascript">
-  function validar(evento){
-          key = evento.keyCode || evento.which;
-            teclado = String.fromCharCode(key).toLocaleLowerCase();
-            nombre = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz ";
-            especiales = "37-38-46";
-
-            teclado_especial = false;
-            for (var i in especiales) {
-                if (key == especiales[i]) {
-                    teclado_especial = true; break;
-                }
-            }
-            if (nombre.indexOf(teclado) == -1 && !teclado_especial) {
-                return false; 
-            }
-  }
- </script>
- </html>
-{% endblock contenido %}
-
+</html>
+	{% endblock contenido %}
