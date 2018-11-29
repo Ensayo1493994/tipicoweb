@@ -26,29 +26,30 @@
     {% csrf_token %}
     <div class="form col-md-9">
       <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" maxlength="40" minlength="2" pattern="[A-Z-a-z]+">
+      <input type="text" class="form-control" name="nombre" maxlength="40" minlength="1" onkeypress="return validar(event)" required>
       
       <label for="">Calorias</label>
       <input type="number" class="form-control" name="calorias"  min="1" max="10000" required>
 
       <label for="">Carbohidratos</label>     
-      <input type="text" class="form-control" name="carbohidratos" required maxlength="100" minlength="2" pattern="[A-Za-z0-9]+">
+      <input type="text" class="form-control" name="carbohidratos" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
 
       <label for="">Proteinas</label>     
-      <input type="text" class="form-control" name="proteinas" required maxlength="100" minlength="2" pattern="[A-Za-z0-9]+">
+      <input type="text" class="form-control" name="proteinas" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
 
       <label for="">Imagen</label>
       <input name="files[]"  type="file" id="comidaimagen" required>
-      <input name="url" type="hidden"  id="url">
+      <input name="url" type="hidden"  id="url" >
 
       <label for="">Receta</label>
       <input name="receta[]"  type="file" id="receta" required>
       <input name="url1" type="hidden"  id="url1"><br>
 
      
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()"> imagen </button>
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()"> receta </button><br><br>
-      <input class="btn btn-outline-warning" type="submit" value="guardar comida">
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button>
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()">Subir archivos</button>
+      <br>
+      <input class="btn btn-outline-warning" type="submit" value="guardar comida" >
 
     </div>
   </form>
@@ -91,26 +92,7 @@
 
   });
 });
-}
-
-</script>
-
-<script>
-    // Initialize Firebase
-    // TODO: Replace with your project's customized code snippet
-    var config = {
-      apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
-      authDomain: "tipico-saludable-50fb7.firebaseapp.com",
-      databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
-      projectId: "tipico-saludable-50fb7",
-      storageBucket: "tipico-saludable-50fb7.appspot.com",
-      messagingSenderId: "159019297528"
-    };
-    firebase.initializeApp(config);
-
-  function uploadimages()
-  {
-    var storage = firebase.storage();
+     var storage = firebase.storage();
     var receta = document.getElementById("receta").files[0];
     var storageRef = storage.ref();
     var thisref = storageRef.child(receta.name).put(receta);
@@ -133,6 +115,64 @@
 }
 
 </script>
+
+<script>
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    var config = {
+      apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+      authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+      databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+      projectId: "tipico-saludable-50fb7",
+      storageBucket: "tipico-saludable-50fb7.appspot.com",
+      messagingSenderId: "159019297528"
+    };
+    firebase.initializeApp(config);
+
+  function uploadimages()
+  {
+   
+}
+
+</script>
+<!--validaciones-->
+<script type="text/javascript">
+  function validar(evento){
+          key = evento.keyCode || evento.which;
+            teclado = String.fromCharCode(key).toLocaleLowerCase();
+            nombre = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz ";
+            especiales = "37-38-46";
+
+            teclado_especial = false;
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial = true; break;
+                }
+            }
+            if (nombre.indexOf(teclado) == -1 && !teclado_especial) {
+                return false; 
+            }
+  }
+ </script>
+
+ <script type="text/javascript">
+  function validar2(evento){
+          key = evento.keyCode || evento.which;
+            teclado = String.fromCharCode(key).toLocaleLowerCase();
+            proteinas = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz%1234567890 ";
+            especiales = "37-38-46";
+
+            teclado_especial = false;
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial = true; break;
+                }
+            }
+            if (proteinas.indexOf(teclado) == -1 && !teclado_especial) {
+                return false; 
+            }
+  }
+ </script>
 </html>
  
 
