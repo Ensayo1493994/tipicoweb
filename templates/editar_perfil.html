@@ -8,37 +8,44 @@
 
 
 
-	{% block contenido %}
-	<div class="form row">
-			<form action="/editar_perfil/0" method="post">
-				{% csrf_token %}
-				<div class="form col-md-9">	
+  {% block contenido %}
+  
 
-					<label for="">E-mail: </label>
-					<input type="email" class="form-control" name="email">
-					
-					<label for="">Contraseña: </label>
-					<input type="password" class="form-control" name="password">
-					
-					<label for="">Nombre: </label>
-					<input type="text" class="form-control" name="nombre">
-					
-					
-						<label for="">Foto: </label>
-						<input type="file" name="file" id="foto">
-						<input name="url" type="hidden"  id="url">
-						  <button type="button" onclick="uploadimage()">up load</button>
-						  <br>
-      
-					
-					<label for="">Rol: </label>
-					<input type="text" class="form-control" name="rol">
-					<br>
-					<input type="submit" value="Agregar Usuario">
-				</div>	
-			</form>
-	</div>		
-	<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+	<form action="/editar_perfil/{{ idenu }}" method="post" enctype="multipart/form-data">
+
+
+		{% csrf_token %}
+
+		<div class="form col-md-9">
+    		<label for="">Email</label>
+          <input type="email" class="form-control" name="email" value="{{ getemail }}" required>
+
+        <label for="">Password</label>
+          <input type="text" class="form-control" name="password" value="{{ getpassw }}" required>
+
+
+    		<label for="">Nombre</label>
+          <input type="text" class="form-control" name="nombre" value="{{ getnombre }}" onkeypress="return validar(event)" required> 
+
+
+    		<label for="">Imagen</label>
+          <input name="files[]"  type="file" id="file" required>
+          <input name="url3" type="hidden"  id="url3">
+
+        <label for="">Rol</label>
+          <select name="rol" class="form-control" required>
+            <option value="admin">Administrador</option>
+            <option value="super admin">Super Administrador</option>                 
+          </select><br>
+    		
+    		<button type="button" onclick="uploadimage()"> Subir archivos </button><br>
+        <input type="submit"  value="Guardar Usuario">
+    </div>
+  </form>
+</body>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
@@ -54,7 +61,7 @@
 
   function uploadimage(){
   var storage = firebase.storage();
-  var file = document.getElementById("foto").files[0];
+  var file = document.getElementById("file").files[0];
   var storageRef = storage.ref();
   var thisref = storageRef.child(file.name).put(file);
   thisref.on('state_changed',function(snapshot){
@@ -64,14 +71,13 @@
   },
   function() {
   thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-   console.log('got url', downloadURL);
-  document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url")," imagen");
+   console.log('got url3', downloadURL);
+  document.getElementById("url3").value = downloadURL;
+  console.log(document.getElementById("url3")," foto");
   alert("Imagen guardada");
   });
 });
 }
 
 </script>
-
 	{% endblock contenido %}

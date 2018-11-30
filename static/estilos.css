@@ -1,3 +1,277 @@
+/*ESTILOS DEL TEMPLATE DE LOGIN*/
+	/*ESTILO BOTON INGRESAR*/
+	button.btn.login[type=submit] {
+		    width: 100px;
+		    background-color: #E5A529;
+		    color: white;
+		    padding: 2px auto;
+		    margin: 0 auto;
+		    margin-left:200px; 
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+
+		button.btn.login[type=submit]:hover {
+		    background-color: #E5B934;
+		}
+
+	/*ESTILO DE TEXTO "SMALL" */
+	small.form-text{
+		margin-left: 15px;
+	}
+
+	/*ESTILO DE TEXTO "LABEL" */
+	label.txt.correo{
+		font-weight: 700;
+	}
+	/*ESTILO DE TEXTO "LABEL" */
+	label.txt.contraseña{
+		font-weight: 700;
+
+
+	}
+/*ESTILOS PARA EL TEMPLATE REGISTRAR USUARIO*/	
+	/*TITULO PRINCIPAL*/
+		h1.titulo_principal{
+			margin-top: 10px;
+			margin:auto;
+			width: 300px;
+		}
+
+	/*ESTILOS FORMULARIO*/	
+		/*ESTILOS DEL CONTENEDOR DEL FORMULARIO*/
+			div.formulario {
+				width: 50%;
+				margin: 0 auto;
+			    border-radius: 5px;
+			    background-color: #f2f2f2;
+			    padding: 20px;
+			    margin-top: 10px;
+			}
+		/*ESTILOS DE CAMPOS */
+			/*CAMPO DE E-MAIL*/
+			input[type=email], select {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*CAMPO DE CONTRASEÑA*/
+			input[type=password], select {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*CAMPO DE TEXTO */
+			input[type=text], select {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*CAMPO DE SUBIR IMAGEN*/
+			input[type=file], select {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*CAMPO DE ROL*/
+			select[class=form-control], select {
+			    width: 100%;
+			    /*padding: 12px 20px;*/
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*BOTON DE SUBIR IMAGEN*/
+			button.btn.subir_archivo[type=button] {
+			    width: 100px;
+			    background-color: #E5A529;
+			    color: black;
+			    padding: 0 auto;
+			    margin: 0 12px;
+			    border: none;
+			    border-radius: 4px;
+			    cursor: pointer;
+			}
+			button.btn.subir_archivo[type=button]:hover {
+			    background-color: #E5B934;
+			}
+			/*BOTON DE GUARDAR USUARIO*/
+			input.btn.guardar.usuario[type=submit] {
+			   /* width: 100%;*/
+			    background-color: #E5A529;
+			    color: white;
+			    padding: 2px auto;
+			    margin: 8px 200px;
+			    border: none;
+			    border-radius: 4px;
+			    cursor: pointer;
+			}
+
+			input.btn.guardar.usuario[type=submit]:hover {
+			    background-color: #E5B934;
+			}
+
+
+/*ESTILOS PARA EL TEMPLATE REGISTRAR COMIDA*/	
+	/*TITULO PRINCIPAL*/
+		h1.txt.titulo{
+			margin-top: 10px;
+			margin:auto;
+			width: 300px;
+		}
+
+	/*ESTILOS FORMULARIO*/	
+		/*ESTILOS DEL CONTENEDOR DEL FORMULARIO*/
+			div.formulario {
+				width: 50%;
+				margin: 0 auto;
+			    border-radius: 5px;
+			    background-color: #f2f2f2;
+			    padding: 20px;
+			    margin-top: 10px;
+			}
+		/*ESTILOS DE CAMPOS */
+			/*CAMPO DE TEXTO */
+			input[type=text], select {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*CAMPO DE TEXTO */
+			input[type=number], select {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*CAMPO DE E-MAIL*/
+			input[type=email], select {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*CAMPO DE CONTRASEÑA*/
+			input[type=password], select {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*CAMPO DE SUBIR IMAGEN*/
+			input[type=file], select {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*CAMPO DE ROL*/
+			select[class=form-control], select {
+			    width: 100%;
+			    /*padding: 12px 20px;*/
+			    margin: 8px 15px;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
+			/*BOTON DE SUBIR IMAGEN*/
+			button.btn.subir.img.plato[type=button] {
+			    width: 25%;
+			    background-color: #E5A529;
+			    color: black;
+			    padding: 0 auto;
+			    margin: 1px 12px;
+			    border: none;
+			    border-radius: 4px;
+			    cursor: pointer;
+			}
+			button.btn.subir.img.plato[type=button]:hover {
+			    background-color: #E5B934;
+			}
+			/*BOTON DE SUBIR RECETA*/
+			button.btn.subir.img.receta[type=button] {
+			    width: 100px;
+			    background-color: #E5A529;
+			    color: black;
+			    padding: 0 auto;
+			    margin: 1px 12px;
+			    border: none;
+			    border-radius: 4px;
+			    cursor: pointer;
+			}
+			button.btn.subir.img.receta[type=button]:hover {
+			    background-color: #E5B934;
+			}
+			/*BOTON DE GUARDAR COMIDA*/
+			input.btn.guardar.comida[type=submit] {
+			    /*width: 100%;*/
+			    background-color: #E5A529;
+			    color: white;
+			    padding: 2px auto;
+			    margin: 8px 200px;
+			    border: none;
+			    border-radius: 4px;
+			    cursor: pointer;
+			}
+
+			input.btn.guardar.comida[type=submit]:hover {
+			    background-color: #E5B934;
+			}
+
+
+
+/**/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .Contenedor{
 margin: 0 auto;
@@ -33,12 +307,12 @@ padding: 1000px;
 box-sizing: border-box;
 }*/
 
-.formComida{
+/*.formComida{
 	margin: 15px;
 	padding: 20px;
 	box-sizing: border-box;
 }
-
+*/
 .formDeporte{
 	margin: 15px;
 	padding: 20px;
@@ -83,13 +357,13 @@ box-sizing: border-box;
 	box-sizing: border-box;
 	float: center;
 }
-.btn.btn-warning{
+/*.btn.btn-warning{
 	display:block;
  	margin-left: auto;
   	margin-right: auto;
   	border-color: black;
 }
-
+*/
 
 
 
@@ -272,90 +546,4 @@ ul.pagination li a:hover:not(.active) {background-color: #E2A71F;}
   opacity: 1;
   right: 0;
 }
-
-/*ESTILOS PARA EL TEMPLATE REGISTRAR USUARIO*/
-	
-	/*TITULO PRINCIPAL*/
-		h1.titulo_principal{
-			margin:0 100px;
-		}
-
-	/*ESTILOS FORMULARIO*/	
-		input[type=text], select {
-		    width: 100%;
-		    padding: 12px 20px;
-		    margin: 8px 15px;
-		    display: inline-block;
-		    border: 1px solid #ccc;
-		    border-radius: 4px;
-		    box-sizing: border-box;
-		}
-
-		input[type=email], select {
-		    width: 100%;
-		    padding: 12px 20px;
-		    margin: 8px 15px;
-		    display: inline-block;
-		    border: 1px solid #ccc;
-		    border-radius: 4px;
-		    box-sizing: border-box;
-		}
-
-		input[type=password], select {
-		    width: 100%;
-		    padding: 12px 20px;
-		    margin: 8px 15px;
-		    display: inline-block;
-		    border: 1px solid #ccc;
-		    border-radius: 4px;
-		    box-sizing: border-box;
-		}
-
-		input[type=file], select {
-		    width: 100%;
-		    padding: 12px 20px;
-		    margin: 8px 15px;
-		    display: inline-block;
-		    border: 1px solid #ccc;
-		    border-radius: 4px;
-		    box-sizing: border-box;
-		}
-
-		input.btn[type=submit] {
-		   /* width: 100%;*/
-		    background-color: #E5A529;
-		    color: white;
-		    padding: 14px 20px;
-		    margin: 8px 0;
-		    border: none;
-		    border-radius: 4px;
-		    cursor: pointer;
-		}
-
-		input.btn[type=submit]:hover {
-		    background-color: #E5B934;
-		}
-
-		input[type=submit] {
-		   /* width: 100%;*/
-		    background-color: #E5A529;
-		    color: white;
-		    padding: 14px 20px;
-		    margin: 8px 0;
-		    border: none;
-		    border-radius: 4px;
-		    cursor: pointer;
-		}
-
-		input[type=submit]:hover {
-		    background-color: #E5B934;
-		}
-
-
-		div.formulario {
-		    border-radius: 5px;
-		    background-color: #f2f2f2;
-		    padding: 20px;
-
-
 

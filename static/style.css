@@ -16,7 +16,7 @@ h2{
     color: #000000;
 }
 a {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Comfortaa';
     font-weight: 800;
     text-align: center;
 }
@@ -101,4 +101,14 @@ a:active {
 }
 .container1{
    margin-left: 280px;
+}
+body {
+    margin: 0;
+    font-family: "Comfortaa";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #e8fffb;
+    text-align: left;
+    background-color: #fff;
 }

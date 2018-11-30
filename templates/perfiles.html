@@ -36,8 +36,8 @@
 				<td><img class="img-responsive"src="{{fot}}" width="50%" height="20%"></td>			
 				<td>{{passwor}}</td>
 				<td>
-					<a href="">Actualizar</a>
-
+					<a href="{% url 'editar_perfil' idenu=list_time %}">Actualizar</a>
+					<a href="{% url 'eliminar_perfil' idenu=list_time %}">Eliminar</a>
 				</td>
 
 			{% endfor %}

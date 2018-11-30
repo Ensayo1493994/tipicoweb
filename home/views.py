@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 import pyrebase
 from django.contrib import auth
 import traceback
@@ -192,45 +192,47 @@ def vista_editar_perfil(request, idenu):
 
 	getnombre = database.child("Usuario").child(str(idenu)).child("nombre").shallow().get().val()
 	getemail = database.child("Usuario").child(str(idenu)).child("email").shallow().get().val()
-	getpassw  = database.child("Usuario").child(str(idenu)).child("passw").shallow().get().val()
-	getrol = database.child("Usuario").child(str(idenu)).child("rol").shallow().get().val()
+	getpassw  = database.child("Usuario").child(str(idenu)).child("password").shallow().get().val()
 	
-	print(getnombre,getemail,getpassw,getrol)
+	print(getnombre,getemail,getpassw)
 	
 
 
 	email = request.POST.get('email')
-	passw = request.POST.get('password')
+	password = request.POST.get('password')
 	nombre = request.POST.get('nombre')
-	file = request.POST.get('url')
+	imagen = request.POST.get('url3')
 	rol = request.POST.get('rol') 
-	print(email,passw,file,nombre,rol)
-
+	print(email,password,imagen,nombre,rol)
+	
 	try:
-
-		timestamps2= database.child("Usuarios").shallow().get().val()
-		
-		#obtienen el tamaño de la lista
-		
+			#user = authe.create_user_with_email_and_password(email,passw)
 		data={
-			"correo":email,
-			"contraseña":passw,
 			"nombre":nombre,
-			"foto":file,
-			"rol":rol
+			"password":password,
+			"email":email,
+			"rol":rol,
+			"imagen":imagen
 		}
-		database.child("Usuarios").child().set(data)
-		return render(request, 'editar_perfil.html', locals())
-
+		#se pasa el valor del tamaño de la lista a un chlid y se hace un set a dicho child
+		database.child("Usuario").child(idenu).update(data)
+		mensaje="Cambio exitoso"
+		
+		return render(request,'editar_perfil.html',locals())
 	except:
-		mensaje="No se puede crear la cuenta"
-		return render(request,'editar_perfil.html',{'mensaje':mensaje})
-		#uid = user['localId']
+		mensaje="No se puede editar el deporte"
+		return render(request,'editar_perfil.html',locals())
 
 
 
 	return render(request, 'editar_perfil.html', locals())
 
+def vista_eliminar_perfil(request, idenu):
+	
+	print (idenu)
+	database.child("Usuario").child(idenu).remove()
+
+	return redirect('/lista_perfil/')
 
 
 
@@ -602,4 +604,9 @@ def vista_editar_deporte(request, iden):
 	
 	return render(request,'editar_deporte.html',locals())
 
+def vista_eliminar_deporte(request, iden):
+	
+	print (iden)
+	database.child("Deportes").child(iden).remove()
 
+	return redirect('/listar_deporte/')
