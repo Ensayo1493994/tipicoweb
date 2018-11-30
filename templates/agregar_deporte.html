@@ -10,58 +10,32 @@
 
 <div class="formulario">
   <label for="">Nombre</label>
-
     <input type="text" class="form-control" name="nombre" required>
 
-    <label for="">Calorias</label>     
+  <label for="">Calorias</label>     
       <input type="number" class="form-control" name="calorias"   required>
 
-    <label for="">Categoria</label>
-      <select name="categoria" class="form-control">
-        <option value="ejercicio">Ejercicio</option>
-        <option value="actividad">Activida física</option>
-        <option value="deporte">Deporte</option>                
-      </select>
-    
-    <label for="">Duración</label> 
-      <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
+  <label for="">Categoria</label>
+    <select name="categoria" class="form-control">
+      <option value="ejercicio">Ejercicio</option>
+      <option value="actividad">Activida física</option>
+      <option value="deporte">Deporte</option>                
+    </select>
+  
+  <label for="">Duración</label> 
+    <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
 
-    <label for="">Imagenes</label>
+  <label for="">Imagenes</label>
       <input name="files[]"  type="file" id="file" required>
+
+    <button class="btn subir_archivo" style="color: black" type="button" onclick="uploadimage()">Subir Imagen</button>
       
+    <input class="btn guardar usuario" type="submit" value="Guardar Deporte" >
 
 
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button>
-      <input class="btn btn-outline-warning" type="submit" value="Guardar Deporte" >
 
     </div>
   </form>   
-
-
-<<<<<<< HEAD
-
-      <!-- <input name="file"  type="file" id="imagen">
-=======
-      <label for="">Imagenes</label>
-      <input name="file"  type="file" id="imagen">
->>>>>>> 1dda754c90dbd42a18dae7a798817c0c584067f3
-      <input name="url" type="hidden"  id="url">
-      <button type="button" onclick="uploadimage()">up load</button>
-
-
-
-<<<<<<< HEAD
-
-<!-- 
-=======
-      <!-- <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button> -->
-      <input class="btn btn-outline-warning" type="submit" value="Guardar Deporte" >
-
-    </div>
-  </form>
-</div>   
- 
->>>>>>> 1dda754c90dbd42a18dae7a798817c0c584067f3
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
