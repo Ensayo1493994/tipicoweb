@@ -308,7 +308,6 @@ def vista_agregar_deporte(request):
 
 
 	nombre = request.POST.get('nombre')
-	descripcion = request.POST.get('descripcion')
 	calorias = request.POST.get('calorias')
 	categoria = request.POST.get('categoria')
 	duracion =request.POST.get('duracion')
@@ -333,7 +332,6 @@ def vista_agregar_deporte(request):
 			print("longitud final: ",longitud2)
 			data={
 				"nombre":nombre,
-				"descripcion":descripcion,
 				"calorias":calorias,
 				"categoria":categoria,
 				"duracion":duracion,
@@ -388,15 +386,6 @@ def vista_listar_deporte(request):
 	print(cal)
 
 
-
-	des=[]
-
-	for a in lis_time:
-		descripcion=database.child("Deporte").child(a).child("descripcion").get().val()
-		des.append(descripcion)
-	print(des)
-
-
 	cat=[]
 
 	for a in lis_time:
@@ -424,7 +413,7 @@ def vista_listar_deporte(request):
 
 
 
-	comb_lis= zip(lis_time,nombre,cal,des,cat,dur,ima)
+	comb_lis= zip(lis_time,nombre,cal,cat,dur,ima)
 
 
 

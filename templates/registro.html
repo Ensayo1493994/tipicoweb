@@ -21,8 +21,6 @@
 
 	<!DOCTYPE html>
 <html>
-<body>
-
 	<div class="form row">
 
   <form action="/registro/" method="POST" enctype="multipart/form-data">
@@ -48,11 +46,12 @@
             <option value="super admin">Super Administrador</option>                 
           </select><br>
     		
-    		<button type="button" onclick="uploadimage()"> Subir archivos </button><br>
-        <input type="submit"  value="Guardar Usuario">
+    		<button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button>
+      <br>
+      <input class="btn btn-outline-warning" type="submit" value="Guardar Uusarios" >
     </div>
   </form>
-</body>
+</div>
 
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
@@ -91,4 +90,23 @@
 </script>
 
 </html>
-	{% endblock contenido %}
+<!--validaciones-->
+<script type="text/javascript">
+  function validar(evento){
+          key = evento.keyCode || evento.which;
+            teclado = String.fromCharCode(key).toLocaleLowerCase();
+            nombre = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz ";
+            especiales = "37-38-46";
+
+            teclado_especial = false;
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial = true; break;
+                }
+            }
+            if (nombre.indexOf(teclado) == -1 && !teclado_especial) {
+                return false; 
+            }
+  }
+</script>
+{% endblock contenido %}

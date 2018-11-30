@@ -25,10 +25,8 @@
     {% csrf_token %}
     <div class="form col-md-9">
       <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" required maxlength="30" minlength="2" pattern="[A-Z-a-z]+">
+      <input type="text" class="form-control" name="nombre" required >
       
-      <label for="">Descripcion</label>
-      <input type="text" class="form-control" name="descripcion" required maxlength="40" minlength="2" pattern="[A-Z-a-z]+" >
 
       <label for="">Calorias</label>     
       <input type="number" class="form-control" name="calorias" required>
@@ -44,8 +42,8 @@
       <input type="number" class="form-control" name="duracion" placeholder="minutos" required>
 
       <label for="">Imágenes</label>
-      <input name="files"  type="file" id="imagen">
-      <input name="url2" type="hidden"  id="url2">
+      <input name="files"  type="file" id="imagen" required>
+      <input name="url2" type="hidden"  id="url2"><br>
 
       <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button>
       <input class="btn btn-outline-warning" type="submit" value="Guardar Deporte" >
