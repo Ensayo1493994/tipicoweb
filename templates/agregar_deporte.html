@@ -1,6 +1,5 @@
 {% extends 'plantillaBase.html' %}
 
-
     {% block contenido %}
 
 
@@ -40,7 +39,10 @@
       <button type="button" onclick="uploadimage()">up load</button> -->
 
 
-      <input type="submit" value="Agregar Deporte">
+
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button>
+      <input class="btn btn-outline-warning" type="submit" value="Guardar Deporte" >
+
     </div>
   </form>
 </div>   
@@ -80,6 +82,8 @@
 });
 }
 
+
 </script> -->
 
 {% endblock contenido %}
+

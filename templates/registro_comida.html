@@ -27,29 +27,33 @@
     <div class="form col-md-9">
       <label for="">Nombre</label>
 
-      <input type="text" class="form-control" name="nombre"  required>
+
+      <input type="text" class="form-control" name="nombre" maxlength="40" minlength="1" onkeypress="return validar(event)" required>
+
       
       <label for="">Calorias</label>
       <input type="text" class="form-control" name="calorias"  required>
 
       <label for="">Carbohidratos</label>     
-      <input type="number" class="form-control" name="carbohidratos"  required>
+
+      <input type="text" class="form-control" name="carbohidratos" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
 
       <label for="">Proteinas</label>     
-      <input type="number" class="form-control" name="proteinas"  required>
+      <input type="text" class="form-control" name="proteinas" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
 
       <label for="">Imagen</label>
-      <input name="files[]"  type="file" id="comidaimagen" >
-      <input name="url" type="hidden"  id="url">
+      <input name="files[]"  type="file" id="comidaimagen" required>
+      <input name="url" type="hidden"  id="url" >
 
       <label for="">Receta</label>
-      <input name="receta[]"  type="file" id="receta" >
-      <input name="url1" type="hidden"  id="url1"><br>
-
-     
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()"> imagen </button>
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()"> receta </button><br><br>
-      <input class="btn btn-outline-warning" type="submit" value="guardar comida">
+      <input name="receta[]"  type="file" id="receta" required>
+      <input name="url1" type="hidden"  id="url1"><br>       
+      
+       
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button>
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()">Subir archivos</button>
+      <br>
+      <input class="btn btn-outline-warning" type="submit" value="guardar comida" >
 
     </div>
   </form>
@@ -92,6 +96,7 @@
 
   });
 });
+    
 }
 
 </script>
@@ -131,11 +136,49 @@
 
   });
 });
+   
 }
 
 </script>
+<!--validaciones-->
+<script type="text/javascript">
+  function validar(evento){
+          key = evento.keyCode || evento.which;
+            teclado = String.fromCharCode(key).toLocaleLowerCase();
+            nombre = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz ";
+            especiales = "37-38-46";
+
+            teclado_especial = false;
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial = true; break;
+                }
+            }
+            if (nombre.indexOf(teclado) == -1 && !teclado_especial) {
+                return false; 
+            }
+  }
+ </script>
+
+ <script type="text/javascript">
+  function validar2(evento){
+          key = evento.keyCode || evento.which;
+            teclado = String.fromCharCode(key).toLocaleLowerCase();
+            proteinas = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz%1234567890 ";
+            especiales = "37-38-46";
+
+            teclado_especial = false;
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial = true; break;
+                }
+            }
+            if (proteinas.indexOf(teclado) == -1 && !teclado_especial) {
+                return false; 
+            }
+  }
+ </script>
 </html>
- 
 
 {% endblock contenido %}
 

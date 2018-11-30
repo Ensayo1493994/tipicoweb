@@ -14,35 +14,45 @@
 	{% endif %}
 
 	{% block titulo %}
-    <h1>Registrar  Usuario</h1>
+    <h1 class="titulo_principal">Registrar  Usuario</h1>
     {% endblock titulo %}
 
 {% block contenido %}
 
+
 	<form action="/registrar/" method="post" enctype="multipart/form-data">
+
+
 		{% csrf_token %}
+
 		<div class="form col-md-9">
-		<label for="">Email</label>
-      	<input type="email" class="form-control" name="email" required>
+    		<label for="">Email</label>
+          <input type="email" class="form-control" name="email" required>
 
-      	<label for="">Password</label>
-      	<input type="password" class="form-control" name="password" required>
+        <label for="">Password</label>
+          <input type="password" class="form-control" name="password" required>
 
-		<label for="">Nombre</label>
-      	<input type="text" class="form-control" name="nombre" required> 
 
-		<label for="">Imagen</label>
-        <input name="files[]"  type="file" id="file" required>
-        <input name="url3" type="hidden"  id="url3">
+    		<label for="">Nombre</label>
+          <input type="text" class="form-control" name="nombre" onkeypress="return validar(event)" required> 
+
+
+    		<label for="">Imagen</label>
+          <input name="files[]"  type="file" id="file" required>
+          <input name="url3" type="hidden"  id="url3">
 
         <label for="">Rol</label>
-      	<input type="text" class="form-control" name="rol" required> 
-		
-		<button type="button" onclick="uploadimage()"> Guardar Imagen </button><br>
+          <select name="rol" class="form-control" required>
+            <option value="admin">Administrador</option>
+            <option value="super admin">Super Administrador</option>                 
+          </select><br>
+    		
+    		<button type="button" onclick="uploadimage()"> Subir archivos </button><br>
         <input type="submit"  value="Guardar Usuario">
     </div>
   </form>
 </body>
+
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
@@ -79,5 +89,5 @@
 }
 
 </script>
-</html>
+
 	{% endblock contenido %}
