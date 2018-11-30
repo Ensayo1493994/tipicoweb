@@ -20,6 +20,7 @@
 
     {% block contenido %}
 
+<<<<<<< HEAD
 <div class="form row">
 
   <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
@@ -45,13 +46,42 @@
          <label for="">Imagenes</label>
       <input name="files"  type="file" id="imagen" required>
       <input name="url2" type="hidden"  id="url2"><br>
+=======
+<div class="formulario">
+  <label for="">Nombre</label>
+    <input type="text" class="form-control" name="nombre" required>
 
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button>
-      <input class="btn btn-outline-warning" type="submit" value="Guardar Deporte" >
+  <label for="">Calorias</label>     
+      <input type="number" class="form-control" name="calorias"   required>
 
+  <label for="">Categoria</label>
+    <select name="categoria" class="form-control">
+      <option value="ejercicio">Ejercicio</option>
+      <option value="actividad">Activida física</option>
+      <option value="deporte">Deporte</option>                
+    </select>
+  
+  <label for="">Duración</label> 
+    <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
+
+  <label for="">Imagenes</label>
+      <input name="files[]"  type="file" id="file" required>
+
+    <button class="btn subir_archivo" style="color: black" type="button" onclick="uploadimage()">Subir Imagen</button>
+      
+    <input class="btn guardar usuario" type="submit" value="Guardar Deporte" >
+
+>>>>>>> 84a8559b8d1df783417bb24316a3813ffaf836cc
+
+
+<<<<<<< HEAD
       </div>
   </form>
 </div>   
+=======
+    </div>
+  </form>   
+>>>>>>> 84a8559b8d1df783417bb24316a3813ffaf836cc
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
