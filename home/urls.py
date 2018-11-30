@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
+
 	path('login/',vista_login, name='vista_login'),
 	path('conexion/',postsign,name='postsign'),
 	path('login/',vista_login),
@@ -17,7 +18,8 @@ urlpatterns = [
 	path('editar_perfil/<int:idenu>',vista_editar_perfil,name='editar_perfil'),
 	path('editar_perfil/',vista_editar_perfil,name='ver_editar_perfil'),
 	path('lista_perfil/',lista_perfil, name='lista_perfil'),
-	path('inicio/',inicio, name='inicio'),
+	path('',inicio, name='inicio'),
+	
 
 
 ]

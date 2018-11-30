@@ -13,16 +13,8 @@
     
   </script>
 {% endif %}
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>registro comida</title>
-</head>
-  
-
 	{% block titulo %}
-    <h1>Agregar Plato</h1>
+    <h1>Registro de Plato</h1>
     {% endblock titulo %}
 
 
@@ -34,27 +26,31 @@
     {% csrf_token %}
     <div class="form col-md-9">
       <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" <!--pattern="{1,15}"--> required>
+
+      <input type="text" class="form-control" name="nombre"  required>
       
       <label for="">Calorias</label>
-      <input type="text" class="form-control" name="calorias" <!--pattern="{1,15}"--> required>
+      <input type="text" class="form-control" name="calorias"  required>
 
       <label for="">Carbohidratos</label>     
-      <input type="number" class="form-control" name="carbohidratos" <!--pattern="{1,15}"--> required>
+      <input type="number" class="form-control" name="carbohidratos"  required>
 
       <label for="">Proteinas</label>     
-      <input type="number" class="form-control" name="proteinas" <!--pattern="{1,15}"--> required>
+      <input type="number" class="form-control" name="proteinas"  required>
 
       <label for="">Imagen</label>
-      <input name="file[]"  type="file" id="comidaimagen" required>
+      <input name="files[]"  type="file" id="comidaimagen" >
       <input name="url" type="hidden"  id="url">
 
       <label for="">Receta</label>
-      <input name="file[]"  type="file" id="receta" required>
-      <input name="url1" type="hidden"  id="url1">
+      <input name="receta[]"  type="file" id="receta" >
+      <input name="url1" type="hidden"  id="url1"><br>
 
-      <button type="button"  enctype="multipart/form-data" onclick="uploadimage()">guardar imagen</button>
-      <input type="submit" value="Agregar comida">
+     
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()"> imagen </button>
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()"> receta </button><br><br>
+      <input class="btn btn-outline-warning" type="submit" value="guardar comida">
+
     </div>
   </form>
 </div>
@@ -65,37 +61,81 @@
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
     var config = {
-    apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
-    authDomain: "tipico-saludable-50fb7.firebaseapp.com",
-    databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
-    projectId: "tipico-saludable-50fb7",
-    storageBucket: "tipico-saludable-50fb7.appspot.com",
-    messagingSenderId: "159019297528"
-  };
+      apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+      authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+      databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+      projectId: "tipico-saludable-50fb7",
+      storageBucket: "tipico-saludable-50fb7.appspot.com",
+      messagingSenderId: "159019297528"
+    };
     firebase.initializeApp(config);
 
-  function uploadimage(){
-  var storage = firebase.storage();
-  var file = document.getElementById("comidaimagen").files[0];
-  var storageRef = storage.ref();
-  var thisref = storageRef.child(file.name).put(file);
-  thisref.on('state_changed',function(snapshot){
-  console.log("Imagen guardada");
+  function uploadimage()
+  {
+    var storage = firebase.storage();
+    var file = document.getElementById("comidaimagen").files[0];
+    var storageRef = storage.ref();
+    var thisref = storageRef.child(file.name).put(file);
+    thisref.on('state_changed',function(snapshot){
+      console.log("Imagen guardada correctamente");
+    },
+  function(error) 
+  {
   },
-  function(error) {
+  function() 
+  {
+    thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+    console.log('got url', downloadURL);
+    document.getElementById("url").value = downloadURL;
+    console.log(document.getElementById("url")," imagen");
+    alert("Imagen  guardada correctamente");
+
+  });
+});
+}
+
+</script>
+
+<script>
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    var config = {
+      apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+      authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+      databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+      projectId: "tipico-saludable-50fb7",
+      storageBucket: "tipico-saludable-50fb7.appspot.com",
+      messagingSenderId: "159019297528"
+    };
+    firebase.initializeApp(config);
+
+  function uploadimages()
+  {
+    var storage = firebase.storage();
+    var receta = document.getElementById("receta").files[0];
+    var storageRef = storage.ref();
+    var thisref = storageRef.child(receta.name).put(receta);
+    thisref.on('state_changed',function(snapshot){
+      console.log("Receta guardada correctamente");
+    },
+  function(error) 
+  {
   },
-  function() {
-  thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-   console.log('got url', downloadURL);
-  document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url")," imagen");
-  alert("Imagen guardada");
+  function() 
+  {
+    thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+    console.log('got url1', downloadURL);
+    document.getElementById("url1").value = downloadURL;
+    console.log(document.getElementById("url1")," imagen");
+    alert("Receta  guardada correctamente");
+
   });
 });
 }
 
 </script>
 </html>
+ 
 
 {% endblock contenido %}
 

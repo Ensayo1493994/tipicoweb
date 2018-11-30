@@ -12,18 +12,20 @@
 
 
 {% block tablas %}
+<div class="table-responsive">  
 
 
 
         <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">N°</th>
+                    <!--<th scope="col">N°</th>-->
                     <th scope="col">Nombre</th>
                     <th scope="col">Imagen</th>
                     <th scope="col">Calorias</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Duracion</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -33,15 +35,19 @@
 
                 
                 <tr>              
+
                 <td>{{lis_times}}</td>
                 <td>{{nombre}}</td>
                 <td><div class="imagen"><img src="{{ ima }}"></div></td>
+
                 <td>{{cal}}</td>
                 <td>{{cat}}</td>
                 <td>{{dur}}</td>
                 <td>
+
                     <a href="{% url 'editar_deporte' iden=lis_times %}">Actualizar</a>
                     <a href="">Ver detalles</a>
+
                 </td>  
              
 
@@ -51,8 +57,21 @@
 </tr>
 </tbody>
 </table>
+</div>
 
-<button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button>
-    <button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button>
+<div class="center">
+  <ul class="pagination">
+    <li><a href="#">«</a></li>
+    <li><a  href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">»</a></li>
+  </ul>
+</div>
+
+
+<!-- <button><a href="{% url 'agregar_deporte' %}">agregar deporte</a> </button> -->   
 
     {% endblock tablas %}

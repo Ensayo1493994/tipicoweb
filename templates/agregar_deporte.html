@@ -8,12 +8,14 @@
 
 
 
+
 <div class="form row">
 
   <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form col-md-9">
       <label for="">Nombre</label>
+
       <input type="text" class="form-control" name="nombre" required>
 
       <label for="">Calorias</label>     
@@ -29,12 +31,14 @@
       <label for="">Duración</label> 
       <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
 
+
       <label for="">Imagenes</label>
       <input type="text" class="form-control" name="url" placeholder="url"  required>
 
       <!-- <input name="file"  type="file" id="imagen">
       <input name="url" type="hidden"  id="url">
       <button type="button" onclick="uploadimage()">up load</button> -->
+
 
       <input type="submit" value="Agregar Deporte">
     </div>
@@ -47,13 +51,13 @@
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
     var config = {
-    apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
-    authDomain: "tipico-saludable-50fb7.firebaseapp.com",
-    databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
-    projectId: "tipico-saludable-50fb7",
-    storageBucket: "tipico-saludable-50fb7.appspot.com",
-    messagingSenderId: "159019297528"
-  };
+      apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+      authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+      databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+      projectId: "tipico-saludable-50fb7",
+      storageBucket: "tipico-saludable-50fb7.appspot.com",
+      messagingSenderId: "159019297528"
+    };
     firebase.initializeApp(config);
 
   function uploadimage(){
@@ -77,4 +81,5 @@
 }
 
 </script> -->
+
 {% endblock contenido %}
