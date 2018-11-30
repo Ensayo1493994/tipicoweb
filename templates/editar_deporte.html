@@ -1,29 +1,13 @@
 {% extends 'plantillaBase.html' %}
-{% if mensaje %}
-  <script>
-    alert('{{ mensaje}}');
-    alert('{{ db }}');
-  </script>
-{% endif %}
-
-{% if mensaje %}
-  <script>
-    alert('{{ mensaje2}}');
-    
-  </script>
-{% endif %}
-  {% block titulo %}
-    <h1>Registro de Plato</h1>
-    {% endblock titulo %}
 
 
     {% block contenido %}
 
+
 <div class="form row">
 
-  <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
+  <form action="/editar_deporte/{{ iden }}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-
     <div class="form col-md-9">
       <label for="">Nombre</label>
       <input type="text" class="form-control" name="nombre" required>
@@ -90,6 +74,4 @@
 
 
 </script> 
-
 {% endblock contenido %}
-

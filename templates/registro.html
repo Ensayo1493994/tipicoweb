@@ -19,11 +19,13 @@
 
 {% block contenido %}
 
+
 	<!DOCTYPE html>
 <html>
 	<div class="form row">
 
-  <form action="/registro/" method="POST" enctype="multipart/form-data">
+	<form action="/registrar/" method="post" enctype="multipart/form-data">
+
 		{% csrf_token %}
 
 		<div class="form col-md-9">
@@ -33,8 +35,10 @@
         <label for="">Password</label>
           <input type="password" class="form-control" name="password" required>
 
+
     		<label for="">Nombre</label>
           <input type="text" class="form-control" name="nombre" onkeypress="return validar(event)" required> 
+
 
     		<label for="">Imagen</label>
           <input name="files[]"  type="file" id="file" required>
@@ -87,6 +91,7 @@
   });
 });
 }
+
 </script>
 
 </html>

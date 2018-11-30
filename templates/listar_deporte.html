@@ -1,12 +1,16 @@
 {% extends 'plantillaBase.html' %}
 
 {% block titulo_tablas %}
+
     <h1>Deportes</h1>
+
 {% endblock titulo_tablas %}
 
 
 {% block tablas %}
 <div class="table-responsive">  
+
+
 
         <table class="table">
                 <thead>
@@ -23,18 +27,20 @@
                 <tbody>
 
 
-    {% for lis_time,nombre,cal,cat,dur,ima in comb_lis %}
+    {% for lis_times,nombre,cal,cat,dur,ima in comb_lis %}
 
-                
                 <tr>              
-                <!--<td>{{lis_time}}</td>-->
+
+                <!--<td>{{lis_times}}</td>-->
                 <td>{{nombre}}</td>
                 <td><img class="img-responsive" src="{{ima}}" width="50%" height="20%"></td>
                 <td>{{cal}}</td>
                 <td>{{cat}}</td>
                 <td>{{dur}}</td>
                 <td>
-                    <a href="">Actualizar</a>
+
+                    <a href="{% url 'editar_deporte' iden=lis_times %}">Actualizar</a>
+
                 </td>  
              
 

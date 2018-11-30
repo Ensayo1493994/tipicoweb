@@ -14,25 +14,27 @@
 		<thead>
 			<tr>
 
-				<!--<th scope="col">Indices</th>-->
+				<th scope="col">Indices</th>
 				<th scope="col">Nombre</th>
 				<th scope="col">Rol</th>
 				<th scope="col">Correo</th>
 				<th scope="col">Imagen</th>
-				<th scope="col"></th>
+				<th scope="col">Contraseña</th>
 
 			</tr>
 		</thead>
 		<tbody>
-		{% for list_time,nom,role,correou,fot in paquete_list  %}
+
+		{% for list_time,nom,role,fot,correou,passwor in paquete_list  %}
 	
 			<tr>
 
-				<!--<td>{{list_time}}</td>-->
+				<td>{{list_time}}</td>
 				<td>{{nom}}</td>
-				<td>{{role}}</td>
+				<td>{{role}}</td>	
 				<td>{{correou}}</td>
-				<td><img class="img-responsive"src="{{fot}}" width="50%" height="20%"></td>				
+				<td><img class="img-responsive"src="{{fot}}" width="50%" height="20%"></td>			
+				<td>{{passwor}}</td>
 				<td>
 					<a href="">Actualizar</a>
 
@@ -46,17 +48,4 @@
 	<!-- <button type="button" onclick="location.href='{% url 'registrar' %}'">Registro</button> -->
 	<!-- <button type="button" onclick="location.href='{% url 'inicio' %}'">Inicio</button> -->
 
-
- <div class="center">
-  <ul class="pagination">
-    <li><a href="#">«</a></li>
-    <li><a  href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">»</a></li>
-  </ul>
-</div>
-</ul>
 {% endblock tablas %}
