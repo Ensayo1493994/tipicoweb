@@ -19,6 +19,8 @@ urlpatterns = [
 	path('editar_perfil/',vista_editar_perfil,name='ver_editar_perfil'),
 	path('lista_perfil/',lista_perfil, name='lista_perfil'),
 	path('',inicio, name='inicio'),
+	path('eliminar_deporte/<int:iden>',vista_eliminar_deporte, name='eliminar_deporte'),
+	path('eliminar_perfil/<int:idenu>',vista_eliminar_perfil, name='eliminar_perfil')
 	
 
 
