@@ -14,18 +14,14 @@
 	{% endif %}
 
 	{% block titulo %}
-    <h1 class="titulo_principal">Registrar  Usuario</h1>
-    {% endblock titulo %}
+    <h1 class="titulo_principal">Registrar Usuario</h1>
+  {% endblock titulo %}
 
 {% block contenido %}
-
-
 	<form action="/registrar/" method="post" enctype="multipart/form-data">
-
-
 		{% csrf_token %}
 
-		<div class="form col-md-9">
+		<div class="formulario">
     		<label for="">Email</label>
           <input type="email" class="form-control" name="email" required>
 
@@ -40,15 +36,15 @@
     		<label for="">Imagen</label>
           <input name="files[]"  type="file" id="file" required>
           <input name="url3" type="hidden"  id="url3">
+    		<button class="btn subir_archivo" type="button" onclick="uploadimage()"> Subir archivos </button><br>
 
         <label for="">Rol</label>
           <select name="rol" class="form-control" required>
             <option value="admin">Administrador</option>
             <option value="super admin">Super Administrador</option>                 
-          </select><br>
-    		
-    		<button type="button" onclick="uploadimage()"> Subir archivos </button><br>
-        <input type="submit"  value="Guardar Usuario">
+          </select>
+        
+        <input class="btn guardar usuario" type="submit"  value="Guardar Usuario">
     </div>
   </form>
 </body>

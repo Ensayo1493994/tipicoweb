@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
   </head>
 
-  <body background="../static/paquetes/dist/img/inicio.png">
+  <body background="../static/paquetes/dist/img/2.jpg">
 
     <!--Contenedor de la  pagina web -->
     <div class="contenedor_login"  >
@@ -31,15 +31,15 @@
               <form action="/conexion/" method="post" class="formulario_login">
                 {% csrf_token %}
                 <div class="form-group ">
-                  <label for="">Correo Electronico</label>
+                  <label class="txt correo" for="">Correo Electronico</label>
                   <input type="email" class="form-control" name="email"  placeholder="📧 Correo Electronico">
                   <small id="" class="form-text">Cuidaremos de tus datos ingresados en esta aplicacion web.</small>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Contraseña</label>
+                  <label class="txt contraseña" for="exampleInputPassword1">Contraseña</label>
                   <input type="password" name="password" class="form-control" id="" placeholder="🔐 Contraseña">
                 </div>          
-                <button class="btn btn-warning" style="color: black" type="submit" value="Ingresar">Ingresar</button>
+                <button class="btn login" style="color: black" type="submit" value="Ingresar">Ingresar</button>
               </form>   
             </div>    
         </div> 

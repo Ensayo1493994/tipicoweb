@@ -14,50 +14,39 @@
   </script>
 {% endif %}
 	{% block titulo %}
-    <h1>Registro de Plato</h1>
+    <h1 class="txt titulo">Registro de Plato</h1>
     {% endblock titulo %}
 
-
 {% block contenido %}
-
- <div class="form row">
-
   <form action="/registro_comida/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="form col-md-9">
+
+   <div class="formulario">
       <label for="">Nombre</label>
-
-
-      <input type="text" class="form-control" name="nombre" maxlength="40" minlength="1" onkeypress="return validar(event)" required>
-
-      
+        <input type="text" class="form-control" name="nombre" maxlength="40" minlength="1" onkeypress="return validar(event)" required>
       <label for="">Calorias</label>
-      <input type="text" class="form-control" name="calorias"  required>
-
+        <input type="number" class="form-control" name="calorias"  required>    
       <label for="">Carbohidratos</label>     
-
-      <input type="text" class="form-control" name="carbohidratos" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
-
+        <input type="text" class="form-control" name="carbohidratos" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
       <label for="">Proteinas</label>     
-      <input type="text" class="form-control" name="proteinas" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
-
+        <input type="text" class="form-control" name="proteinas" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
       <label for="">Imagen</label>
-      <input name="files[]"  type="file" id="comidaimagen" required>
-      <input name="url" type="hidden"  id="url" >
+        <input name="files[]"  type="file" id="comidaimagen" required>
+        <input name="url" type="hidden"  id="url" >
+
+      <button class="btn subir img plato" type="button" onclick="uploadimage()">Subir Imagen</button><br>
 
       <label for="">Receta</label>
-      <input name="receta[]"  type="file" id="receta" required>
-      <input name="url1" type="hidden"  id="url1"><br>       
-      
-       
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button>
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()">Subir archivos</button>
-      <br>
-      <input class="btn btn-outline-warning" type="submit" value="guardar comida" >
+        <input name="receta[]"  type="file" id="receta" required>
+        <input name="url1" type="hidden"  id="url1"><br>       
+        
+      <button class="btn subir img receta" style="color: black" type="button" onclick="uploadimages()">Subir Receta</button>
 
+
+      <input class="btn guardar comida" type="submit" value="guardar comida" > 
     </div>
   </form>
-</div>
+
 
 	
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
