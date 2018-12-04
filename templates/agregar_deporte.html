@@ -20,34 +20,36 @@
 
     {% block contenido %}
 
+
 <div class="form row">
 
   <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="form col-md-9">
+
       <label for="">Nombre</label>
       <input type="text" class="form-control" name="nombre" required>
 
       <label for="">Calorias</label>     
       <input type="number" class="form-control" name="calorias"   required>
 
-    <label for="">Categoria</label>
-      <select name="categoria" class="form-control">
-        <option value="ejercicio">Ejercicio</option>
-        <option value="actividad">Activida física</option>
-        <option value="deporte">Deporte</option>                
-      </select>
+      <label for="">Categoria</label>
+        <select name="categoria" class="form-control">
+          <option value="ejercicio">Ejercicio</option>
+          <option value="actividad">Activida física</option>
+          <option value="deporte">Deporte</option>                
+        </select>
     
-    <label for="">Duración</label> 
-      <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
+      <label for="">Duración</label> 
+        <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
 
-         <label for="">Imagenes</label>
-      <input name="files"  type="file" id="imagen" required>
-      <input name="url2" type="hidden"  id="url2"><br>
+      <label for="">Imagenes</label>
+        <input name="files"  type="file" id="imagen" required>
+        <input name="url2" type="hidden"  id="url2"><br>
 
-    <button class="btn subir_archivo" style="color: black" type="button" onclick="uploadimage()">Subir Imagen</button>   
-    <input class="btn guardar usuario" type="submit" value="Guardar Deporte" >
+        <button class="btn subir_archivo" style="color: black" type="button" onclick="uploadimage()">Subir Imagen</button>   
+        <input class="btn guardar usuario" type="submit" value="Guardar Deporte" >
 
 
       </div>
