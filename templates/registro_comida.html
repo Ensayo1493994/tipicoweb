@@ -18,6 +18,7 @@
     {% endblock titulo %}
 
 {% block contenido %}
+<div class="form row">
   <form action="/registro_comida/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 

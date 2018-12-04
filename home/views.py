@@ -443,12 +443,21 @@ def vista_editar_comida(request, idco):
 			
 			return render(request,'editar_comida.html',locals())
 		except:
-			mensaje="No se puede editar el Platp"
+			mensaje="No se puede editar el Plato"
 			return render(request,'editar_comida.html',locals())
 	
 
 	
 	return render(request,'editar_comida.html',locals())
+
+
+def vista_eliminar_comida(request, idco):
+	
+	print (idco)
+	database.child("Comida").child(idco).remove()
+
+	return redirect('/lista_comida/')
+
 
 
 
