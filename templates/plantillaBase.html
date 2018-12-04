@@ -110,6 +110,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
+          {% if user.is_authenticated and request.user.is_superuser %}
             <ul class="treeview-menu">
               <li class="active">
                 <a class="admin" href="/registro/">
@@ -125,6 +126,7 @@
               </li>
             </ul>
           </li>
+          {% endif %}
 
           <li class="active treeview">
             <a class="comida" href="/registro_comida/">
