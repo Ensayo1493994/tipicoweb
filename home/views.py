@@ -31,6 +31,7 @@ authe = firebase.auth()
 def inicio(request):
  	
 	return render(request,'inicio.html')
+	
 '''VISTA INICIAR SESION'''
 def vista_login(request):
  	
