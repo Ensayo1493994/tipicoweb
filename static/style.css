@@ -80,6 +80,12 @@ section {
     height: 180px;
     margin-top: 20px;
 }
+a {
+    color: #ffca2a;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
 a:visited {
     color: rgb(0, 0, 0);
 }
