@@ -110,11 +110,12 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
+          {% if user.is_authenticated and request.user.is_superuser %}
             <ul class="treeview-menu">
               <li class="active">
                 <a class="admin" href="/registro/">
                   <i class="fa  fa-user-plus"></i>
-                    Registar Usuario
+                    Registrar Usuario
                 </a>
               </li>
               <li>
@@ -125,6 +126,7 @@
               </li>
             </ul>
           </li>
+          {% endif %}
 
           <li class="active treeview">
             <a class="comida" href="/registro_comida/">
@@ -159,12 +161,12 @@
             <ul class="treeview-menu">
               <li class="active">
                 <a class="deporte" href="/agregar_deporte/">
-                  <i class="fa fa-child"></i>Registrar Depote
+                  <i class="fa fa-child"></i>Registrar Deporte
                 </a>
               </li>
               <li>
                 <a class="deporte" href="/listar_deporte/">
-                  <i class="fa  fa-list-ul  "></i>Listar Depotes
+                  <i class="fa  fa-list-ul  "></i>Lista de  Deportes
                 </a>
               </li>
             </ul>

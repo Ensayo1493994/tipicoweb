@@ -1,53 +1,41 @@
 {% extends 'plantillaBase.html' %}
 
-{% if mensaje %}
-  <script>
-    alert('{{ mensaje}}');
-    alert('{{ db }}');
-  </script>
-{% endif %}
+{{% block contenido %}}
 
-{% if mensaje %}
-  <script>
-    alert('{{ mensaje2}}');
-    
-  </script>
-{% endif %}
-	{% block titulo %}
-    <h1 class="txt titulo">Registro de Plato</h1>
-    {% endblock titulo %}
+	<div class="form row">
 
-{% block contenido %}
-<div class="form row">
-  <form action="/registro_comida/" method="POST" enctype="multipart/form-data">
+  <form action="/registro_comida/{{ idco }}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+    <div class="form col-md-9">
 
-   <div class="formulario">
       <label for="">Nombre</label>
-        <input type="text" class="form-control" name="nombre" maxlength="40" minlength="1" onkeypress="return validar(event)" required>
+      <input type="text" class="form-control" name="nombre" maxlength="40" minlength="1" onkeypress="return validar(event)" required>
+      
       <label for="">Calorias</label>
-        <input type="number" class="form-control" name="calorias"  required>    
+      <input type="text" class="form-control" name="calorias"  required>
+
       <label for="">Carbohidratos</label>     
-        <input type="text" class="form-control" name="carbohidratos" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
+      <input type="text" class="form-control" name="carbohidratos" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
+
       <label for="">Proteinas</label>     
-        <input type="text" class="form-control" name="proteinas" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
+      <input type="text" class="form-control" name="proteinas" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
+
       <label for="">Imagen</label>
-        <input name="files[]"  type="file" id="comidaimagen" required>
-        <input name="url" type="hidden"  id="url" >
+      <input name="files[]"  type="file" id="comidaimagen" required>
+      <input name="url" type="hidden"  id="url" >
 
       <label for="">Receta</label>
-        <input name="receta[]"  type="file" id="receta" required>
-        <input name="url1" type="hidden"  id="url1"><br>       
+      <input name="receta[]"  type="file" id="receta" required>
+      <input name="url1" type="hidden"  id="url1"><br>       
       
       <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivo</button>
       <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()">Subir archivo</button>
       <br>
       <input class="btn btn-outline-warning" type="submit" value="Guardar Plato" >
+
     </div>
   </form>
 </div>
-  
-
 
 	
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
@@ -169,10 +157,4 @@
   }
  </script>
 </html>
-
-{% endblock contenido %}
-
-
-
-
-
+{{% endblock contenido %}}

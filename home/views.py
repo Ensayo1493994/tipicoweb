@@ -4,6 +4,7 @@ from django.contrib import auth
 import traceback
 import pytz
 
+
 # Create your views here.
 
 valor=0
@@ -92,13 +93,7 @@ def registrar(request):
 	print("ultimo elemento de la lista: ",int(ultimo_elemento))
 	print("siguiente elemto a crear: ",int(siguiente_elemento))
 
-
-
 	# 5-iniciar a crear desde cero solo si lista esta vacia
-	
-
-
-
 	# 6- obtenemos los datos del formulario
 
 
@@ -109,11 +104,7 @@ def registrar(request):
 	rol= request.POST.get('rol')
 
 
-
 	# 7- creamos logica para que los registros no se remplazen 
-
-	
-
 	lista2= database.child("Usuario").shallow().get().val()
 	lista_indices2=[]
 	for i in lista2:
@@ -133,9 +124,7 @@ def registrar(request):
 			"imagen":imagen
 		}
 
-	
 	# 8- agregamos data a la base de datos
-
 	
 	database.child("Usuario").child(str(siguiente_elemento)).set(data)
 	
@@ -418,166 +407,169 @@ def vista_lista_comida(request):
 
 	return render(request, 'lista_comida.html', locals())
 
-#Ver eliminar
+def vista_editar_comida(request, idco):
+
+	print (idco)
+
+	getnombre = database.child("Comida").child(str(idco)).child("Nombre").shallow().get().val()
+	getcalorias = database.child("Comida").child(str(idco)).child("Calorias").shallow().get().val()
+	getcarbohidratos = database.child("Comida").child(str(idco)).child("Carbohidratos").shallow().get().val()
+	getproteinas = database.child("Comida").child(str(idco)).child("Proteinas").shallow().get().val()
+	print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+	print (getnombre,getcalorias,getcarbohidratos,getproteinas)
+	print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+	if request.method== "POST":	
+		index = request.POST.get('index')
+		nombre = request.POST.get('Nombre')
+		calorias = request.POST.get('Calorias')
+		carbohidratos = request.POST.get('Carbohidratos')
+		proteinas =request.POST.get('Proteinas')
+		iddrawable= request.POST.get('url')
+		receta= request.POST.get('url1')
+		# print(email)
+		try:
+			#user = authe.create_user_with_email_and_password(email,passw)
+			data={
+				"Nombre":nombre,
+				"Calorias":calorias,
+				"Carbohidratos":carbohidratos,
+				"Proteinas":proteinas,
+				"Receta":receta,
+				"idDrawable":iddrawable,
+			}
+			#se pasa el valor del tamaño de la lista a un chlid y se hace un set a dicho child
+			database.child("Comida").child(idco).update(data)
+			mensaje="Cambio exitoso"
+			
+			return render(request,'editar_comida.html',locals())
+		except:
+			mensaje="No se puede editar el Plato"
+			return render(request,'editar_comida.html',locals())
+	
+
+	
+	return render(request,'editar_comida.html',locals())
+
+
+def vista_eliminar_comida(request, idco):
+	
+	print (idco)
+	database.child("Comida").child(idco).remove()
+
+	return redirect('/lista_comida/')
+
+
+
 
 # logica de los deportes
 def vista_agregar_deporte(request):
 
-
-	if request.method== "POST":	
-
+	if request.method == "POST":	
 		# 1-lista deportes
-
 		lista = database.child("Deportes").shallow().get().val()
 		lista_indices=[]
 		for i in lista:
 			lista_indices.append(i)
-			
+
 		lista_indices.sort(reverse=False)
 		print(lista_indices)
-
-		# 2-longitud de la lista
-
-
+				# 2-longitud de la lista
 		longitud=len(lista_indices)
 		print("longitud 1 : ",longitud)
-
-		# 3-verificar si la lista esta vacia
-
-
-		# 4-obtener el ultimo el de la lista
-
+				# 3-verificar si la lista esta vacia
+				# 4-obtener el ultimo el de la lista
 		x = len(lista_indices)
 		print("x: ",x)
 		ultimo_elemento = lista_indices[x-1]
 		siguiente_elemento=(int(ultimo_elemento)+1)
 		print("ultimo elemento de la lista: ",int(ultimo_elemento))
 		print("siguiente elemto a crear: ",int(siguiente_elemento))
-
-
-		# 5-iniciar a crear desde cero solo si lista esta vacia
-		
-
-
-
-
-		# 6- obtenemos los datos del formulario
-
-
-
+			# 5-iniciar a crear desde cero solo si lista esta vacia
 		nombre = request.POST.get('nombre')
 		calorias = request.POST.get('calorias')
 		categoria = request.POST.get('categoria')
 		duracion =request.POST.get('duracion')
-		imagen= request.POST.get('url')
+		imagen= request.POST.get('url2')
+				# print(email)
 		
-		
-
-		# 7- creamos logica para que los registros no se remplazen 
-
-	
-
+					# 6- obtenemos los datos del formulario
+					# 7- creamos logica para que los registros no se remplazen 
 		lista2= database.child("Deportes").shallow().get().val()
 		lista_indices2=[]
 		for i in lista2:
 			lista_indices2.append(i)
-		
+				
 		lista_indices2.sort(reverse=False)
 		print(lista_indices2)
 		longitud2=len(lista_indices2)
 		print("longitud 2: ",longitud2)
-		if(longitud==longitud2):
+		if (longitud==longitud2):
 			print("longitud final: ",longitud2)
-			data={
-				"nombre":nombre,
-				"calorias":calorias,
-				"categoria":categoria,
-				"duracion":duracion,
-				"imagen":imagen
-			}
+			data={"nombre":nombre,"calorias":calorias,"categoria":categoria,"duracion":duracion,"imagen":imagen}
+					#creo que a este if le falta un return
 
-		# 8- agregamos data a la base de datos
-
+				# 8- agregamos data a la base de datos
 
 		database.child("Deportes").child(str(siguiente_elemento)).set(data)
 		mensaje="Registro exitoso"
-			
-		
+
 	return render(request,'agregar_deporte.html')
 
-
-
 def vista_listar_deporte(request):
-	# idtoken= request.session['uid']
-	# a= authe.get_account_info(idtoken)
-	# a=a['users']
-	# a=a[0]
-	# a=a['localid']
+
 
 	lis_time=[]
-
-	try:
-		
-
-		timestamps= database.child("Deportes").shallow().get().val()
-		for i in timestamps:
-
-			lis_time.append(i)
-		
-		lis_time.sort(reverse=True)
-		print(lis_time)
-
-
-
-		nombre=[]
-
-		for i in lis_time:
-			wor = database.child("Deportes").child(i).child("nombre").get().val()
-			nombre.append(wor)
-		print(nombre)
-
-
-
-		cal=[]
-
-		for a in lis_time:
-			calorias=database.child("Deportes").child(a).child("calorias").get().val()
-			cal.append(calorias)
-		print(cal)
-
-
-
-		cat=[]
-
-		for a in lis_time:
-			categoria=database.child("Deportes").child(a).child("categoria").get().val()
-			cat.append(categoria)
-		print(cat)
-
-
-		dur=[]
-
-		for a in lis_time:
-			duracion=database.child("Deportes").child(a).child("duracion").get().val()
-			dur.append(duracion)
-		print(dur)
-
-
-
-		ima=[]
-
-		for a in lis_time:
-			imagen=database.child("Deportes").child(a).child("imagen").get().val()
-			ima.append(imagen)
-		print(ima)
-
-		comb_lis= zip(lis_time,nombre,cal,cat,dur,ima)
-
-	except:
-		pass
-
 	
 
+	timestamps=database.child("Deportes").shallow().get().val()
+		
+		
+	for i in timestamps:
+		lis_time.append(i)
+		lis_time.sort(reverse=True)
+		
+	print(lis_time)
+
+	nombre=[]
+	for i in lis_time:
+		wor = database.child("Deportes").child(i).child("nombre").get().val()
+		nombre.append(wor)
+	print(nombre)
+
+
+	cal=[]
+	for a in lis_time:
+		calorias=database.child("Deportes").child(a).child("calorias").get().val()
+		cal.append(calorias)
+	print(cal)
+
+	cat=[]
+
+	for a in lis_time:
+		categoria=database.child("Deportes").child(a).child("categoria").get().val()
+		cat.append(categoria)
+	print(cat)
+
+
+	dur=[]
+	for a in lis_time:
+		duracion=database.child("Deportes").child(a).child("duracion").get().val()
+		dur.append(duracion)
+	print(dur)
+
+
+	ima=[]
+	for a in lis_time:
+		imagen=database.child("Deportes").child(a).child("imagen").get().val()
+		ima.append(imagen)
+	print(ima)
+
+
+	comb_lis= zip(lis_time,nombre,cal,cat,dur,ima)
+
+	
+	
 	return render(request,'listar_deporte.html',locals())
 
 def vista_editar_deporte(request, iden):
@@ -598,7 +590,7 @@ def vista_editar_deporte(request, iden):
 		calorias = request.POST.get('calorias')
 		categoria = request.POST.get('categoria')
 		duracion =request.POST.get('duracion')
-		imagen= request.POST.get('url')
+		imagen= request.POST.get('url2')
 		# print(email)
 		try:
 			#user = authe.create_user_with_email_and_password(email,passw)

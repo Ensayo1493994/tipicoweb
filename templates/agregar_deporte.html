@@ -1,50 +1,60 @@
 {% extends 'plantillaBase.html' %}
 
+{% if mensaje %}
+  <script>
+    alert('{{ mensaje}}');
+    alert('{{ db }}');
+  </script>
+{% endif %}
+
+{% if mensaje %}
+  <script>
+    alert('{{ mensaje2}}');
+    
+  </script>
+{% endif %}
+  {% block titulo %}
+    <h1>Registro de Deporte</h1>
+    {% endblock titulo %}
+
+
     {% block contenido %}
-
-
-  
-
-
 
 
 <div class="form row">
 
   <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="form col-md-9">
-      <label for="">Nombre</label>
 
+    <div class="form col-md-9">
+
+      <label for="">Nombre</label>
       <input type="text" class="form-control" name="nombre" required>
 
       <label for="">Calorias</label>     
       <input type="number" class="form-control" name="calorias"   required>
 
       <label for="">Categoria</label>
-      <select name="categoria" class="form-control">
-        <option value="ejercicio">Ejercicio</option>
-        <option value="actividad">Activida física</option>
-        <option value="deporte">Deporte</option>                  
-      </select>
-
+        <select name="categoria" class="form-control">
+          <option value="ejercicio">Ejercicio</option>
+          <option value="actividad">Activida física</option>
+          <option value="deporte">Deporte</option>                
+        </select>
+    
       <label for="">Duración</label> 
-      <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
-
+        <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
 
       <label for="">Imagenes</label>
-      <input name="file"  type="file" id="imagen">
-      <input name="url" type="hidden"  id="url">
-      <button type="button" onclick="uploadimage()">up load</button>
+        <input name="files"  type="file" id="imagen" required>
+        <input name="url2" type="hidden"  id="url2"><br>
+
+        <button class="btn subir_archivo" style="color: black" type="button" onclick="uploadimage()">Subir Imagen</button>   
+        <input class="btn guardar usuario" type="submit" value="Guardar Deporte" >
 
 
-
-      <!-- <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button> -->
-      <input class="btn btn-outline-warning" type="submit" value="Guardar Deporte" >
-
-    </div>
+      </div>
   </form>
 </div>   
- 
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
@@ -72,9 +82,9 @@
   },
   function() {
   thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-   console.log('got url', downloadURL);
-  document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url")," imagen");
+   console.log('got url2', downloadURL);
+  document.getElementById("url2").value = downloadURL;
+  console.log(document.getElementById("url2")," imagen");
   alert("Imagen guardada");
   });
 });

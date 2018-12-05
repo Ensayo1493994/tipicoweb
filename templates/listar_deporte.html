@@ -1,13 +1,9 @@
 {% extends 'plantillaBase.html' %}
 
 {% block titulo_tablas %}
-    <h1>Lista de Deportes</h1>
-    <style type="text/css">
-        .imagen{
-            width: 50px;
-            height: 50px;
-        }
-        </style>
+
+    <h1>Deportes</h1>
+
 {% endblock titulo_tablas %}
 
 
@@ -33,12 +29,11 @@
 
     {% for lis_times,nombre,cal,cat,dur,ima in comb_lis %}
 
-                
                 <tr>              
 
-                <td>{{lis_times}}</td>
+                <!--<td>{{lis_times}}</td>-->
                 <td>{{nombre}}</td>
-                <td><img class="img-responsive" src="{{ima}}" width="100%" height="100%"></td>
+                <td><img class="img-responsive" src="{{ima}}" width="50%" height="20%"></td>
                 <td>{{cal}}</td>
                 <td>{{cat}}</td>
                 <td>{{dur}}</td>
@@ -56,18 +51,6 @@
 </tr>
 </tbody>
 </table>
-</div>
-
-<div class="paginador">
-  <ul class="pagination">
-    <li><a href="#">«</a></li>
-    <li><a  href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">»</a></li>
-  </ul>
 </div>
 
 

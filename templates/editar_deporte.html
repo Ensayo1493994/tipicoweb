@@ -1,14 +1,7 @@
 {% extends 'plantillaBase.html' %}
 
 
-
-
-
-
     {% block contenido %}
-
-
-
 
 
 <div class="form row">
@@ -16,15 +9,11 @@
   <form action="/editar_deporte/{{ iden }}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form col-md-9">
-     
-      <label for="">Nombres </label>
-      <input type="text" class="form-control" name="nombre" value="{{ getnombre }}" required>
-<!-- 
-      <label for="">Descripcion</label>
-      <input type="text" class="form-control" name="descripcion" value="{{ getdescripcion }}" required> -->
+      <label for="">Nombre</label>
+      <input type="text" class="form-control" name="nombre" required>
 
       <label for="">Calorias</label>     
-      <input type="number" class="form-control" name="calorias" value="{{ getcalorias }}" required>
+      <input type="number" class="form-control" name="calorias"   required>
 
       <label for="">Categoria</label>
       <select name="categoria" class="form-control">
@@ -34,31 +23,33 @@
       </select>
 
       <label for="">Duración</label> 
-      <input type="number" class="form-control" name="duracion" value="{{ getduracion }}" required>
+      <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
+
 
       <label for="">Imagenes</label>
-      <input name="file"  type="file" id="imagen">
-      <input name="url" type="hidden"  id="url">
-      <button type="button" onclick="uploadimage()">up load</button>
+      <input name="files"  type="file" id="imagen" required>
+      <input name="url2" type="hidden"  id="url2"><br>
 
-      <input type="submit" value="Agregar Deporte">
+
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button>
+      <input class="btn btn-outline-warning" type="submit" value="Guardar Deporte" >
+
     </div>
   </form>
 </div>   
-
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
     var config = {
-    apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
-    authDomain: "tipico-saludable-50fb7.firebaseapp.com",
-    databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
-    projectId: "tipico-saludable-50fb7",
-    storageBucket: "tipico-saludable-50fb7.appspot.com",
-    messagingSenderId: "159019297528"
-  };
+      apiKey: "AIzaSyD4rA3-ZMXJkiQwJdhQeFmYMicCe1pyfPc",
+      authDomain: "tipico-saludable-50fb7.firebaseapp.com",
+      databaseURL: "https://tipico-saludable-50fb7.firebaseio.com",
+      projectId: "tipico-saludable-50fb7",
+      storageBucket: "tipico-saludable-50fb7.appspot.com",
+      messagingSenderId: "159019297528"
+    };
     firebase.initializeApp(config);
 
   function uploadimage(){
@@ -73,13 +64,14 @@
   },
   function() {
   thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-   console.log('got url', downloadURL);
-  document.getElementById("url").value = downloadURL;
-  console.log(document.getElementById("url")," imagen");
+   console.log('got url2', downloadURL);
+  document.getElementById("url2").value = downloadURL;
+  console.log(document.getElementById("url2")," imagen");
   alert("Imagen guardada");
   });
 });
 }
 
-</script>
+
+</script> 
 {% endblock contenido %}

@@ -2,7 +2,7 @@
 
 
 {% block titulo_tablas %}
-    <h1>Lista de Comida</h1>
+    <h1>Comidas</h1>
 {% endblock titulo_tablas %}
 
 
@@ -12,6 +12,7 @@
 	<table class="table">
 		<thead>
 			<tr>
+				<th scope="col">INDEX</th>
 				<th scope="col">Nombre</th>
 				<th scope="col">Calorias</th>
 				<th scope="col">Carbohidratos</th>
@@ -27,15 +28,17 @@
 		{% for lista_time,foto,nom,calor,carbo,prot,receta in paquete_list  %}
 	
 			<tr>
+				<td>{{lista_time}}</td>
 				<td>{{nom}}</td>
 				<td>{{calor}}</td>
 				<td>{{carbo}}</td>
 				<td>{{prot}}</td>
-				<td><img class="img-responsive" src="{{foto}}" width="100%" height="100%"></td>
+				<td><img class="img-responsive" src="{{foto}}" width="50%" height="20%"></td>
 				<!--<td><img src="{{receta}}" width="50%" height="20%"></td>-->
 				<td>
-					<a href="{% url 'vista_registro_comida' %}">Actualizar</a>
-                  
+					<a href="{% url 'vista_editar_comida' idco=lista_time %}">Actualizar</a>
+                    <a href="{% url 'vista_eliminar_comida' idco=lista_time %}">Eliminar</a>
+            
                 </td>  
              
 				
@@ -44,18 +47,6 @@
 				</tr>
 		</tbody>
 	</table>
-</div>
-
-	<div class="center">
-  <ul class="pagination">
-    <li><a href="#">«</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">»</a></li>
-  </ul>
 </div>
 
 </body>
