@@ -31,7 +31,7 @@ authe = firebase.auth()
 
 def inicio(request):
  	
-	return render(request,'inicio.html')
+	return render(request,'index.html')
 	
 '''VISTA INICIAR SESION'''
 def vista_login(request):
@@ -39,6 +39,7 @@ def vista_login(request):
 	return render(request,'login.html')
 '''FUNCION DE AUTENTICACION EN FIREBASE'''
 def postsign(request):
+	
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
 	try:
@@ -54,7 +55,7 @@ def postsign(request):
 
 def logout(request):
 	auth.logout(request)
-	return render(request,'inicio.html')
+	return render(request,'index.html')
 
 	
 '''FUNCION DE REGISTRO DE PERFIL EN FIREBASE'''
@@ -66,7 +67,7 @@ def registrar(request):
 
 	# 1- lista de perfiles
 
-	lista = database.child("Usuario").shallow().get().val()
+	lista = database.child("Usuarios").shallow().get().val()
 	lista_indices=[]
 	for i in lista:
 		lista_indices.append(i)
