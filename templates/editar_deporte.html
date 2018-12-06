@@ -1,5 +1,9 @@
 {% extends 'plantillaBase.html' %}
 
+{% block titulo %}
+    <h1 class="txt titulo">Actualizar Deporte</h1>
+    {% endblock titulo %}
+
 
     {% block contenido %}
 
@@ -8,22 +12,23 @@
 
   <form action="/editar_deporte/{{ iden }}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="form col-md-9">
+     <div class="formulario">
+
       <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" required>
+      <input type="text" class="form-control" onkeypress="return validar(event)" value={{getnombre}} name="nombre" required>
 
       <label for="">Calorias</label>     
-      <input type="number" class="form-control" name="calorias"   required>
+      <input type="number" class="form-control" value={{getcalorias}} name="calorias" required>
 
       <label for="">Categoria</label>
-      <select name="categoria" class="form-control">
+      <select name="categoria" class="form-control" value={{getcategoria}}>
         <option value="ejercicio">Ejercicio</option>
         <option value="actividad">Activida física</option>
         <option value="deporte">Deporte</option>                  
       </select>
 
       <label for="">Duración</label> 
-      <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
+      <input type="number" class="form-control" value={{getduracion}} name="duracion" placeholder="minutos"  required>
 
 
       <label for="">Imagenes</label>
@@ -74,4 +79,25 @@
 
 
 </script> 
+
+</script>
+<!--validaciones-->
+<script type="text/javascript">
+  function validar(evento){
+          key = evento.keyCode || evento.which;
+            teclado = String.fromCharCode(key).toLocaleLowerCase();
+            nombre = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz ";
+            especiales = "37-38-46";
+
+            teclado_especial = false;
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial = true; break;
+                }
+            }
+            if (nombre.indexOf(teclado) == -1 && !teclado_especial) {
+                return false; 
+            }
+  }
+ </script>
 {% endblock contenido %}

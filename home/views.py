@@ -51,6 +51,8 @@ def postsign(request):
 
 	return render(request,'plantillaBase.html',{'e':email})
 
+
+
 def logout(request):
 	auth.logout(request)
 	return render(request,'inicio.html')
@@ -65,7 +67,7 @@ def registrar(request):
 
 	# 1- lista de perfiles
 
-	lista = database.child("Usuario").shallow().get().val()
+	lista = database.child("Usuarios").shallow().get().val()
 	lista_indices=[]
 	for i in lista:
 		lista_indices.append(i)
@@ -104,7 +106,7 @@ def registrar(request):
 
 
 	# 7- creamos logica para que los registros no se remplazen 
-	lista2= database.child("Usuario").shallow().get().val()
+	lista2= database.child("Usuarios").shallow().get().val()
 	lista_indices2=[]
 	for i in lista2:
 		lista_indices2.append(i)
@@ -125,11 +127,7 @@ def registrar(request):
 
 	# 8- agregamos data a la base de datos
 	
-	database.child("Usuario").child(str(siguiente_elemento)).set(data)
-	
-		
-
-
+	database.child("Usuarios").child(str(siguiente_elemento)).set(data)
 	# try:
 
 	# 	#el child en el cual se va a agregar es Usuario
@@ -190,9 +188,9 @@ def vista_editar_perfil(request, idenu):
 
 	print(idenu)
 
-	getnombre = database.child("Usuario").child(str(idenu)).child("nombre").shallow().get().val()
-	getemail = database.child("Usuario").child(str(idenu)).child("email").shallow().get().val()
-	getpassw  = database.child("Usuario").child(str(idenu)).child("password").shallow().get().val()
+	getnombre = database.child("Usuarios").child(str(idenu)).child("nombre").shallow().get().val()
+	getemail = database.child("Usuarios").child(str(idenu)).child("email").shallow().get().val()
+	getpassw  = database.child("Usuarios").child(str(idenu)).child("password").shallow().get().val()
 	
 	print(getnombre,getemail,getpassw)
 	
@@ -215,7 +213,7 @@ def vista_editar_perfil(request, idenu):
 			"imagen":imagen
 		}
 		#se pasa el valor del tamaño de la lista a un chlid y se hace un set a dicho child
-		database.child("Usuario").child(idenu).update(data)
+		database.child("Usuarios").child(idenu).update(data)
 		mensaje="Cambio exitoso"
 		
 		return render(request,'editar_perfil.html',locals())
@@ -227,22 +225,16 @@ def vista_editar_perfil(request, idenu):
 
 	return render(request, 'editar_perfil.html', locals())
 
-def vista_eliminar_perfil(request, idenu):
-	
-	print (idenu)
-	database.child("Usuario").child(idenu).remove()
-
-	return redirect('/lista_perfil/')
 
 
 
 def lista_perfil(request):
-	timestamps = database.child("Usuario").shallow().get().val()
+	timestamps = database.child("Usuarios").shallow().get().val()
 	list_time=[]
 	try:
-		timestamps= database.child("Usuario").shallow().get().val()
+		timestamps= database.child("Usuarios").shallow().get().val()
 		for i in timestamps:
-			print (database.child("Usuario").get().val())
+			print (database.child("Usuarios").get().val())
 			list_time.append(i)
 		
 
@@ -253,25 +245,25 @@ def lista_perfil(request):
 		nom=[]
 		
 		for i in list_time:
-			nombre = database.child("Usuario").child(i).child("nombre").get().val()
+			nombre = database.child("Usuarios").child(i).child("nombre").get().val()
 			nom.append(nombre)
 		print(nom)
 
 		role=[]
 		for i in list_time:
-			rol = database.child("Usuario").child(i).child("rol").get().val()
+			rol = database.child("Usuarios").child(i).child("rol").get().val()
 			role.append(rol)
 		print(role)
 
 		fot=[]
 		for i in list_time:
-			foto=database.child("Usuario").child(i).child("imagen").get().val()
+			foto=database.child("Usuarios").child(i).child("imagen").get().val()
 			fot.append(foto)
 			print(fot)
 
 		correou=[]
 		for i in list_time:
-			correo = database.child("Usuario").child(i).child("email").get().val()
+			correo = database.child("Usuarios").child(i).child("email").get().val()
 			correou.append(correo)
 		print(correo)
 
@@ -279,7 +271,7 @@ def lista_perfil(request):
 
 		passwor=[]
 		for i in list_time:
-			passw = database.child("Usuario").child(i).child("password").get().val()
+			passw = database.child("Usuarios").child(i).child("password").get().val()
 			passwor.append(passw)
 		print(correo)
 
@@ -292,6 +284,12 @@ def lista_perfil(request):
 
 	return render(request, 'perfiles.html',locals())
 
+def vista_eliminar_perfil(request, idenu):
+	
+	print (idenu)
+	database.child("Usuarios").child(idenu).remove()
+
+	return redirect('/lista_perfil/')
 #REGISTRO COMIDAS
 
 def vista_registro_comida(request):
@@ -466,7 +464,7 @@ def vista_agregar_deporte(request):
 
 	if request.method == "POST":	
 		# 1-lista deportes
-		lista = database.child("Deportes").shallow().get().val()
+		lista = database.child("Deporte").shallow().get().val()
 		lista_indices=[]
 		for i in lista:
 			lista_indices.append(i)
@@ -494,7 +492,7 @@ def vista_agregar_deporte(request):
 		
 					# 6- obtenemos los datos del formulario
 					# 7- creamos logica para que los registros no se remplazen 
-		lista2= database.child("Deportes").shallow().get().val()
+		lista2= database.child("Deporte").shallow().get().val()
 		lista_indices2=[]
 		for i in lista2:
 			lista_indices2.append(i)
@@ -510,20 +508,18 @@ def vista_agregar_deporte(request):
 
 				# 8- agregamos data a la base de datos
 
-		database.child("Deportes").child(str(siguiente_elemento)).set(data)
+		database.child("Deporte").child(str(siguiente_elemento)).set(data)
 		mensaje="Registro exitoso"
 
 	return render(request,'agregar_deporte.html')
 
+
 def vista_listar_deporte(request):
 
-
 	lis_time=[]
-	
 
-	timestamps=database.child("Deportes").shallow().get().val()
-		
-		
+	timestamps=database.child("Deporte").shallow().get().val()
+			
 	for i in timestamps:
 		lis_time.append(i)
 		lis_time.sort(reverse=True)
@@ -532,35 +528,35 @@ def vista_listar_deporte(request):
 
 	nombre=[]
 	for i in lis_time:
-		wor = database.child("Deportes").child(i).child("nombre").get().val()
+		wor = database.child("Deporte").child(i).child("nombre").get().val()
 		nombre.append(wor)
 	print(nombre)
 
 
 	cal=[]
 	for a in lis_time:
-		calorias=database.child("Deportes").child(a).child("calorias").get().val()
+		calorias=database.child("Deporte").child(a).child("calorias").get().val()
 		cal.append(calorias)
 	print(cal)
 
 	cat=[]
 
 	for a in lis_time:
-		categoria=database.child("Deportes").child(a).child("categoria").get().val()
+		categoria=database.child("Deporte").child(a).child("categoria").get().val()
 		cat.append(categoria)
 	print(cat)
 
 
 	dur=[]
 	for a in lis_time:
-		duracion=database.child("Deportes").child(a).child("duracion").get().val()
+		duracion=database.child("Deporte").child(a).child("duracion").get().val()
 		dur.append(duracion)
 	print(dur)
 
 
 	ima=[]
 	for a in lis_time:
-		imagen=database.child("Deportes").child(a).child("imagen").get().val()
+		imagen=database.child("Deporte").child(a).child("imagen").get().val()
 		ima.append(imagen)
 	print(ima)
 
@@ -575,10 +571,10 @@ def vista_editar_deporte(request, iden):
 
 	print (iden)
 
-	getnombre = database.child("Deportes").child(str(iden)).child("nombre").shallow().get().val()
-	getcalorias = database.child("Deportes").child(str(iden)).child("calorias").shallow().get().val()
-	getduracion = database.child("Deportes").child(str(iden)).child("duracion").shallow().get().val()
-	getcategoria = database.child("Deportes").child(str(iden)).child("categoria").shallow().get().val()
+	getnombre = database.child("Deporte").child(str(iden)).child("nombre").shallow().get().val()
+	getcalorias = database.child("Deporte").child(str(iden)).child("calorias").shallow().get().val()
+	getduracion = database.child("Deporte").child(str(iden)).child("duracion").shallow().get().val()
+	getcategoria = database.child("Deporte").child(str(iden)).child("categoria").shallow().get().val()
 	print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 	print (getnombre,getcalorias,getduracion,getcategoria)
 	print ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
@@ -601,7 +597,7 @@ def vista_editar_deporte(request, iden):
 				"imagen":imagen
 			}
 			#se pasa el valor del tamaño de la lista a un chlid y se hace un set a dicho child
-			database.child("Deportes").child(iden).update(data)
+			database.child("Deporte").child(iden).update(data)
 			mensaje="Cambio exitoso"
 			
 			return render(request,'editar_deporte.html',locals())
@@ -616,6 +612,6 @@ def vista_editar_deporte(request, iden):
 def vista_eliminar_deporte(request, iden):
 	
 	print (iden)
-	database.child("Deportes").child(iden).remove()
+	database.child("Deporte").child(iden).remove()
 
 	return redirect('/listar_deporte/')

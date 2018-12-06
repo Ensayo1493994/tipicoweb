@@ -14,7 +14,7 @@
   </script>
 {% endif %}
 	{% block titulo %}
-    <h1 class="txt titulo">Registro de Plato</h1>
+    <h1 class="txt titulo">Agregar Plato</h1>
     {% endblock titulo %}
 
 {% block contenido %}
@@ -23,6 +23,7 @@
     {% csrf_token %}
 
    <div class="formulario">
+
       <label for="">Nombre</label>
         <input type="text" class="form-control" name="nombre" maxlength="40" minlength="1" onkeypress="return validar(event)" required>
       <label for="">Calorias</label>
@@ -39,8 +40,8 @@
         <input name="receta[]"  type="file" id="receta" required>
         <input name="url1" type="hidden"  id="url1"><br>       
       
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivo</button>
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()">Subir archivo</button>
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir Imagen</button>
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()">Subir Receta</button>
       <br>
       <input class="btn btn-outline-warning" type="submit" value="Guardar Plato" >
     </div>

@@ -2,7 +2,7 @@
 	/*ESTILO BOTON INGRESAR*/
 	button.btn.login[type=submit] {
 		    width: 100px;
-		    background-color: #E5A529;
+		    background-color: #67b596 ;
 		    color: white;
 		    padding: 2px auto;
 		    margin: 0 auto;
@@ -13,7 +13,7 @@
 		}
 
 		button.btn.login[type=submit]:hover {
-		    background-color: #E5B934;
+		    background-color: #7cdabc;
 		}
 
 	/*ESTILO DE TEXTO "SMALL" */
@@ -38,6 +38,11 @@
 			margin:auto;
 			width: 300px;
 		}
+		warning:not(:disabled):not(.disabled):active, .show>.btn-warning.dropdown-toggle {
+    color: #212529;
+    background-color: #67b596;
+    border-color: #7cdabc;
+}
 
 	/*ESTILOS FORMULARIO*/	
 		/*ESTILOS DEL CONTENEDOR DEL FORMULARIO*/
@@ -117,7 +122,7 @@
 			/*BOTON DE GUARDAR USUARIO*/
 			input.btn.guardar.usuario[type=submit] {
 			   /* width: 100%;*/
-			    background-color: #E5A529;
+			    background-color: #67b596;
 			    color: white;
 			    padding: 2px auto;
 			    margin: 8px 200px;
@@ -127,7 +132,7 @@
 			}
 
 			input.btn.guardar.usuario[type=submit]:hover {
-			    background-color: #E5B934;
+			    background-color: #7cdabc;
 			}
 
 
@@ -255,24 +260,7 @@
 			}
 
 
-
 /**/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .Contenedor{
 margin: 0 auto;
 width: 70%
@@ -339,7 +327,7 @@ box-sizing: border-box;
 .titulo_login{
 	text-align: center;
 	font-weight: 900;
-	color: #F09816;
+	color: #67b596;
 }
 .form-text{
 	font-weight: 600;
@@ -364,13 +352,9 @@ box-sizing: border-box;
   	border-color: black;
 }
 */
-
-
-
-
 /* CABECERA */
 header {
-	background: #E5A529;
+	background: #67b596;
 	border:transparent;
 }
 .main-header .sidebar-toggle{
@@ -385,7 +369,7 @@ header {
 
 
 .main-sidebar{
-	background: #E2A71F;
+	background: #67b596;
 	box-sizing: border-box;
 	border:transparent;
 }
@@ -398,20 +382,20 @@ header {
 	color: #000000; 
 }
 .admin{
-	background-color:#E7A725;
+	background-color:#67b596;
 	color: #000000;
 }
 .comida{
-	background-color:#E7A725;
+	background-color:#67b596;
 	color: #000000;		
 }
 .deporte{
-	background-color:#E7A725;
+	background-color:#67b596;
 	color: #000000;		
 }
 /*LINK ETIQUETA <a> */
 .main-footer{
-	background-color: #E5A529;
+	background-color: #67b596;
 	border:transparent;
 }
 
@@ -463,7 +447,7 @@ ul.pagination li a:hover:not(.active) {background-color: #E2A71F;}
 		}
 
 		a.admin:hover{
-			background-color: #DEA523;
+			background-color: #E7FFE6;
 			color: white;			
 		}
 
@@ -478,7 +462,7 @@ ul.pagination li a:hover:not(.active) {background-color: #E2A71F;}
 		}
 
 		a.comida:hover{
-			background-color: #DEA523;
+			background-color: #E7FFE6;
 			color: white;
 			
 		}
@@ -494,24 +478,16 @@ ul.pagination li a:hover:not(.active) {background-color: #E2A71F;}
 			color: white;			
 		}
 
-
-
-
-
-
-
-
-
 /*BOTONES*/
 
 /*BOTON CERRAR SESION*/
 .btn.cerrar_sesion{
   display: inline-block;
   border-radius: 4px;
-  background-color: #E5A529	;
-  border-color: #CF9525;
+  background-color: #7cdabc	;
+  border-color: #479972;
   /*border: none;*/
-  color: #B58220;
+  color: #479972;
   text-align: center;
   font-size: 18px;
   /*padding: 20px;*/

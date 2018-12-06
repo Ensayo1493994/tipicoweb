@@ -1,24 +1,28 @@
 {% extends 'plantillaBase.html' %}
 
-{{% block contenido %}}
+{% block titulo %}
+    <h1 class="txt titulo">Actualizar Plato</h1>
+    {% endblock titulo %}
+
+{% block contenido %}
 
 	<div class="form row">
 
   <form action="/registro_comida/{{ idco }}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="form col-md-9">
+     <div class="formulario">
 
       <label for="">Nombre</label>
-      <input type="text" class="form-control" name="nombre" maxlength="40" minlength="1" onkeypress="return validar(event)" required>
+      <input type="text" class="form-control" value={{getnombre}} name="nombre" maxlength="40" minlength="1" onkeypress="return validar(event)" required>
       
       <label for="">Calorias</label>
-      <input type="text" class="form-control" name="calorias"  required>
+      <input type="text" class="form-control" value={{getcalorias}} name="calorias"  required>
 
       <label for="">Carbohidratos</label>     
-      <input type="text" class="form-control" name="carbohidratos" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
+      <input type="text" class="form-control" value={{getcarbohidratos}} name="carbohidratos" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
 
       <label for="">Proteinas</label>     
-      <input type="text" class="form-control" name="proteinas" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
+      <input type="text" class="form-control" value={{getproteinas}} name="proteinas" required maxlength="100" minlength="2" onkeypress="return validar2(event)" required>
 
       <label for="">Imagen</label>
       <input name="files[]"  type="file" id="comidaimagen" required>
@@ -28,8 +32,8 @@
       <input name="receta[]"  type="file" id="receta" required>
       <input name="url1" type="hidden"  id="url1"><br>       
       
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivo</button>
-      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()">Subir archivo</button>
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir Imagen</button>
+      <button class="btn btn-warning" style="color: black" type="button" onclick="uploadimages()">Subir Receta</button>
       <br>
       <input class="btn btn-outline-warning" type="submit" value="Guardar Plato" >
 
@@ -157,4 +161,4 @@
   }
  </script>
 </html>
-{{% endblock contenido %}}
+{% endblock contenido %}
