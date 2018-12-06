@@ -31,13 +31,15 @@ authe = firebase.auth()
 
 def inicio(request):
  	
-	return render(request,'inicio.html')
+	return render(request,'index.html')
+	
 '''VISTA INICIAR SESION'''
 def vista_login(request):
  	
 	return render(request,'login.html')
 '''FUNCION DE AUTENTICACION EN FIREBASE'''
 def postsign(request):
+	
 	email = request.POST.get('email')
 	passw = request.POST.get('password')
 	try:
@@ -55,7 +57,7 @@ def postsign(request):
 
 def logout(request):
 	auth.logout(request)
-	return render(request,'inicio.html')
+	return render(request,'index.html')
 
 	
 '''FUNCION DE REGISTRO DE PERFIL EN FIREBASE'''
