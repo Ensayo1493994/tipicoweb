@@ -1,10 +1,9 @@
 {% extends 'plantillaBase.html' %}
 
 
-{% block titulo_tablas %}
+ {% block titulo_tablas %}
     <h1>Comidas</h1>
-{% endblock titulo_tablas %}
-
+    {% endblock titulo_tablas %}
 
 {% block tablas %}
 <div class="table-responsive">  
@@ -12,6 +11,7 @@
 	<table class="table">
 		<thead>
 			<tr>
+				<!--<th scope="col">INDEX</th>-->
 				<th scope="col">Nombre</th>
 				<th scope="col">Calorias</th>
 				<th scope="col">Carbohidratos</th>
@@ -27,6 +27,7 @@
 		{% for lista_time,foto,nom,calor,carbo,prot,receta in paquete_list  %}
 	
 			<tr>
+				<!--<td>{{lista_time}}</td>-->
 				<td>{{nom}}</td>
 				<td>{{calor}}</td>
 				<td>{{carbo}}</td>
@@ -34,8 +35,9 @@
 				<td><img class="img-responsive" src="{{foto}}" width="50%" height="20%"></td>
 				<!--<td><img src="{{receta}}" width="50%" height="20%"></td>-->
 				<td>
-					<a href="{% url 'vista_registro_comida' %}">Actualizar</a>
-                  
+					<a href="{% url 'vista_editar_comida' idco=lista_time %}">Actualizar</a>
+                    <a href="{% url 'vista_eliminar_comida' idco=lista_time %}">Eliminar</a>
+            
                 </td>  
              
 				

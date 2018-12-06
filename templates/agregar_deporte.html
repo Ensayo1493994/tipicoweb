@@ -1,4 +1,4 @@
-{% extends 'plantillaBase.html' %}
+ {% extends 'plantillaBase.html' %}
 
 {% if mensaje %}
   <script>
@@ -14,11 +14,16 @@
   </script>
 {% endif %}
   {% block titulo %}
+<<<<<<< HEAD
     <h1 class="txt titulo">Registro de Deporte</h1>
+=======
+    <h1 class="txt titulo">Agregar Deporte</h1>
+>>>>>>> 8f2f3ff7ec471d01e99ab3854340a0700871d059
     {% endblock titulo %}
 
 
     {% block contenido %}
+<<<<<<< HEAD
 
 
   <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
@@ -48,12 +53,44 @@
       
     <input class="btn guardar usuario" type="submit" value="Guardar Deporte" >
 
+=======
+<div class="form row">
 
+  <form action="/agregar_deporte/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+     <div class="formulario">
 
+      <label for="">Nombre</label>
+      <input type="text" class="form-control" name="nombre" onkeypress="return validar(event)" required>
+
+      <label for="">Calorias</label>     
+      <input type="number" class="form-control" name="calorias"   required>
+
+      <label for="">Categoria</label>
+        <select name="categoria" class="form-control">
+          <option value="ejercicio">Ejercicio</option>
+          <option value="actividad">Activida física</option>
+          <option value="deporte">Deporte</option>                
+        </select>
+    
+      <label for="">Duración</label> 
+        <input type="number" class="form-control" name="duracion" placeholder="minutos"  required>
+>>>>>>> 8f2f3ff7ec471d01e99ab3854340a0700871d059
+
+      <label for="">Imagenes</label>
+        <input name="files"  type="file" id="imagen" required>
+        <input name="url2" type="hidden"  id="url2"><br>
+
+        <button class="btn subir_archivo" style="color: black" type="button" onclick="uploadimage()">Subir Archivos</button>   
+        <input class="btn guardar usuario" type="submit" value="Guardar Deporte" >
 
 
       </div>
   </form>
+<<<<<<< HEAD
+=======
+</div>   
+>>>>>>> 8f2f3ff7ec471d01e99ab3854340a0700871d059
 
 <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <script>
@@ -90,6 +127,26 @@
 }
 </script>
 
+</script>
+<!--validaciones-->
+<script type="text/javascript">
+  function validar(evento){
+          key = evento.keyCode || evento.which;
+            teclado = String.fromCharCode(key).toLocaleLowerCase();
+            nombre = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz ";
+            especiales = "37-38-46";
+
+            teclado_especial = false;
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial = true; break;
+                }
+            }
+            if (nombre.indexOf(teclado) == -1 && !teclado_especial) {
+                return false; 
+            }
+  }
+ </script>
+
 
 {% endblock contenido %}
-

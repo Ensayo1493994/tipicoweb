@@ -14,7 +14,7 @@
 	{% endif %}
 
 	{% block titulo %}
-    <h1 class="titulo_principal">Registrar Usuario</h1>
+    <h1 class="titulo_principal">Agregar Usuario</h1>
   {% endblock titulo %}
 
 {% block contenido %}
@@ -43,16 +43,14 @@
     		<label for="">Imagen</label>
           <input name="files[]"  type="file" id="file" required>
           <input name="url3" type="hidden"  id="url3">
-    		<button class="btn subir_archivo" type="button" onclick="uploadimage()"> Subir Imagen </button><br>
-
+    		
         <label for="">Rol</label>
           <select name="rol" class="form-control" required>
             <option value="admin">Administrador</option>
             <option value="super admin">Super Administrador</option>                 
           </select><br>
     		
-    		<button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button><br>
-
+    		<button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir Archivos</button><br>
         <input class="btn guardar usuario" type="submit"  value="Guardar Usuario">
     </div>
   </form>

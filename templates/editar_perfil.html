@@ -1,10 +1,9 @@
 {% extends 'plantillaBase.html' %}
 
 
-    {% block titulo %}
-    <h1>Editar  Usuario</h1>
+{% block titulo %}
+    <h1 class="txt titulo">Actualizar Usuario</h1>
     {% endblock titulo %}
-
 
 
 
@@ -15,8 +14,7 @@
 
 
 		{% csrf_token %}
-
-		<div class="form col-md-9">
+     <div class="formulario">
     		<label for="">Email</label>
           <input type="email" class="form-control" name="email" value="{{ getemail }}" required>
 
@@ -38,8 +36,8 @@
             <option value="super admin">Super Administrador</option>                 
           </select><br>
     		
-    		<button type="button" onclick="uploadimage()"> Subir archivos </button><br>
-        <input type="submit"  value="Guardar Usuario">
+    		<button class="btn btn-warning" style="color: black" type="button" onclick="uploadimage()">Subir archivos</button><br>
+        <input class="btn guardar usuario" type="submit"  value="Guardar Usuario">
     </div>
   </form>
 </body>
@@ -79,5 +77,23 @@
 });
 }
 
+</script>
+<script type="text/javascript">
+  function validar(evento){
+          key = evento.keyCode || evento.which;
+            teclado = String.fromCharCode(key).toLocaleLowerCase();
+            nombre = "ABCDEFGHIJKLMÑNOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz ";
+            especiales = "37-38-46";
+
+            teclado_especial = false;
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    teclado_especial = true; break;
+                }
+            }
+            if (nombre.indexOf(teclado) == -1 && !teclado_especial) {
+                return false; 
+            }
+  }
 </script>
 	{% endblock contenido %}

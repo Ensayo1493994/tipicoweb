@@ -1,5 +1,5 @@
 .bg-warning {
-    background-color: #ffc107db!important;
+    background-color: #67b596db!important;
 }
 img{
     width: 80px;
@@ -10,7 +10,7 @@ hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
-    border-top: 1px solid rgb(211, 172, 0);
+    border-top: 1px solid rgba(211, 115, 1);
 }
 h2{
     color: #000000;
@@ -47,7 +47,7 @@ i {
 }
 
 .btn-dark {
-    color: #ffca2a;
+    color: #7cdabc;
     background-color: #343a40ab;
     border-color: #343a40;
 }
@@ -79,6 +79,12 @@ section {
     width: 180px;
     height: 180px;
     margin-top: 20px;
+}
+a {
+    color: #ffca2a;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
 }
 a:visited {
     color: rgb(0, 0, 0);
