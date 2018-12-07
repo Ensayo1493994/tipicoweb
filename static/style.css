@@ -81,19 +81,19 @@ section {
     margin-top: 20px;
 }
 a {
-    color: #ffca2a;
+    color: black;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
 }
 a:visited {
-    color: rgb(0, 0, 0);
+    color: black;
 }
 a:hover {
-    color: #ffca2a;
+    color: #67b596;
 }
 a:active {
-    color: rgb(0, 0, 0);
+    color: #67b596 ;
 }
 .infor:hover{
     border-radius:50%;

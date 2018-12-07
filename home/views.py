@@ -51,7 +51,7 @@ def postsign(request):
 	session_id = user['idToken']
 	request.session['uid']=str(session_id)
 
-	return render(request,'plantillaBase.html',{'e':email})
+	return render(request,'registro.html',{'e':email})
 
 
 
